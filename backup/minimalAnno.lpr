@@ -5,7 +5,7 @@ uses unitAnno,GestionEcran,SysUtils;
 
 
 var
-  x,y,z:Integer; //x : coordonnée x du texte
+  z:Integer; //x : coordonnée x du texte
                  //y : coordonnée y du texte
                  //z : variable contenant le menu choisi par l'utilisateur
   texte:String;  //variable contenant le texte à écrire sur l'affichage
@@ -68,7 +68,7 @@ begin
 
     while(true) do
        begin
-          ile(valRess,nom);
+          ile(valRess,nbBati,chapelleCentre,nom);
           readln(z);
        end;
 

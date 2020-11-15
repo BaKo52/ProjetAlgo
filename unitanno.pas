@@ -81,7 +81,7 @@ implementation
 
    procedure presentation();
       var
-        x,y:Integer;
+        y:Integer;
         texte:String;
         intro:Text;
 
@@ -109,7 +109,6 @@ implementation
 
    procedure create();
    var
-     x,y:Integer;
      texte:String;
 
    begin
@@ -117,15 +116,11 @@ implementation
 
      couleurs(black,LightGray);
      texte:='CREATION DE VOTRE PERSONNAGE';
-     x:=100;
-     y:=5;
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(100,5,texte);
 
      couleurs(white,black);
      texte:='Entrer le nom de votre personnage : ';
-     x:=40;
-     y:=15;
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(40,15,texte);
 
    end;
 
@@ -181,8 +176,9 @@ implementation
      texte:='Liste des bâtiments construits : ';
      ecrireTexte(110,31,texte);
 
-     texte:='Liste des bâtiments construits : ';
-     ecrireTexte(110,31,texte);
+     texte:='- Maisons: ';
+     ecrireTexte(110,32,texte);
+     write(nbBati[maison]);
 
    end;
 

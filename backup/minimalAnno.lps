@@ -8,7 +8,8 @@
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="32" Y="17"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="3" Y="10"/>
         <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -16,11 +17,9 @@
         <Filename Value="unitanno.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitAnno"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="7"/>
-        <CursorPos X="47" Y="145"/>
-        <FoldState Value=" T3e3747"/>
+        <CursorPos Y="110"/>
+        <FoldState Value=" T3e375,"/>
         <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -30,11 +29,11 @@
         <TopLine Value="62"/>
         <CursorPos X="25" Y="85"/>
         <FoldState Value=" T3j24L4 piejS466]9ZjC433N"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit2>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="minimalAnno.lpr"/>
         <Caret Line="59" Column="23" TopLine="15"/>
@@ -147,6 +146,14 @@
         <Filename Value="minimalAnno.lpr"/>
         <Caret Line="36" Column="29"/>
       </Position28>
+      <Position29>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="145" Column="47" TopLine="7"/>
+      </Position29>
+      <Position30>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="35" Column="107" TopLine="20"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

@@ -81,7 +81,7 @@ implementation
 
    procedure presentation();
       var
-        x,y:Integer;
+        y:Integer;
         texte:String;
         intro:Text;
 
@@ -90,31 +90,25 @@ implementation
         assign(intro, 'intro.txt');
         reset(intro);
 
-        x:=100;
         y:=15;
         while not eof(intro) do
         begin
           readln(intro, texte);
-          ecrireTexteCentre(x,y,texte);
+          ecrireTexteCentre(100,y,texte);
           y:=y+1;
         end;
 
         texte:='1. Pour Accoster ?';
-        x:=100;
-        y:=45;
-        ecrireTexteCentre(x,y,texte);
+        ecrireTexteCentre(100,45,texte);
 
         texte:='2. Pour Quitter';
-        x:=100;
-        y:=50;
-        ecrireTexteCentre(x,y,texte);
+        ecrireTexteCentre(100,50,texte);
 
         close(intro);
       end;
 
    procedure create();
    var
-     x,y:Integer;
      texte:String;
 
    begin
@@ -122,15 +116,11 @@ implementation
 
      couleurs(black,LightGray);
      texte:='CREATION DE VOTRE PERSONNAGE';
-     x:=100;
-     y:=5;
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(100,5,texte);
 
      couleurs(white,black);
      texte:='Entrer le nom de votre personnage : ';
-     x:=40;
-     y:=15;
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(40,15,texte);
 
    end;
 
