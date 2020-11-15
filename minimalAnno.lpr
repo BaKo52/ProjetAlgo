@@ -51,7 +51,7 @@ begin
                halt();
          end;
 
-    valRess[poisson]:= 10;
+    valRess[poisson]:= 10; //Remplisage du tableau
     valRess[bois]:= 10;
     valRess[outil]:= 10;
     valRess[laine]:= 10;

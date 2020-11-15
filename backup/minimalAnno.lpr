@@ -59,7 +59,7 @@ begin
 
     while(true) do
        begin
-          ile();
+          ile(valRess);
           readln(z);
        end;
 
