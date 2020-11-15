@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Default"/>
+    <Units Count="3">
+      <Unit0>
+        <Filename Value="minimalAnno.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="32" Y="62"/>
+        <UsageCount Value="38"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unitanno.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="unitAnno"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="14" Y="130"/>
+        <FoldState Value=" T3O373^"/>
+        <UsageCount Value="38"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="GestionEcran.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="22"/>
+        <CursorPos Y="89"/>
+        <UsageCount Value="19"/>
+        <Loaded Value="True"/>
+      </Unit2>
+    </Units>
+    <JumpHistory HistoryIndex="-1"/>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
