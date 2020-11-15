@@ -8,7 +8,7 @@ interface
    uses Classes, SysUtils, GestionEcran;
 
    type
-       ressource = (poisson,bois,outil,laine,tissu,argent);
+       ressource = (poisson,bois,outil,laine,tissu,argent,colon);
        bati = (maison,cabaneP,cabaneB,bergerie,tisserand);
        batSoc = (chapelle,centreVille);
 
@@ -144,69 +144,57 @@ implementation
 
    procedure ile(var valRess:valeurRessource; nom:String);
    var
-     x,y:Integer;
      texte:String;
 
    begin
      effacerEcran;
 
-     dessinerCadreXY(95,1,105,3,simple,white,black);
+     dessinerCadreXY(95,1,105,3,double,white,black);
 
-     x:=100;
-     y:=2;
      texte:='Isla Soma';
      couleurs(white,cyan);
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(100,2,texte);
      couleurs(white,black);
 
-     x:=10;
-     y:=5;
      texte:='Nom: ';
-     ecrireTexte(x,y,texte);
+     ecrireTexte(10,5,texte);
      write(nom);
 
-     x:=10;
-     y:=6;
      texte:='Argent: ';
-     ecrireTexte(x,y,texte);
+     ecrireTexte(10,6,texte);
      write(valRess[argent]);
 
-     x:=110;
-     y:=5;
-     texte:='Ressources :';
-     ecrireTexte(x,y,texte);
+     texte:='Nombre de ressources :';
+     ecrireTexte(110,5,texte);
 
-     x:=110;
-     y:=6;
      texte:='- Bois : ';
-     ecrireTexte(x,y,texte);
+     ecrireTexte(110,6,texte);
      write(valRess[bois]);
 
-     x:=110;
-     y:=7;
      texte:='- Poissons : ';
-     ecrireTexte(x,y,texte);
+     ecrireTexte(110,7,texte);
      write(valRess[poisson]);
 
-     x:=110;
-     y:=8;
      texte:='- Outils : ';
-     ecrireTexte(x,y,texte);
+     ecrireTexte(110,8,texte);
      write(valRess[outil]);
 
-     x:=110;
-     y:=9;
      texte:='- Laine : ';
-     ecrireTexte(x,y,texte);
+     ecrireTexte(110,9,texte);
      write(valRess[laine]);
 
-     x:=110;
-     y:=10;
      texte:='- Tissu : ';
-     ecrireTexte(x,y,texte);
+     ecrireTexte(110,10,texte);
      write(valRess[tissu]);
+
+     texte:='Nombre de colons : ';
+     ecrireTexte(110,10,texte);
+     write(valRess[tissu]);
+
+     texte:='Liste des bâtiments construits';
+     ecrireTexte(,,texte);
+     write();
 
    end;
 
 end.
-

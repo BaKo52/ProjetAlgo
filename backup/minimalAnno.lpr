@@ -51,21 +51,21 @@ begin
                halt();
          end;
 
-    valRess[poisson]:= 10; //Remplisage du tableau
+    valRess[poisson]:= 10; //Remplisage des différents tableaux
     valRess[bois]:= 10;
     valRess[outil]:= 10;
     valRess[laine]:= 10;
     valRess[tissu]:= 0;
     valRess[argent]:= 500;
 
-    nbBati[maison] := 0;
-    nbBati[cabaneP] := 0;
-    nbBati[cabaneB] := 0;
-    nbBati[bergerie] := 0;
-    nbBati[tisserand] := 0;
+    nbBati[maison]:= 0;
+    nbBati[cabaneP]:= 0;
+    nbBati[cabaneB]:= 0;
+    nbBati[bergerie]:= 0;
+    nbBati[tisserand]:= 0;
 
     chapelleCentre[chapelle]:= false;
-    chapelleCentre[centre]:= false;
+    chapelleCentre[centreVille]:= false;
 
     while(true) do
        begin
@@ -74,4 +74,3 @@ begin
        end;
 
 end.
-
