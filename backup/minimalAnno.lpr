@@ -1,6 +1,6 @@
 program minimalAnno;
 {$CODEPAGE UTF8}
-uses unitAnno,GestionEcran;
+uses unitAnno,GestionEcran,SysUtils;
 
 
 
@@ -13,6 +13,8 @@ var
   nom:String;    //variable contenant le nom du joueur
 
   valRess:valeurRessource;
+  nbBati:batimentSocial;
+  chapelleCentre:chapelleCentreVille;
 
 begin
 
@@ -34,7 +36,7 @@ begin
     texte:='Alors on y va? ';
     x:=100;
     y:=55;
-    ecrireTexte(x,y,texte);
+    ecrireTexteCentre(x,y,texte);
 
     readln(z);
 
@@ -55,6 +57,15 @@ begin
     valRess[laine]:= 10;
     valRess[tissu]:= 0;
     valRess[argent]:= 500;
+
+    nbBati[maison] := 0;
+    nbBati[cabaneP] := 0;
+    nbBati[cabaneB] := 0;
+    nbBati[bergerie] := 0;
+    nbBati[tisserand] := 0;
+
+    chapelleCentre[chapelle]:= false;
+    chapelleCentre[centre]:= false;
 
     while(true) do
        begin

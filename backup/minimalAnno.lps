@@ -8,31 +8,33 @@
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="29" Y="3"/>
-        <UsageCount Value="39"/>
+        <TopLine Value="24"/>
+        <CursorPos X="31" Y="68"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="unitanno.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitAnno"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="20" Y="146"/>
-        <FoldState Value=" T3W373*"/>
-        <UsageCount Value="39"/>
+        <TopLine Value="31"/>
+        <CursorPos X="25" Y="156"/>
+        <FoldState Value=" T3e3747"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="GestionEcran.pas"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="46"/>
-        <CursorPos Y="89"/>
-        <UsageCount Value="19"/>
+        <TopLine Value="55"/>
+        <CursorPos X="25" Y="84"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit2>
     </Units>
-    <JumpHistory Count="17" HistoryIndex="16">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
         <Filename Value="minimalAnno.lpr"/>
         <Caret Line="59" Column="23" TopLine="15"/>
@@ -101,6 +103,34 @@
         <Filename Value="unitanno.pas"/>
         <Caret Line="146" Column="20" TopLine="13"/>
       </Position17>
+      <Position18>
+        <Filename Value="minimalAnno.lpr"/>
+        <Caret Line="3" Column="29"/>
+      </Position18>
+      <Position19>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="146" Column="26" TopLine="13"/>
+      </Position19>
+      <Position20>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="128" Column="45"/>
+      </Position20>
+      <Position21>
+        <Filename Value="minimalAnno.lpr"/>
+        <Caret Line="3" Column="29" TopLine="13"/>
+      </Position21>
+      <Position22>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="46" Column="15" TopLine="25"/>
+      </Position22>
+      <Position23>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="191" Column="21" TopLine="146"/>
+      </Position23>
+      <Position24>
+        <Filename Value="minimalAnno.lpr"/>
+        <Caret Line="67" Column="24" TopLine="24"/>
+      </Position24>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
