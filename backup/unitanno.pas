@@ -8,13 +8,13 @@ interface
    uses Classes, SysUtils, GestionEcran;
 
    type
-       ressource = (poisson,bois,outil,laine,tissu,argent);
+       ressource = (poisson,bois,outil,laine,tissu,argent,colon);
        bati = (maison,cabaneP,cabaneB,bergerie,tisserand);
        batSoc = (chapelle,centreVille);
 
        valeurRessource = Array [ressource] of Integer;
-       batimentSocial = Array [bati] of Integer;
-       chapelleCentreVille = Array [batSoc] of boolean;
+       batiment = Array [bati] of Integer;
+       batimentSocial = Array [batSoc] of boolean;
 
    //automatisation de l'affichage du texte avec des coordonnées x et y (centre le texte)
    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
@@ -32,7 +32,7 @@ interface
    procedure create();
 
    //affichage du menu de gestion de l'île
-   procedure ile(var valRess:valeurRessource; nom:String);
+   procedure ile(var valRess:valeurRessource; nbBati:batiment; chapelleCentre:batimentSocial; nom:String);
 
 
 
@@ -58,30 +58,22 @@ implementation
 
    procedure menuPrincipal();
    var
-     x,y:Integer;
      texte:String;
 
    begin
      changerTailleConsole(200,60);
+
      texte:='Anno 1701';
-     x:=100;
-     y:=10;
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(100,10,texte);
 
      texte:='1. Pour créer une Nouvelle Partie';
-     x:=100;
-     y:=45;
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(100,45,texte);
 
      texte:='2. Pour Quitter';
-     x:=100;
-     y:=50;
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(100,50,texte);
 
      texte:='Allez à ? ';
-     x:=100;
-     y:=55;
-     ecrireTexteCentre(x,y,texte);
+     ecrireTexteCentre(100,55,texte);
 
 
 
@@ -142,7 +134,7 @@ implementation
 
    end;
 
-   procedure ile(var valRess:valeurRessource; nom:String);
+   procedure ile(var valRess:valeurRessource; nbBati:batiment; chapelleCentre:batimentSocial; nom:String);
    var
      texte:String;
 
@@ -157,39 +149,45 @@ implementation
      couleurs(white,black);
 
      texte:='Nom: ';
-     ecrireTexte(10,5,texte);
+     ecrireTexte(10,7,texte);
      write(nom);
 
      texte:='Argent: ';
-     ecrireTexte(10,6,texte);
+     ecrireTexte(10,8,texte);
      write(valRess[argent]);
 
      texte:='Nombre de ressources :';
-     ecrireTexte(110,5,texte);
+     ecrireTexte(110,7,texte);
 
      texte:='- Bois : ';
-     ecrireTexte(110,6,texte);
+     ecrireTexte(110,8,texte);
      write(valRess[bois]);
 
      texte:='- Poissons : ';
-     ecrireTexte(110,7,texte);
+     ecrireTexte(110,9,texte);
      write(valRess[poisson]);
 
      texte:='- Outils : ';
-     ecrireTexte(110,8,texte);
+     ecrireTexte(110,10,texte);
      write(valRess[outil]);
 
      texte:='- Laine : ';
-     ecrireTexte(110,9,texte);
+     ecrireTexte(110,11,texte);
      write(valRess[laine]);
 
      texte:='- Tissu : ';
-     ecrireTexte(110,10,texte);
+     ecrireTexte(110,12,texte);
      write(valRess[tissu]);
 
      texte:='Nombre de colons : ';
-     ecrireTexte(110,10,texte);
-     write(valRess[tissu]);
+     ecrireTexte(110,30,texte);
+     write(valRess[colon]);
+
+     texte:='Liste des bâtiments construits : ';
+     ecrireTexte(110,31,texte);
+
+     texte:='Liste des bâtiments construits : ';
+     ecrireTexte(110,31,texte);
 
    end;
 

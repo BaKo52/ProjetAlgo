@@ -13,8 +13,8 @@ var
   nom:String;    //variable contenant le nom du joueur
 
   valRess:valeurRessource;
-  nbBati:batimentSocial;
-  chapelleCentre:chapelleCentreVille;
+  nbBati:batiment;
+  chapelleCentre:batimentSocial;
 
 begin
 
@@ -34,9 +34,7 @@ begin
          end;
 
     texte:='Alors on y va? ';
-    x:=100;
-    y:=55;
-    ecrireTexteCentre(x,y,texte);
+    ecrireTexteCentre(100,55,texte);
 
     readln(z);
 
@@ -57,6 +55,7 @@ begin
     valRess[laine]:= 10;
     valRess[tissu]:= 0;
     valRess[argent]:= 500;
+    valRess[colon]:= 20;
 
     nbBati[maison]:= 0;
     nbBati[cabaneP]:= 0;

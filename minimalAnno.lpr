@@ -13,8 +13,8 @@ var
   nom:String;    //variable contenant le nom du joueur
 
   valRess:valeurRessource;
-  nbBati:batimentSocial;
-  chapelleCentre:chapelleCentreVille;
+  nbBati:batiment;
+  chapelleCentre:batimentSocial;
 
 begin
 
@@ -34,9 +34,7 @@ begin
          end;
 
     texte:='Alors on y va? ';
-    x:=100;
-    y:=55;
-    ecrireTexteCentre(x,y,texte);
+    ecrireTexteCentre(100,55,texte);
 
     readln(z);
 
@@ -70,7 +68,7 @@ begin
 
     while(true) do
        begin
-          ile(valRess,nom);
+          ile(valRess,nbBati,chapelleCentre,nom);
           readln(z);
        end;
 

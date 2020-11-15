@@ -8,9 +8,8 @@
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="23"/>
-        <CursorPos X="27" Y="65"/>
-        <UsageCount Value="40"/>
+        <CursorPos X="32" Y="17"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,23 +18,23 @@
         <UnitName Value="unitAnno"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="33"/>
-        <CursorPos X="26" Y="155"/>
+        <TopLine Value="7"/>
+        <CursorPos X="47" Y="145"/>
         <FoldState Value=" T3e3747"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="GestionEcran.pas"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="38"/>
-        <CursorPos Y="138"/>
+        <TopLine Value="62"/>
+        <CursorPos X="25" Y="85"/>
         <FoldState Value=" T3j24L4 piejS466]9ZjC433N"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit2>
     </Units>
-    <JumpHistory Count="27" HistoryIndex="26">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="minimalAnno.lpr"/>
         <Caret Line="59" Column="23" TopLine="15"/>
@@ -144,6 +143,10 @@
         <Filename Value="unitanno.pas"/>
         <Caret Line="202" Column="53" TopLine="148"/>
       </Position27>
+      <Position28>
+        <Filename Value="minimalAnno.lpr"/>
+        <Caret Line="36" Column="29"/>
+      </Position28>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
