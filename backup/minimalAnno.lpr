@@ -2,9 +2,7 @@ program minimalAnno;
 {$CODEPAGE UTF8}
 uses unitAnno,GestionEcran;
 
-type
-  ressource = (poisson,bois,outil,laine,tissu);
-  valeurRessource = Array [ressource] of Integer;
+
 
 var
   x,y,z:Integer; //x : coordonnée x du texte
@@ -51,15 +49,16 @@ begin
                halt();
          end;
 
-    valRess[poisson]:= 10;
+    valRess[poisson]:= 10; //Remplisage du tableau
     valRess[bois]:= 10;
     valRess[outil]:= 10;
     valRess[laine]:= 10;
     valRess[tissu]:= 0;
+    valRess[argent]:= 500;
 
     while(true) do
        begin
-          ile(valRess);
+          ile(valRess,nom);
           readln(z);
        end;
 

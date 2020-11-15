@@ -2,8 +2,14 @@ unit unitAnno;
 
 {$mode objfpc}{$H+} {$CODEPAGE UTF8}
 
+
+
 interface
    uses Classes, SysUtils, GestionEcran;
+
+   type
+       ressource = (poisson,bois,outil,laine,tissu,argent);
+       valeurRessource = Array [ressource] of Integer;
 
    //automatisation de l'affichage du texte avec des coordonnées x et y
    procedure ecrireTexte(x1,y1:Integer;texte1:String);
@@ -18,7 +24,9 @@ interface
    procedure create();
 
    //affichage du menu de gestion de l'île
-   procedure ile(var valRess);
+   procedure ile(var valRess; nom:String);
+
+
 
 implementation
 
@@ -117,7 +125,7 @@ implementation
 
    end;
 
-   procedure ile(var valRess);
+   procedure ile(var valRess; nom:String);
    var
      x,y:Integer;
      texte:String;
@@ -125,10 +133,20 @@ implementation
    begin
      effacerEcran;
 
-     x:=50;
-     y:=50;
-     texte:='☺☻♥';
+     x:=10;
+     y:=5;
+     texte:='Nom: ';
      ecrireTexte(x,y,texte);
+     write(nom);
+
+     x:=10;
+     y:=6;
+     texte:='Argent: ';
+     ecrireTexte(x,y,texte);
+     write(valRess[argent]);
+
+
+
    end;
 
 end.
