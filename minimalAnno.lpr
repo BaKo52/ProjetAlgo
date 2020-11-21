@@ -1,6 +1,6 @@
 program minimalAnno;
 {$CODEPAGE UTF8}
-uses unitAnno,GestionEcran,SysUtils;
+uses unitAnno,GestionEcran,SysUtils,unitvar;
 
 
 

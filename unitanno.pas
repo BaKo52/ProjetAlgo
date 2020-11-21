@@ -5,7 +5,7 @@ unit unitAnno;
 
 
 interface
-   uses Classes, SysUtils, GestionEcran;
+   uses Classes, SysUtils, GestionEcran, unitvar;
 
    type
        ressource = (poisson,bois,outil,laine,tissu,argent,colon);

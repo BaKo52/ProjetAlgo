@@ -5,9 +5,7 @@ uses unitAnno,GestionEcran,SysUtils;
 
 
 var
-  z:Integer; //x : coordonnée x du texte
-                 //y : coordonnée y du texte
-                 //z : variable contenant le menu choisi par l'utilisateur
+  z:Integer;     //z : variable contenant le menu choisi par l'utilisateur
   texte:String;  //variable contenant le texte à écrire sur l'affichage
 
   nom:String;    //variable contenant le nom du joueur

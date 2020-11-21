@@ -176,8 +176,9 @@ implementation
      texte:='Liste des bâtiments construits : ';
      ecrireTexte(110,31,texte);
 
-     texte:='Liste des bâtiments construits : ';
-     ecrireTexte(110,31,texte);
+     texte:='- Maisons: ';
+     ecrireTexte(110,32,texte);
+     write(nbBati[maison]);
 
    end;
 
