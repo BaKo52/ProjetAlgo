@@ -125,7 +125,7 @@ implementation
      dessinerCadreXY(95,1,105,3,double,white,black);
 
      texte:='Isla Soma';
-     couleurs(white,cyan);
+     couleurs(white,lightRed);
      ecrireTexteCentre(100,2,texte);
      couleurs(white,black);
 
@@ -170,6 +170,45 @@ implementation
      texte:='- Maisons: ';
      ecrireTexte(110,32,texte);
      write(getMaison);
+
+     texte:='- Cabane de pêcheur: ';
+     ecrireTexte(110,33,texte);
+     write(getCabaneP);
+
+     texte:='- Cabane de bucheron: ';
+     ecrireTexte(110,34,texte);
+     write(getCabaneB);
+
+     texte:='- Bergerie: ';
+     ecrireTexte(110,35,texte);
+     write(getBergerie);
+
+     texte:='- Atelier de tisserand: ';
+     ecrireTexte(110,36,texte);
+     write(getAtelier);
+
+     if (getChapelle = false) then
+       begin
+         texte:='Vous n''avez pas encore construit de chapelle';
+         ecrireTexte(110,37,texte);
+       end
+     else
+       begin
+         texte:='Vous avez construit une chapelle';
+         ecrireTexte(110,37,texte);
+       end;
+
+     if (getCentreVille = false) then
+       begin
+         texte:='Vous n''avez pas encore construit de centre-ville';
+         ecrireTexte(110,38,texte);
+       end
+     else
+       begin
+         texte:='Vous avez construit un centre-ville';
+         ecrireTexte(110,38,texte);
+       end;
+
 
    end;
 

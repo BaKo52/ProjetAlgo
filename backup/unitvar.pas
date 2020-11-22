@@ -49,7 +49,7 @@ interface
    function getCabaneB : Integer;
 
    //bergerie
-   procedure setBegerie(val:Integer);
+   procedure setBergerie(val:Integer);
    function getBergerie : Integer;
 
    //atelier
@@ -201,7 +201,7 @@ implementation
    end;
 
    //bergerie
-   procedure setBegerie(val:Integer);
+   procedure setBergerie(val:Integer);
    begin
      bergerie:=val;
    end;

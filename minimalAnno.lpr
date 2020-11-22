@@ -17,8 +17,7 @@ begin
 
     readln(z); //lecture de z
 
-    if z=1      //passage vers la présentation du jeu
-     then
+    if z=1 then //passage vers la présentation du jeu
          begin
                effacerEcran();
                presentation(); //charge le menu de présentation
@@ -33,8 +32,7 @@ begin
 
     readln(z);
 
-    if z=1      //passage vers création de la partie
-     then
+    if z=1 then      //passage vers création de la partie
          begin
                create();  // charge le menu de création du personnage
                readln(nom); // lit la variable du nom du joueur
