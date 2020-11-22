@@ -1,6 +1,6 @@
 program minimalAnno;
 {$CODEPAGE UTF8}
-uses unitAnno,GestionEcran,SysUtils;
+uses unitAnno,GestionEcran,SysUtils,unitvar;
 
 
 
@@ -10,9 +10,6 @@ var
 
   nom:String;    //variable contenant le nom du joueur
 
-  valRess:valeurRessource;
-  nbBati:batiment;
-  chapelleCentre:batimentSocial;
 
 begin
 
@@ -47,26 +44,11 @@ begin
                halt();
          end;
 
-    valRess[poisson]:= 10; //Remplisage des différents tableaux
-    valRess[bois]:= 10;
-    valRess[outil]:= 10;
-    valRess[laine]:= 10;
-    valRess[tissu]:= 0;
-    valRess[argent]:= 500;
-    valRess[colon]:= 20;
-
-    nbBati[maison]:= 0;
-    nbBati[cabaneP]:= 0;
-    nbBati[cabaneB]:= 0;
-    nbBati[bergerie]:= 0;
-    nbBati[tisserand]:= 0;
-
-    chapelleCentre[chapelle]:= false;
-    chapelleCentre[centreVille]:= false;
+    initialisation
 
     while(true) do
        begin
-          ile(valRess,nbBati,chapelleCentre,nom);
+          ile(nom);
           readln(z);
        end;
 

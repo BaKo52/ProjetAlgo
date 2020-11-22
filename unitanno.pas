@@ -7,15 +7,6 @@ unit unitAnno;
 interface
    uses Classes, SysUtils, GestionEcran, unitvar;
 
-   type
-       ressource = (poisson,bois,outil,laine,tissu,argent,colon);
-       bati = (maison,cabaneP,cabaneB,bergerie,tisserand);
-       batSoc = (chapelle,centreVille);
-
-       valeurRessource = Array [ressource] of Integer;
-       batiment = Array [bati] of Integer;
-       batimentSocial = Array [batSoc] of boolean;
-
    //automatisation de l'affichage du texte avec des coordonnées x et y (centre le texte)
    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
 
@@ -32,7 +23,7 @@ interface
    procedure create();
 
    //affichage du menu de gestion de l'île
-   procedure ile(var valRess:valeurRessource; nbBati:batiment; chapelleCentre:batimentSocial; nom:String);
+   procedure ile(nom:String);
 
 
 
@@ -124,7 +115,7 @@ implementation
 
    end;
 
-   procedure ile(var valRess:valeurRessource; nbBati:batiment; chapelleCentre:batimentSocial; nom:String);
+   procedure ile(nom:String);
    var
      texte:String;
 
@@ -144,41 +135,41 @@ implementation
 
      texte:='Argent: ';
      ecrireTexte(10,8,texte);
-     write(valRess[argent]);
+     write(getGold);
 
      texte:='Nombre de ressources :';
      ecrireTexte(110,7,texte);
 
      texte:='- Bois : ';
      ecrireTexte(110,8,texte);
-     write(valRess[bois]);
+     write(getBois);
 
      texte:='- Poissons : ';
      ecrireTexte(110,9,texte);
-     write(valRess[poisson]);
+     write(getFish);
 
      texte:='- Outils : ';
      ecrireTexte(110,10,texte);
-     write(valRess[outil]);
+     write(getOutil);
 
      texte:='- Laine : ';
      ecrireTexte(110,11,texte);
-     write(valRess[laine]);
+     write(getLaine);
 
      texte:='- Tissu : ';
      ecrireTexte(110,12,texte);
-     write(valRess[tissu]);
+     write(getTissu);
 
      texte:='Nombre de colons : ';
      ecrireTexte(110,30,texte);
-     write(valRess[colon]);
+     write(getColon);
 
      texte:='Liste des bâtiments construits : ';
      ecrireTexte(110,31,texte);
 
      texte:='- Maisons: ';
      ecrireTexte(110,32,texte);
-     write(nbBati[maison]);
+     write(getMaison);
 
    end;
 
