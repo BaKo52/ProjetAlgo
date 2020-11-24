@@ -8,19 +8,14 @@ var
   z:Integer;     //z : variable contenant le menu choisi par l'utilisateur
   texte:String;  //variable contenant le texte à écrire sur l'affichage
 
-  nom:String;    //variable contenant le nom du joueur
-
-
 begin
 
     menuPrincipal();
 
     readln(z); //lecture de z
 
-    if z=1      //passage vers la présentation du jeu
-     then
+    if z=1 then //passage vers la présentation du jeu
          begin
-               effacerEcran();
                presentation(); //charge le menu de présentation
          end
      else
@@ -36,19 +31,25 @@ begin
     if z=1 then      //passage vers création de la partie
          begin
                create();  // charge le menu de création du personnage
-               readln(nom); // lit la variable du nom du joueur
          end
      else
          begin
                halt();
          end;
 
-    initialisation;
+    initialisation();
 
     while(true) do
        begin
-          ile(nom);
+          choixMenu();
           readln(z);
+          case z of
+          1:halt(); //passer le tour
+          2:batiment(); //menu de construction
+          3:halt(); //quitte le programme
+          end;
+
+          //sous programme de fin de tour avec taxe et check des conditions des colons et marchand
        end;
 
 end.

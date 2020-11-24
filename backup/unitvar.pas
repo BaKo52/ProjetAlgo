@@ -77,9 +77,9 @@ implementation
      laine:= 10;
      tissu:= 10;
      gold:= 500;
-     colon:= 20;
+     colon:= 8;
 
-     maison:= 5;
+     maison:= 2;
      cabaneP:= 0;
      cabaneB:= 0;
      bergerie:= 0;

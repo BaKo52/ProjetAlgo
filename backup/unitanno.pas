@@ -23,11 +23,19 @@ interface
    procedure create();
 
    //affichage du menu de gestion de l'île
-   procedure ile(nom:String);
+   procedure ile();
 
+   //affichage du menu des choix
+   procedure choixMenu();
+
+   //affichage du menu de gestion des batiments
+   procedure batiment();
 
 
 implementation
+
+   var
+     nom:String;
 
    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
    var
@@ -113,9 +121,10 @@ implementation
      texte:='Entrer le nom de votre personnage : ';
      ecrireTexteCentre(40,15,texte);
 
+     readln(nom); // lit la variable du nom du joueur
    end;
 
-   procedure ile(nom:String);
+   procedure ile();
    var
      texte:String;
 
@@ -125,7 +134,7 @@ implementation
      dessinerCadreXY(95,1,105,3,double,white,black);
 
      texte:='Isla Soma';
-     couleurs(white,orange);
+     couleurs(white,lightRed);
      ecrireTexteCentre(100,2,texte);
      couleurs(white,black);
 
@@ -137,6 +146,8 @@ implementation
      ecrireTexte(10,8,texte);
      write(getGold);
 
+
+     //affichage des ressources
      texte:='Nombre de ressources :';
      ecrireTexte(110,7,texte);
 
@@ -163,6 +174,7 @@ implementation
      texte:='Nombre de colons : ';
      ecrireTexte(110,30,texte);
      write(getColon);
+     write('/',getMaison*4);
 
      texte:='Liste des bâtiments construits : ';
      ecrireTexte(110,31,texte);
@@ -208,7 +220,63 @@ implementation
          texte:='Vous avez construit un centre-ville';
          ecrireTexte(110,38,texte);
        end;
+   end;
 
+   procedure choixMenu();
+   var
+     texte:String;
+   begin
+     ile();
+
+     //passer au prochain tour
+     texte:='1. Passer au prochain tour';
+     ecrireTexte(10, 30, texte);
+
+     //accéder au menu de gestion des bâtiments
+     texte:='2. Accéder au menu de gestion des bâtiments';
+     ecrireTexte(10, 31, texte);
+
+     //Quitter le jeu
+     texte:='3. Quitter le jeu';
+     ecrireTexte(10, 32, texte);
+
+     //demande du choix
+     texte:='Que souhaitez-vous faire ?';
+     ecrireTexte(10, 34, texte);
+   end;
+
+   procedure batiment();
+   var
+     texte:String;
+   begin
+     ile();
+
+     texte:='1. Construire une maison pouvant accueillir 4 colons: -500 or, - 10 bois et -5 outils';
+     ecrireTexte(10, 30, texte);
+
+     texte:='2. Construire une cabane de bucheron : -500 or, -20 bois et -10 outils';
+     ecrireTexte(10, 31, texte);
+
+     texte:='3. Construire une cabane de pêcheur : -500 or, -20 bois et -10 outils';
+     ecrireTexte(10, 32, texte);
+
+     texte:='4. Construire une bergerie: -500 or, -20 bois et -10 outils';
+     ecrireTexte(10, 33, texte);
+
+     texte:='5. Construire un atelier de tisserand: -500 or, -20 bois, -10 outils et -10 laines';
+     ecrireTexte(10, 34, texte);
+
+     texte:='6. Construire une chapelle: -1500 or, -80 bois, -30 outils et -30 tissu';
+     ecrireTexte(10, 35, texte);
+
+     texte:='7. Construire un centre-ville: -1000 or, -45 bois, -20 outils et -20 tissu';
+     ecrireTexte(10, 36, texte);
+
+     texte:='8. Retour au menu précédent';
+     ecrireTexte(10, 37, texte);
+
+     texte:='Quel bâtiment voulez-vous construire ? ';
+     ecrireTexte(10, 39, texte);
 
    end;
 
