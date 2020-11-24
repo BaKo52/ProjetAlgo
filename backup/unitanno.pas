@@ -241,13 +241,14 @@ implementation
      ecrireTexte(10, 32, texte);
 
      //demande du choix
-     texte:='Que souhaitez-vous faire ?';
+     texte:='Que souhaitez-vous faire ? ';
      ecrireTexte(10, 34, texte);
    end;
 
    procedure batiment();
    var
      texte:String;
+     z:Integer;
    begin
      ile();
 
@@ -277,6 +278,64 @@ implementation
 
      texte:='Quel bâtiment voulez-vous construire ? ';
      ecrireTexte(10, 39, texte);
+
+     readln(z);
+
+     case z of
+     1:
+       begin
+         setMaison(getMaison+1);
+         setGold(getGold-500);
+         setBois(getBois-10);
+         setOutil(getOutil-5);
+       end;
+     2:
+       begin
+         setCabaneB(getCabaneB+1);
+         setGold(getGold-500);
+         setBois(getBois-20);
+         setOutil(getOutil-10);
+       end;
+     3:
+       begin
+         setCabaneP(getCabaneP+1);
+         setGold(getGold-500);
+         setBois(getBois-20);
+         setOutil(getOutil-10);
+       end;
+     4:
+       begin
+         setBergerie(getBergerie+1);
+         setGold(getGold-500);
+         setBois(getBois-20);
+         setOutil(getOutil-10);
+       end;
+     5:
+       begin
+         setAtelier(getAtelier+1);
+         setGold(getGold-500);
+         setBois(getBois-20);
+         setOutil(getOutil-10);
+         setLaine(getLaine-10);
+       end;
+     6:
+       begin
+         setChapelle(true);
+         setGold(getGold-1500);
+         setBois(getBois-80);
+         setOutil(getOutil-30);
+         settissu(getTissu-30);
+       end;
+     7:
+       begin
+         setCentreVille(true);
+         setGold(getGold-1000);
+         setBois(getBois-45);
+         setOutil(getOutil-20);
+         settissu(getTissu-20);
+       end;
+     8:;
+     end;
 
    end;
 

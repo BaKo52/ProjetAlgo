@@ -8,37 +8,39 @@
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="13" Y="48"/>
-        <UsageCount Value="46"/>
+        <CursorPos X="23" Y="44"/>
+        <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="unitanno.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitAnno"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="48" Y="31"/>
-        <FoldState Value=" T3d375*"/>
-        <UsageCount Value="46"/>
+        <TopLine Value="283"/>
+        <CursorPos X="32" Y="319"/>
+        <FoldState Value=" T3d3743"/>
+        <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="GestionEcran.pas"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="62"/>
+        <TopLine Value="67"/>
         <CursorPos X="16" Y="82"/>
-        <UsageCount Value="24"/>
+        <FoldState Value=" T3j24L4 piejS466]9ZjC433N"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="unitvar.pas"/>
         <UnitName Value="unitVar"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="99"/>
+        <TopLine Value="127"/>
         <CursorPos Y="72"/>
         <FoldState Value=" T3iS3JQ piZka331Q"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit3>
     </Units>

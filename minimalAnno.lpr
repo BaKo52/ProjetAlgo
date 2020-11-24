@@ -48,7 +48,6 @@ begin
           2:batiment(); //menu de construction
           3:halt(); //quitte le programme
           end;
-          readln();
 
           //sous programme de fin de tour avec taxe et check des conditions des colons et marchand
        end;
