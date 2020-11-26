@@ -284,39 +284,84 @@ implementation
      case z of
      1:
        begin
-         setMaison(getMaison+1);
-         setGold(getGold-500);
-         setBois(getBois-10);
-         setOutil(getOutil-5);
+         if ((getGold>499) AND (getBois>9) AND (getOutil>4)) then
+            begin
+               setMaison(getMaison+1);
+               setGold(getGold-500);
+               setBois(getBois-10);
+               setOutil(getOutil-5);
+            end
+         else
+             begin
+               texte:='Vous n''avez pas les ressources pour construire une maison';
+               ecrireTexte(10, 39, texte);
+               readln();
+             end;
        end;
      2:
        begin
-         setCabaneB(getCabaneB+1);
-         setGold(getGold-500);
-         setBois(getBois-20);
-         setOutil(getOutil-10);
+         if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
+            begin
+               setCabaneB(getCabaneB+1);
+               setGold(getGold-500);
+               setBois(getBois-20);
+               setOutil(getOutil-10);
+            end
+         else
+             begin
+               texte:='Vous n''avez pas les ressources pour construire une maison';
+               ecrireTexte(10, 39, texte);
+               readln();
+             end;
        end;
      3:
        begin
-         setCabaneP(getCabaneP+1);
-         setGold(getGold-500);
-         setBois(getBois-20);
-         setOutil(getOutil-10);
+         if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
+            begin
+               setCabaneP(getCabaneP+1);
+               setGold(getGold-500);
+               setBois(getBois-20);
+               setOutil(getOutil-10);
+            end
+         else
+             begin
+               texte:='Vous n''avez pas les ressources pour construire une maison';
+               ecrireTexte(10, 39, texte);
+               readln();
+             end;
        end;
      4:
        begin
-         setBergerie(getBergerie+1);
-         setGold(getGold-500);
-         setBois(getBois-20);
-         setOutil(getOutil-10);
+         if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
+            begin
+               setBergerie(getBergerie+1);
+               setGold(getGold-500);
+               setBois(getBois-20);
+               setOutil(getOutil-10);
+            end
+         else
+             begin
+               texte:='Vous n''avez pas les ressources pour construire une maison';
+               ecrireTexte(10, 39, texte);
+               readln();
+             end;
        end;
      5:
        begin
-         setAtelier(getAtelier+1);
-         setGold(getGold-500);
-         setBois(getBois-20);
-         setOutil(getOutil-10);
-         setLaine(getLaine-10);
+         if ((getGold>499) AND (getBois>19) AND (getOutil>9) AND (getLaine>9)) then
+            begin
+               setAtelier(getAtelier+1);
+               setGold(getGold-500);
+               setBois(getBois-20);
+               setOutil(getOutil-10);
+               setLaine(getLaine-10);
+            end
+         else
+             begin
+               texte:='Vous n''avez pas les ressources pour construire une maison';
+               ecrireTexte(10, 39, texte);
+               readln();
+             end;
        end;
      6:
        begin
@@ -334,7 +379,8 @@ implementation
          setOutil(getOutil-20);
          settissu(getTissu-20);
        end;
-     8:;
+     8: //retour menu précédent
+       ;
      end;
 
    end;
