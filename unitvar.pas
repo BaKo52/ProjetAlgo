@@ -5,6 +5,7 @@ unit unitVar;
 interface
    uses Classes, SysUtils;
 
+   //Unité de gestion des ressources: getX donne la valeur de la ressource, setX la modifie
    //initialisation
    procedure initialisation;
 

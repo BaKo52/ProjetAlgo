@@ -8,20 +8,17 @@ var
   z:Integer;     //z : variable contenant le menu choisi par l'utilisateur
   texte:String;  //variable contenant le texte à écrire sur l'affichage
 
+  ARRET: Boolean; //Variable d'arrêt
 begin
 
     menuPrincipal();
 
     readln(z); //lecture de z
 
-    if z=1 then //passage vers la présentation du jeu
-         begin
-               presentation(); //charge le menu de présentation
-         end
-     else
-         begin
-               halt(); //ferme le programme
-         end;
+    case z of //passage vers la présentation du jeu
+    1:presentation(); //charge le menu de présentation
+    2:halt();//ferme le programme
+    end;
 
     texte:='Alors on y va? ';
     ecrireTexteCentre(100,55,texte);
@@ -39,18 +36,19 @@ begin
 
     initialisation();
 
-    while(true) do
-       begin
-          choixMenu();
-          readln(z);
-          case z of
-          1:halt(); //passer le tour
-          2:batiment(); //menu de construction
-          3:halt(); //quitte le programme
+    ARRET:=FALSE;
+
+    while(not(ARRET)) do
+          begin
+            choixMenu();
+            readln(z);
+            case z of
+            1:halt(); //passer le tour
+            2:batiment(); //menu de construction
+            3:ARRET:=TRUE; //quitte le programme
+            end;
           end;
-          readln();
 
           //sous programme de fin de tour avec taxe et check des conditions des colons et marchand
-       end;
 
 end.

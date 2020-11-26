@@ -72,11 +72,11 @@ implementation
    procedure initialisation;
    begin
      fish:= 100;
-     bois:= 10;
+     bois:= 100;
      outil:= 100;
      laine:= 100;
      tissu:= 100;
-     gold:= 500;
+     gold:= 50000;
      colon:= 12;
 
      maison:= 3;
