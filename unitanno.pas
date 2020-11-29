@@ -417,33 +417,28 @@ implementation
    end;
 
    procedure production ();
+   var
+      res: Integer;
    begin
      //Production de poissons
      setFish(getFish+(getCabaneP*4)); //Une cabane de pêcheur produit 4 poissons
-     if getFish>100 then
-        begin
-           setFish(100);
-        end;
 
      //Production de bois
      setBois(getBois+(getCabaneB*5)); //Une cabane de bucheron produit 5 bois
-     if getBois>100 then
-        begin
-           setBois(100);
-        end;
 
      //Production de outils
      setOutil(getOutil+(getAtelier*15)); //Un atelier produit 15 outils
-     if getOutil>100 then
+
+     //Production de tissu
+     res:= getAtelier*5;
+     if res<getLaine then
         begin
-           setOutil(100);
+            setLaine(getLaine-res);
+            setTissu(getTissu+(getAtelier*10)); //Un atelier produit 10 tissu pour 5 laines
         end;
 
-     setOutil(get+(getLaine*15)); //Un atelier produit 10 laines
-     if getOutil>100 then
-        begin
-           setOutil(100);
-        end;
+     //Production de Laine
+     setLaine(getLaine+(getBergerie*15)); //Une begerie produit 5 laines
 
    end;
 

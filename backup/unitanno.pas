@@ -417,6 +417,8 @@ implementation
    end;
 
    procedure production ();
+   var
+      res: Integer;
    begin
      //Production de poissons
      setFish(getFish+(getCabaneP*4)); //Une cabane de pêcheur produit 4 poissons
@@ -430,6 +432,24 @@ implementation
      if getBois>100 then
         begin
            setBois(100);
+        end;
+
+     //Production de outils
+     setOutil(getOutil+(getAtelier*15)); //Un atelier produit 15 outils
+     if getOutil>100 then
+        begin
+           setOutil(100);
+        end;
+
+     res:= getAtelier*5;
+     if res<getLaine then
+        begin
+            setLaine(getLaine-res);
+            setTissu(getTissu+(getAtelier*10)); //Un atelier produit 10 tissu pour 5 laines
+            if getTissu>100 then
+               begin
+                    setTissu(100);
+               end;
         end;
 
      //Production de outils

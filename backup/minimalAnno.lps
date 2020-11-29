@@ -8,8 +8,9 @@
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="20" Y="45"/>
-        <UsageCount Value="52"/>
+        <TopLine Value="9"/>
+        <CursorPos X="13" Y="44"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -18,10 +19,10 @@
         <UnitName Value="unitAnno"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="261"/>
-        <CursorPos X="24" Y="425"/>
+        <TopLine Value="33"/>
+        <CursorPos X="49" Y="450"/>
         <FoldState Value=" T3i3375 pl0lJ3L1}"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -29,7 +30,7 @@
         <EditorIndex Value="3"/>
         <CursorPos X="17"/>
         <FoldState Value=" T3j24L4 piejS466]9ZjC433N"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -39,7 +40,7 @@
         <TopLine Value="55"/>
         <CursorPos X="20" Y="148"/>
         <FoldState Value=" T3iT3JQ piZka331{"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
       </Unit3>
     </Units>
