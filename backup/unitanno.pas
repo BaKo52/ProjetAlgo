@@ -39,7 +39,6 @@ implementation
 
    var
      nom:String;
-     temp: Integer; //Variable entière de stockage temporaire
      nbRound: Integer; //Variable qui prend le numéro du round en cours
 
    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
@@ -423,17 +422,55 @@ implementation
      nbRound:=nbRound+1;
      res:= getColon div 2;
 
+     //Conso de poissons
      if res<getFish then
         begin
              setFish(getFish-res);
+             texte:='Vos colons se délectent de vos poissons! Poissons restant: ';
+             ecrireTexteCentre(100,10,texte);
+             write(getFish);
         end
      else
          begin
               texte:='Vous n''avez plus assez de poisson, vos colons ont faim !';
               ecrireTexteCentre(100,10,texte);
               setColon(getColon-4);
+         end;ù=
+
+     //Conso de tissu
+     if res<getTissu then
+        begin
+             setTissu(getTissu-(res + 3));
+             texte:='Vos ressources en tissu subviennent à vos colons ! Tissu restant: ';
+             ecrireTexteCentre(100,12,texte);
+             write(getTissu);
+        end
+     else
+         begin
+              texte:='Vous n''avez plus assez de tissu, vos colons sont en colère !';
+              ecrireTexteCentre(100,12,texte);
+              setColon(getColon-2);
          end;
 
+     //Conso de bois
+     if res<getBois then
+        begin
+             setBois(getBois-(res div 2));
+             texte:='Vos ressources en bois subviennent à vos colons ! Bois restant: ';
+             ecrireTexteCentre(100,14,texte);
+             write(getBois);
+        end
+     else
+         begin
+              texte:='Vous n''avez plus assez de bois, vos colons ne peuvent plus se chauffer !';
+              ecrireTexteCentre(100,14,texte);
+              setColon(getColon-2);
+         end;
+
+     readln();
+
+     //Passage vers le tour suivant ou fin de partie
+     EffacerEcran();
      If getColon<1 then
         begin
              texte:='L''entièreté de vos colons est mort !';
