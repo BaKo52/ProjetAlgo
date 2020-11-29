@@ -31,11 +31,15 @@ interface
    //affichage du menu de gestion des batiments
    procedure batiment();
 
+   //gestion des tour
+   procedure nextRound();
+
 
 implementation
 
    var
      nom:String;
+     nbRound: Integer; //Variable qui prend le numéro du round en cours
 
    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
    var
@@ -145,6 +149,10 @@ implementation
      texte:='Argent: ';
      ecrireTexte(10,8,texte);
      write(getGold);
+
+     texte:='Tour: ';
+     ecrireTexte(10,9,texte);
+     write(nbRound);
 
 
      //affichage des ressources
@@ -365,24 +373,48 @@ implementation
        end;
      6:
        begin
-         setChapelle(true);
-         setGold(getGold-1500);
-         setBois(getBois-80);
-         setOutil(getOutil-30);
-         settissu(getTissu-30);
+         if ((getGold>1499) AND (getBois>79) AND (getOutil>29) AND (getTissu>29)) then
+            begin
+               setChapelle(true);
+               setGold(getGold-1500);
+               setBois(getBois-80);
+               setOutil(getOutil-30);
+               settissu(getTissu-30);
+            end
+         else
+             begin
+                 texte:='Vous n''avez pas les ressources pour construire une maison';
+                 ecrireTexte(10, 39, texte);
+                 readln();
+             end;
        end;
      7:
        begin
-         setCentreVille(true);
-         setGold(getGold-1000);
-         setBois(getBois-45);
-         setOutil(getOutil-20);
-         settissu(getTissu-20);
+         if ((getGold>999) AND (getBois>44) AND (getOutil>19) AND (getTissu>19)) then
+            begin
+               setCentreVille(true);
+               setGold(getGold-1000);
+               setBois(getBois-45);
+               setOutil(getOutil-20);
+               settissu(getTissu-20);
+            end
+         else
+             begin
+                 texte:='Vous n''avez pas les ressources pour construire une maison';
+                 ecrireTexte(10, 39, texte);
+                 readln();
+             end;
        end;
      8: //retour menu précédent
        ;
      end;
 
+   end;
+
+   procedure nextRound();
+   begin
+     nbRound:=nbRound+1;
+     ile();
    end;
 
 end.

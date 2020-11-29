@@ -11,39 +11,38 @@ var
   ARRET: Boolean; //Variable d'arrêt
 begin
 
+    //Lancement du menu principal
     menuPrincipal();
 
     readln(z); //lecture de z
 
+    //Choix menu Principal
     case z of //passage vers la présentation du jeu
     1:presentation(); //charge le menu de présentation
     2:halt();//ferme le programme
     end;
 
+    //Choix menu De présentation
     texte:='Alors on y va? ';
     ecrireTexteCentre(100,55,texte);
 
     readln(z);
+    case z of
+    1:create();  // charge le menu de création du personnage
+    2:halt(); //quite la partie
+    end;
 
-    if z=1 then      //passage vers création de la partie
-         begin
-               create();  // charge le menu de création du personnage
-         end
-     else
-         begin
-               halt();
-         end;
-
-    initialisation();
+    initialisation(); //Initialisation des ressources
 
     ARRET:=FALSE;
 
+    //Menu de la partie
     while(not(ARRET)) do
           begin
             choixMenu();
             readln(z);
             case z of
-            1:halt(); //passer le tour
+            1:round(); //passer le tour
             2:batiment(); //menu de construction
             3:ARRET:=TRUE; //quitte le programme
             end;

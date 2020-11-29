@@ -31,11 +31,15 @@ interface
    //affichage du menu de gestion des batiments
    procedure batiment();
 
+   //gestion des tour
+   procedure nextRound();
+
 
 implementation
 
    var
      nom:String;
+     nbRound: Integer; //Variable qui prend le numéro du round en cours
 
    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
    var
@@ -113,6 +117,8 @@ implementation
    begin
      effacerEcran();
 
+     nbRound:=1; //Initialisation du nombre de tour
+
      couleurs(black,LightGray);
      texte:='CREATION DE VOTRE PERSONNAGE';
      ecrireTexteCentre(100,5,texte);
@@ -145,6 +151,10 @@ implementation
      texte:='Argent: ';
      ecrireTexte(10,8,texte);
      write(getGold);
+
+     texte:='Tour: ';
+     ecrireTexte(10,9,texte);
+     write(nbRound);
 
 
      //affichage des ressources
@@ -401,6 +411,12 @@ implementation
        ;
      end;
 
+   end;
+
+   procedure nextRound();
+   begin
+     nbRound:=nbRound+1;
+     ile();
    end;
 
 end.
