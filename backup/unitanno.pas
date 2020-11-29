@@ -438,7 +438,7 @@ implementation
          end;
 
      //Conso de tissu
-     if res<getTissu then
+     if (res + 3)<getTissu then
         begin
              setTissu(getTissu-(res + 3));
              texte:='Vos ressources en tissu subviennent à vos colons ! Tissu restant: ';
@@ -453,7 +453,7 @@ implementation
          end;
 
      //Conso de bois
-     if res<getBois then
+     if (res div 2)<getBois then
         begin
              setBois(getBois-(res div 2));
              texte:='Vos ressources en bois subviennent à vos colons ! Bois restant: ';
@@ -466,6 +466,26 @@ implementation
               ecrireTexteCentre(100,14,texte);
               setColon(getColon-2);
          end;
+
+     //Check centre-ville
+     if getCentreVille=TRUE then
+        begin
+             texte:='Vous avez un centre-ville, vos colons sont heureux !';
+             ecrireTexteCentre(100,16,texte);
+        end
+     else
+         texte:='Vous n''avez pas de centre-ville, vos colons sont mécontent !';
+         ecrireTexteCentre(100,16,texte);
+
+     //Check chapelle
+     if getChapelle=TRUE then
+        begin
+             texte:='Vous avez une chapelle, vos colons sont heureux !';
+             ecrireTexteCentre(100,18,texte);
+        end
+     else
+         texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
+         ecrireTexteCentre(100,18,texte);
 
      readln();
 

@@ -319,7 +319,7 @@ implementation
             end
          else
              begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
+               texte:='Vous n''avez pas les ressources pour construire une cabane de bucheron';
                ecrireTexte(10, 39, texte);
                readln();
              end;
@@ -335,7 +335,7 @@ implementation
             end
          else
              begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
+               texte:='Vous n''avez pas les ressources pour construire une cabane de pêcheur';
                ecrireTexte(10, 39, texte);
                readln();
              end;
@@ -351,7 +351,7 @@ implementation
             end
          else
              begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
+               texte:='Vous n''avez pas les ressources pour construire une bergerie';
                ecrireTexte(10, 39, texte);
                readln();
              end;
@@ -368,7 +368,7 @@ implementation
             end
          else
              begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
+               texte:='Vous n''avez pas les ressources pour construire une atelier de tisserand';
                ecrireTexte(10, 39, texte);
                readln();
              end;
@@ -385,7 +385,7 @@ implementation
             end
          else
              begin
-                 texte:='Vous n''avez pas les ressources pour construire une maison';
+                 texte:='Vous n''avez pas les ressources pour construire une chapelle';
                  ecrireTexte(10, 39, texte);
                  readln();
              end;
@@ -402,7 +402,7 @@ implementation
             end
          else
              begin
-                 texte:='Vous n''avez pas les ressources pour construire une maison';
+                 texte:='Vous n''avez pas les ressources pour construire un centre-ville';
                  ecrireTexte(10, 39, texte);
                  readln();
              end;
@@ -466,6 +466,26 @@ implementation
               ecrireTexteCentre(100,14,texte);
               setColon(getColon-2);
          end;
+
+     //Check centre-ville
+     if getCentreVille=TRUE then
+        begin
+             texte:='Vous avez un centre-ville, vos colons sont heureux !';
+             ecrireTexteCentre(100,16,texte);
+        end
+     else
+         texte:='Vous n''avez pas de centre-ville, vos colons sont mécontent !';
+         ecrireTexteCentre(100,16,texte);
+
+     //Check chapelle
+     if getChapelle=TRUE then
+        begin
+             texte:='Vous avez une chapelle, vos colons sont heureux !';
+             ecrireTexteCentre(100,18,texte);
+        end
+     else
+         texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
+         ecrireTexteCentre(100,18,texte);
 
      readln();
 
