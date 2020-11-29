@@ -39,6 +39,7 @@ implementation
 
    var
      nom:String;
+     temp: Integer; //Variable entière de stockage temporaire
      nbRound: Integer; //Variable qui prend le numéro du round en cours
 
    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
@@ -414,9 +415,38 @@ implementation
    end;
 
    procedure nextRound();
+   var
+     texte:String;
+     res: Integer;
    begin
+     EffacerEcran();
      nbRound:=nbRound+1;
-     ile();
+     res:= getColon div 2;
+
+     if res<getFish then
+        begin
+             setFish(getFish-res);
+        end
+     else
+         begin
+              texte:='Vous n''avez plus assez de poisson, vos colons ont faim !';
+              ecrireTexteCentre(100,10,texte);
+              setColon(getColon-4);
+              readln();
+         end;
+
+     EffacerEcran();
+     If getColon<1 then
+        begin
+             texte:='L''entièreté de vos colons est mort !';
+             ecrireTexteCentre(100,10,texte);
+             texte:='Vous avez perdu !';
+             ecrireTexteCentre(100,12,texte);
+             readln();
+             halt();
+        end
+     else
+         ile();
    end;
 
 end.
