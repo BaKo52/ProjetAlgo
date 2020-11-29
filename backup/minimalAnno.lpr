@@ -42,7 +42,7 @@ begin
             choixMenu();
             readln(z);
             case z of
-            1:round(); //passer le tour
+            1:nextRound(); //passer le tour
             2:batiment(); //menu de construction
             3:ARRET:=TRUE; //quitte le programme
             end;

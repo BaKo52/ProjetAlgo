@@ -48,6 +48,4 @@ begin
             end;
           end;
 
-          //sous programme de fin de tour avec taxe et check des conditions des colons et marchand
-
 end.
