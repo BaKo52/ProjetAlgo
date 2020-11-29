@@ -37,6 +37,8 @@ interface
    //gestion des tour
    procedure nextRound();
 
+   //gestion de l'appartition du marchand
+   procedure marchand();
 
 implementation
 
@@ -426,9 +428,6 @@ implementation
      //Production de bois
      setBois(getBois+(getCabaneB*5)); //Une cabane de bucheron produit 5 bois
 
-     //Production de outils
-     setOutil(getOutil+(getAtelier*15)); //Un atelier produit 15 outils
-
      //Production de tissu
      res:= getAtelier*5;
      if res<getLaine then
@@ -536,8 +535,144 @@ implementation
          texte:='Vos colons vous on rapporté: ';
          ecrireTexteCentre(100,10,texte);
          write(getGold);
-         marchand(); //Marchand
+         if (nbRound mod 3 = 0) then
+            begin
+                 marchand(); //Marchand
+            end;
+
          ile();
+   end;
+
+   procedure marchand();
+   var
+     texte:String;
+     z,x,temp:Integer;
+     ARRET:Boolean;
+   begin
+     effacerEcran();
+     dessinerCadreXY(95,1,104,3,simple,white,black);
+     texte:='MARCHAND';
+     ecrireTexteCentre(100,2,texte);
+
+     dessinerCadreXY(82,5,118,15,simple,white,black);
+
+     texte:='Argent :';
+     ecrireTexte(1,5,texte);
+     write(getGold);
+
+     texte:='Bois: 5 pièce d''or par laine';
+     ecrireTexteCentre(100,6,texte);
+
+     texte:='Poisson: 5 pièce d''or par laine';
+     ecrireTexteCentre(100,8,texte);
+
+     texte:='Laine: 5 pièce d''or par laine';
+     ecrireTexteCentre(100,10,texte);
+
+     texte:='Tissu: 10 pièce d''or par tissu';
+     ecrireTexteCentre(100,12,texte);
+
+     texte:='Outil: 2 pièce d''or par outil';
+     ecrireTexteCentre(100,14,texte);
+
+     texte:='1. Acheter du bois';
+     ecrireTexteCentre(100,50,texte);
+     texte:='2. Acheter du poisson';
+     ecrireTexteCentre(100,51,texte);
+     texte:='3. Acheter de la laine';
+     ecrireTexteCentre(100,52,texte);
+     texte:='4. Acheter du tissu';
+     ecrireTexteCentre(100,53,texte);
+     texte:='5. Acheter des outils';
+     ecrireTexteCentre(100,54,texte);
+     texte:='6. Sortir du marchand';
+     ecrireTexteCentre(100,55,texte);
+     texte:='Que voulez-vous faire: ';
+     ecrireTexteCentre(100,56,texte);
+
+     readln(z);
+
+     ARRET:=true;
+
+     while ARRET=true do
+       begin
+         readln(z);
+         case z of
+         1:
+           begin
+             texte:='Quel quantité: ';
+             ecrireTexteCentre(100,57,texte);
+             readln(x);
+             temp:=x*5;
+             if(getGold-temp>0) then
+                begin
+                     setGold(getGold-temp);
+                     setBois(getBois+x);
+                end
+             else write('Vous n''avez pas assez d''argent');
+           end;
+         2:
+           begin
+             texte:='Quel quantité: ';
+             ecrireTexteCentre(100,57,texte);
+             readln(x);
+             temp:=x*5;
+             if(getGold-temp>0) then
+                begin
+                     setGold(getGold-temp);
+                     setFish(getFish+x);
+                end
+             else write('Vous n''avez pas assez d''argent');
+           end;
+         3:
+           begin
+             texte:='Quel quantité: ';
+             ecrireTexteCentre(100,57,texte);
+             readln(x);
+             temp:=x*5;
+             if(getGold-temp>0) then
+                begin
+                     setGold(getGold-temp);
+                     setLaine(getLaine+x);
+                end
+             else write('Vous n''avez pas assez d''argent');
+           end;
+         4:
+           begin
+             texte:='Quel quantité: ';
+             ecrireTexteCentre(100,57,texte);
+             readln(x);
+             temp:=x*10;
+             if(getGold-temp>0) then
+                begin
+                     setGold(getGold-temp);
+                     setTissu(getTissu+x);
+                end
+             else write('Vous n''avez pas assez d''argent');
+           end;
+         5:
+           begin
+             texte:='Quel quantité: ';
+             ecrireTexteCentre(100,57,texte);
+             readln(x);
+             temp:=x*2;
+             if(getGold-temp>0) then
+                begin
+                     setGold(getGold-temp);
+                     setBois(getBois+x);
+                end
+             else write('Vous n''avez pas assez d''argent');
+           end;
+         6:
+           begin
+             ARRET:=false;
+           end;
+         else
+           effacerEcran();
+           marchand();
+         end;
+         ColorierZone(black,Black,90,110,57);
+       end;
    end;
 
 end.

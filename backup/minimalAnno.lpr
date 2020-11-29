@@ -16,10 +16,22 @@ begin
 
     readln(z); //lecture de z
 
+    ARRET := true;
+
     //Choix menu Principal
-    case z of //passage vers la présentation du jeu
-    1:presentation(); //charge le menu de présentation
-    2:halt();//ferme le programme
+    while ARRET=true do begin
+      case z of //passage vers la présentation du jeu
+      1:
+        begin
+          presentation();
+          ARRET := false;
+        end;                   //charge le menu de présentation
+      2:halt();                //ferme le programme
+      else
+        effacerEcran;
+        menuPrincipal;
+        readln(z);
+      end;
     end;
 
     //Choix menu De présentation
@@ -27,9 +39,25 @@ begin
     ecrireTexteCentre(100,55,texte);
 
     readln(z);
-    case z of
-    1:create();  // charge le menu de création du personnage
-    2:halt(); //quite la partie
+
+    ARRET:=true;
+
+    while ARRET=true do begin
+      case z of
+      1:
+        begin
+          create();
+          ARRET:=false;
+        end;         // charge le menu de création du personnage
+      2:halt();      //quitte la partie
+      else
+      begin
+        presentation;
+        texte:='Alors on y va? ';
+        ecrireTexteCentre(100,55,texte);
+        readln(z);
+      end;
+      end;
     end;
 
     initialisation(); //Initialisation des ressources
@@ -47,7 +75,5 @@ begin
             3:ARRET:=TRUE; //quitte le programme
             end;
           end;
-
-          //sous programme de fin de tour avec taxe et check des conditions des colons et marchand
 
 end.
