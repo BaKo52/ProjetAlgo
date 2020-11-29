@@ -37,6 +37,8 @@ interface
    //gestion des tour
    procedure nextRound();
 
+   //gestion de l'appartition du marchand
+   procedure marchand();
 
 implementation
 
@@ -538,6 +540,14 @@ implementation
          write(getGold);
          marchand(); //Marchand
          ile();
+   end;
+
+   procedure marchand();
+   begin
+     if nbRound mod 3 = 0 then
+        begin
+
+        end;
    end;
 
 end.

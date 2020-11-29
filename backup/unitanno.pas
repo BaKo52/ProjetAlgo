@@ -532,6 +532,11 @@ implementation
              halt();
         end
      else
+         setGold(getGold+(getColon*25));  //Taxes
+         texte:='Vos colons vous on rapporté: ';
+         ecrireTexteCentre(100,10,texte);
+         write(getGold);
+         marchand(); //Marchand
          ile();
    end;
 
