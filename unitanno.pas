@@ -438,7 +438,7 @@ implementation
          end;
 
      //Conso de tissu
-     if res<getTissu then
+     if (res + 3)<getTissu then
         begin
              setTissu(getTissu-(res + 3));
              texte:='Vos ressources en tissu subviennent à vos colons ! Tissu restant: ';
@@ -453,7 +453,7 @@ implementation
          end;
 
      //Conso de bois
-     if res<getBois then
+     if (res div 2)<getBois then
         begin
              setBois(getBois-(res div 2));
              texte:='Vos ressources en bois subviennent à vos colons ! Bois restant: ';

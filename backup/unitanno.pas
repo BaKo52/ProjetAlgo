@@ -435,7 +435,7 @@ implementation
               texte:='Vous n''avez plus assez de poisson, vos colons ont faim !';
               ecrireTexteCentre(100,10,texte);
               setColon(getColon-4);
-         end;ù=
+         end;
 
      //Conso de tissu
      if res<getTissu then
