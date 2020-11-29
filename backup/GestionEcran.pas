@@ -60,7 +60,7 @@ interface
     procedure couleurTexte(couleur : Byte);
 
     // change la couleur de texte et de fond
-    prcedure couleurs(ct, cf : byte);
+    procedure couleurs(ct, cf : byte);
 
     // Change la couleur de la zone
     procedure ColorierZone(couleur : Byte ;couleurT : Byte; xStart,xEnd,y:Integer);

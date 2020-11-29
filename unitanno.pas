@@ -31,6 +31,9 @@ interface
    //affichage du menu de gestion des batiments
    procedure batiment();
 
+   //gestion de la production des batiments
+   procedure production();
+
    //gestion des tour
    procedure nextRound();
 
@@ -413,6 +416,37 @@ implementation
 
    end;
 
+   procedure production ();
+   begin
+     //Production de poissons
+     setFish(getFish+(getCabaneP*4)); //Une cabane de pêcheur produit 4 poissons
+     if getFish>100 then
+        begin
+           setFish(100);
+        end;
+
+     //Production de bois
+     setBois(getBois+(getCabaneB*5)); //Une cabane de bucheron produit 5 bois
+     if getBois>100 then
+        begin
+           setBois(100);
+        end;
+
+     //Production de outils
+     setOutil(getOutil+(getAtelier*15)); //Un atelier produit 15 outils
+     if getOutil>100 then
+        begin
+           setOutil(100);
+        end;
+
+     setOutil(get+(getLaine*15)); //Un atelier produit 10 laines
+     if getOutil>100 then
+        begin
+           setOutil(100);
+        end;
+
+   end;
+
    procedure nextRound();
    var
      texte:String;
@@ -421,6 +455,8 @@ implementation
      EffacerEcran();
      nbRound:=nbRound+1;
      res:= getColon div 2;
+
+     production();
 
      //Conso de poissons
      if res<getFish then

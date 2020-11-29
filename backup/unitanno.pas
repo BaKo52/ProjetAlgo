@@ -31,6 +31,9 @@ interface
    //affichage du menu de gestion des batiments
    procedure batiment();
 
+   //gestion de la production des batiments
+   procedure production();
+
    //gestion des tour
    procedure nextRound();
 
@@ -319,7 +322,7 @@ implementation
             end
          else
              begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
+               texte:='Vous n''avez pas les ressources pour construire une cabane de bucheron';
                ecrireTexte(10, 39, texte);
                readln();
              end;
@@ -335,7 +338,7 @@ implementation
             end
          else
              begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
+               texte:='Vous n''avez pas les ressources pour construire une cabane de pêcheur';
                ecrireTexte(10, 39, texte);
                readln();
              end;
@@ -351,7 +354,7 @@ implementation
             end
          else
              begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
+               texte:='Vous n''avez pas les ressources pour construire une bergerie';
                ecrireTexte(10, 39, texte);
                readln();
              end;
@@ -368,7 +371,7 @@ implementation
             end
          else
              begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
+               texte:='Vous n''avez pas les ressources pour construire une atelier de tisserand';
                ecrireTexte(10, 39, texte);
                readln();
              end;
@@ -385,7 +388,7 @@ implementation
             end
          else
              begin
-                 texte:='Vous n''avez pas les ressources pour construire une maison';
+                 texte:='Vous n''avez pas les ressources pour construire une chapelle';
                  ecrireTexte(10, 39, texte);
                  readln();
              end;
@@ -402,7 +405,7 @@ implementation
             end
          else
              begin
-                 texte:='Vous n''avez pas les ressources pour construire une maison';
+                 texte:='Vous n''avez pas les ressources pour construire un centre-ville';
                  ecrireTexte(10, 39, texte);
                  readln();
              end;
@@ -410,6 +413,31 @@ implementation
      8: //retour menu précédent
        ;
      end;
+
+   end;
+
+   procedure production ();
+   begin
+     //Production de poissons
+     setFish(getFish+(getCabaneP*4)); //Une cabane de pêcheur produit 4 poissons
+     if getFish>100 then
+        begin
+           setFish(100);
+        end;
+
+     //Production de bois
+     setBois(getBois+(getCabaneB*5)); //Une cabane de bucheron produit 5 bois
+     if getBois>100 then
+        begin
+           setBois(100);
+        end;
+
+     //Production de outils
+     setOutil(getOutil+(getAtelier*15)); //Un atelier produit 15 outils
+     if getOutil>100 then
+        begin
+           setOutil(100);
+        end;
 
    end;
 
@@ -421,6 +449,8 @@ implementation
      EffacerEcran();
      nbRound:=nbRound+1;
      res:= getColon div 2;
+
+     production();
 
      //Conso de poissons
      if res<getFish then
