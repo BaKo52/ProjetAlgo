@@ -2,8 +2,6 @@ unit unitAnno;
 
 {$mode objfpc}{$H+} {$CODEPAGE UTF8}
 
-
-
 interface
    uses Classes, SysUtils, GestionEcran, unitvar;
 
@@ -37,8 +35,17 @@ interface
    //gestion des tour
    procedure nextRound();
 
+   //procédure affichant le marchand
+   procedure AffMarchand();
+
    //gestion de l'appartition du marchand
    procedure marchand();
+
+   //procédure gérant l'achat pour le marchand
+   procedure achat();
+
+   //procédure gérant la vente pour le marchand
+   procedure vente();
 
 implementation
 
@@ -264,158 +271,163 @@ implementation
    var
      texte:String;
      z:Integer;
+     ARRET:Boolean;
    begin
-     ile();
+     ARRET:=True;
 
-     texte:='1. Construire une maison pouvant accueillir 4 colons: -500 or, - 10 bois et -5 outils';
-     ecrireTexte(10, 30, texte);
-
-     texte:='2. Construire une cabane de bucheron : -500 or, -20 bois et -10 outils';
-     ecrireTexte(10, 31, texte);
-
-     texte:='3. Construire une cabane de pêcheur : -500 or, -20 bois et -10 outils';
-     ecrireTexte(10, 32, texte);
-
-     texte:='4. Construire une bergerie: -500 or, -20 bois et -10 outils';
-     ecrireTexte(10, 33, texte);
-
-     texte:='5. Construire un atelier de tisserand: -500 or, -20 bois, -10 outils et -10 laines';
-     ecrireTexte(10, 34, texte);
-
-     texte:='6. Construire une chapelle: -1500 or, -80 bois, -30 outils et -30 tissu';
-     ecrireTexte(10, 35, texte);
-
-     texte:='7. Construire un centre-ville: -1000 or, -45 bois, -20 outils et -20 tissu';
-     ecrireTexte(10, 36, texte);
-
-     texte:='8. Retour au menu précédent';
-     ecrireTexte(10, 37, texte);
-
-     texte:='Quel bâtiment voulez-vous construire ? ';
-     ecrireTexte(10, 39, texte);
-
-     readln(z);
-
-     case z of
-     1:
+     while (ARRET) do
        begin
-         if ((getGold>499) AND (getBois>9) AND (getOutil>4)) then
-            begin
-               setMaison(getMaison+1);
-               setGold(getGold-500);
-               setBois(getBois-10);
-               setOutil(getOutil-5);
-            end
-         else
-             begin
-               texte:='Vous n''avez pas les ressources pour construire une maison';
-               ecrireTexte(10, 39, texte);
-               readln();
-             end;
-       end;
-     2:
-       begin
-         if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
-            begin
-               setCabaneB(getCabaneB+1);
-               setGold(getGold-500);
-               setBois(getBois-20);
-               setOutil(getOutil-10);
-            end
-         else
-             begin
-               texte:='Vous n''avez pas les ressources pour construire une cabane de bucheron';
-               ecrireTexte(10, 39, texte);
-               readln();
-             end;
-       end;
-     3:
-       begin
-         if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
-            begin
-               setCabaneP(getCabaneP+1);
-               setGold(getGold-500);
-               setBois(getBois-20);
-               setOutil(getOutil-10);
-            end
-         else
-             begin
-               texte:='Vous n''avez pas les ressources pour construire une cabane de pêcheur';
-               ecrireTexte(10, 39, texte);
-               readln();
-             end;
-       end;
-     4:
-       begin
-         if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
-            begin
-               setBergerie(getBergerie+1);
-               setGold(getGold-500);
-               setBois(getBois-20);
-               setOutil(getOutil-10);
-            end
-         else
-             begin
-               texte:='Vous n''avez pas les ressources pour construire une bergerie';
-               ecrireTexte(10, 39, texte);
-               readln();
-             end;
-       end;
-     5:
-       begin
-         if ((getGold>499) AND (getBois>19) AND (getOutil>9) AND (getLaine>9)) then
-            begin
-               setAtelier(getAtelier+1);
-               setGold(getGold-500);
-               setBois(getBois-20);
-               setOutil(getOutil-10);
-               setLaine(getLaine-10);
-            end
-         else
-             begin
-               texte:='Vous n''avez pas les ressources pour construire une atelier de tisserand';
-               ecrireTexte(10, 39, texte);
-               readln();
-             end;
-       end;
-     6:
-       begin
-         if ((getGold>1499) AND (getBois>79) AND (getOutil>29) AND (getTissu>29)) then
-            begin
-               setChapelle(true);
-               setGold(getGold-1500);
-               setBois(getBois-80);
-               setOutil(getOutil-30);
-               settissu(getTissu-30);
-            end
-         else
-             begin
-                 texte:='Vous n''avez pas les ressources pour construire une chapelle';
-                 ecrireTexte(10, 39, texte);
-                 readln();
-             end;
-       end;
-     7:
-       begin
-         if ((getGold>999) AND (getBois>44) AND (getOutil>19) AND (getTissu>19)) then
-            begin
-               setCentreVille(true);
-               setGold(getGold-1000);
-               setBois(getBois-45);
-               setOutil(getOutil-20);
-               settissu(getTissu-20);
-            end
-         else
-             begin
-                 texte:='Vous n''avez pas les ressources pour construire un centre-ville';
-                 ecrireTexte(10, 39, texte);
-                 readln();
-             end;
-       end;
-     8: //retour menu précédent
-       ;
+         effacerEcran();
+
+         ile();
+
+         texte:='1. Construire une maison pouvant accueillir 4 colons: -500 or, - 10 bois et -5 outils';
+         ecrireTexte(10, 30, texte);
+
+         texte:='2. Construire une cabane de bucheron : -500 or, -20 bois et -10 outils';
+         ecrireTexte(10, 31, texte);
+
+         texte:='3. Construire une cabane de pêcheur : -500 or, -20 bois et -10 outils';
+         ecrireTexte(10, 32, texte);
+
+         texte:='4. Construire une bergerie: -500 or, -20 bois et -10 outils';
+         ecrireTexte(10, 33, texte);
+
+         texte:='5. Construire un atelier de tisserand: -500 or, -20 bois, -10 outils et -10 laines';
+         ecrireTexte(10, 34, texte);
+
+         texte:='6. Construire une chapelle: -1500 or, -80 bois, -30 outils et -30 tissu';
+         ecrireTexte(10, 35, texte);
+
+         texte:='7. Construire un centre-ville: -1000 or, -45 bois, -20 outils et -20 tissu';
+         ecrireTexte(10, 36, texte);
+
+         texte:='8. Retour au menu précédent';
+         ecrireTexte(10, 37, texte);
+
+         texte:='Quel bâtiment voulez-vous construire ? ';
+         ecrireTexte(10, 39, texte);
+
+         readln(z);
+         case z of
+         1:
+           begin
+             if ((getGold>499) AND (getBois>9) AND (getOutil>4)) then
+                begin
+                   setMaison(getMaison+1);
+                   setGold(getGold-500);
+                   setBois(getBois-10);
+                   setOutil(getOutil-5);
+                end
+             else
+                 begin
+                   texte:='Vous n''avez pas les ressources pour construire une maison';
+                   ecrireTexte(10, 39, texte);
+                   readln();
+                 end;
+           end;
+         2:
+           begin
+             if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
+                begin
+                   setCabaneB(getCabaneB+1);
+                   setGold(getGold-500);
+                   setBois(getBois-20);
+                   setOutil(getOutil-10);
+                end
+             else
+                 begin
+                   texte:='Vous n''avez pas les ressources pour construire une cabane de bucheron';
+                   ecrireTexte(10, 39, texte);
+                   readln();
+                 end;
+           end;
+         3:
+           begin
+             if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
+                begin
+                   setCabaneP(getCabaneP+1);
+                   setGold(getGold-500);
+                   setBois(getBois-20);
+                   setOutil(getOutil-10);
+                end
+             else
+                 begin
+                   texte:='Vous n''avez pas les ressources pour construire une cabane de pêcheur';
+                   ecrireTexte(10, 39, texte);
+                   readln();
+                 end;
+           end;
+         4:
+           begin
+             if ((getGold>499) AND (getBois>19) AND (getOutil>9)) then
+                begin
+                   setBergerie(getBergerie+1);
+                   setGold(getGold-500);
+                   setBois(getBois-20);
+                   setOutil(getOutil-10);
+                end
+             else
+                 begin
+                   texte:='Vous n''avez pas les ressources pour construire une bergerie';
+                   ecrireTexte(10, 39, texte);
+                   readln();
+                 end;
+           end;
+         5:
+           begin
+             if ((getGold>499) AND (getBois>19) AND (getOutil>9) AND (getLaine>9)) then
+                begin
+                   setAtelier(getAtelier+1);
+                   setGold(getGold-500);
+                   setBois(getBois-20);
+                   setOutil(getOutil-10);
+                   setLaine(getLaine-10);
+                end
+             else
+                 begin
+                   texte:='Vous n''avez pas les ressources pour construire une atelier de tisserand';
+                   ecrireTexte(10, 39, texte);
+                   readln();
+                 end;
+           end;
+         6:
+           begin
+             if ((getGold>1499) AND (getBois>79) AND (getOutil>29) AND (getTissu>29)) then
+                begin
+                   setChapelle(true);
+                   setGold(getGold-1500);
+                   setBois(getBois-80);
+                   setOutil(getOutil-30);
+                   settissu(getTissu-30);
+                end
+             else
+                 begin
+                     texte:='Vous n''avez pas les ressources pour construire une chapelle';
+                     ecrireTexte(10, 39, texte);
+                     readln();
+                 end;
+           end;
+         7:
+           begin
+             if ((getGold>999) AND (getBois>44) AND (getOutil>19) AND (getTissu>19)) then
+                begin
+                   setCentreVille(true);
+                   setGold(getGold-1000);
+                   setBois(getBois-45);
+                   setOutil(getOutil-20);
+                   settissu(getTissu-20);
+                end
+             else
+                 begin
+                     texte:='Vous n''avez pas les ressources pour construire un centre-ville';
+                     ecrireTexte(10, 39, texte);
+                     readln();
+                 end;
+           end;
+         8:ARRET:=false;
+         end;
      end;
-
    end;
 
    procedure production ();
@@ -423,22 +435,26 @@ implementation
       res: Integer;
    begin
      //Production de poissons
-     setFish(getFish+(getCabaneP*4)); //Une cabane de pêcheur produit 4 poissons
+     setFish(getFish()+(getCabaneP()*4)); //Une cabane de pêcheur produit 4 poissons
 
      //Production de bois
-     setBois(getBois+(getCabaneB*5)); //Une cabane de bucheron produit 5 bois
+     setBois(getBois()+(getCabaneB()*5)); //Une cabane de bucheron produit 5 bois
 
      //Production de tissu
-     res:= getAtelier*5;
-     if res<getLaine then
+     res:= getAtelier()*5;
+     if res<getLaine() then
         begin
-            setLaine(getLaine-res);
-            setTissu(getTissu+(getAtelier*10)); //Un atelier produit 10 tissu pour 5 laines
+            setLaine(getLaine()-res);
+            setTissu(getTissu()+(getAtelier*10)); //Un atelier produit 10 tissu pour 5 laines
         end;
 
      //Production de Laine
-     setLaine(getLaine+(getBergerie*15)); //Une begerie produit 5 laines
+     setLaine(getLaine()+(getBergerie*15)); //Une bergerie produit 5 laines
 
+     //Nouveau colons
+     setColon(getColon()+round(getColon()/5)); //donne 20% de la population en colon supplémentaire par tour
+     if(getColon()>(getMaison()*4)) then
+        setColon(getMaison()*4);
    end;
 
    procedure nextRound();
@@ -549,45 +565,44 @@ implementation
    var
      texte:String;
    begin
-     dessinerCadreXY(95,1,104,3,simple,white,black);
+     dessinerCadreXY(95,1,104,3,double,white,black);
      texte:='MARCHAND';
      ecrireTexteCentre(100,2,texte);
 
+     dessinerCadreXY(149,24,173,31,simple,white,black);
+     texte:='Nombre de ressources :';
+     ecrireTexte(150,25,texte);
+     texte:='- Bois : ';
+     ecrireTexte(150,26,texte);
+     write(getBois);
+     texte:='- Poissons : ';
+     ecrireTexte(150,27,texte);
+     write(getFish);
+     texte:='- Outils : ';
+     ecrireTexte(150,28,texte);
+     write(getOutil);
+     texte:='- Laine : ';
+     ecrireTexte(150,29,texte);
+     write(getLaine);
+     texte:='- Tissu : ';
+     ecrireTexte(150,30,texte);
+     write(getTissu);
+
      dessinerCadreXY(82,5,118,15,simple,white,black);
+     texte:='Bois: 5 pièces d''or par laine';
+     ecrireTexteCentre(100,6,texte);
+     texte:='Poisson: 5 pièces d''or par laine';
+     ecrireTexteCentre(100,8,texte);
+     texte:='Laine: 5 pièces d''or par laine';
+     ecrireTexteCentre(100,10,texte);
+     texte:='Tissu: 10 pièces d''or par tissu';
+     ecrireTexteCentre(100,12,texte);
+     texte:='Outil: 2 pièces d''or par outil';
+     ecrireTexteCentre(100,14,texte);
 
      texte:='Argent :';
      ecrireTexte(1,5,texte);
      write(getGold);
-
-     texte:='Bois: 5 pièce d''or par laine';
-     ecrireTexteCentre(100,6,texte);
-
-     texte:='Poisson: 5 pièce d''or par laine';
-     ecrireTexteCentre(100,8,texte);
-
-     texte:='Laine: 5 pièce d''or par laine';
-     ecrireTexteCentre(100,10,texte);
-
-     texte:='Tissu: 10 pièce d''or par tissu';
-     ecrireTexteCentre(100,12,texte);
-
-     texte:='Outil: 2 pièce d''or par outil';
-     ecrireTexteCentre(100,14,texte);
-
-     texte:='1. Acheter du bois';
-     ecrireTexteCentre(100,50,texte);
-     texte:='2. Acheter du poisson';
-     ecrireTexteCentre(100,51,texte);
-     texte:='3. Acheter de la laine';
-     ecrireTexteCentre(100,52,texte);
-     texte:='4. Acheter du tissu';
-     ecrireTexteCentre(100,53,texte);
-     texte:='5. Acheter des outils';
-     ecrireTexteCentre(100,54,texte);
-     texte:='6. Sortir du marchand';
-     ecrireTexteCentre(100,55,texte);
-     texte:='Que voulez-vous faire: ';
-     ecrireTexteCentre(100,56,texte);
    end;
 
    procedure marchand();
@@ -603,12 +618,72 @@ implementation
          effacerEcran();
          AffMarchand();
 
+         texte:='1. Acheter';
+         ecrireTexteCentre(100,20,texte);
+
+         texte:='2. Vendre';
+         ecrireTexteCentre(100,21,texte);
+
+         texte:='3. Sortir du marchand';
+         ecrireTexteCentre(100,22,texte);
+
+         texte:='Que voulez-vous faire: ';
+         ecrireTexteCentre(100,57,texte);
+
          readln(z);
+         case z of
+           1:
+             begin
+               achat();
+             end;
+
+           2:
+             begin
+               vente();
+             end;
+           3:
+             begin
+               ARRET:=false;
+             end;
+
+         end;
+       end;
+   end;
+
+   procedure achat();
+   var
+     z,x,temp:Integer;
+     texte:String;
+     ARRET:Boolean;
+   begin
+     while (ARRET) do
+       begin
+         effacerEcran();
+         affMarchand();
+
+         texte:='1. Acheter du bois';
+         ecrireTexteCentre(100,50,texte);
+         texte:='2. Acheter du poisson';
+         ecrireTexteCentre(100,51,texte);
+         texte:='3. Acheter de la laine';
+         ecrireTexteCentre(100,52,texte);
+         texte:='4. Acheter du tissu';
+         ecrireTexteCentre(100,53,texte);
+         texte:='5. Acheter des outils';
+         ecrireTextecentre(100,54,texte);
+         texte:='6. Revenir au menu précédent';
+         ecrireTexteCentre(100,55,texte);
+
+         texte:='Que voulez-vous faire: ';
+         ecrireTexteCentre(100,57,texte);
+
+         readln(z);
+
          case z of
          1:
            begin
              texte:='Quelle quantité: ';
-             ecrireTexteCentre(100,57,texte);
+             ecrireTexteCentre(100,58,texte);
              readln(x);
              temp:=x*5;
              if(getGold()-temp>0) then
@@ -621,12 +696,11 @@ implementation
                  write('Vous n''avez pas assez d''argent, appuyer sur entrée pour passer');
                  readln();
                end;
-
            end;
          2:
            begin
              texte:='Quelle quantité: ';
-             ecrireTexteCentre(100,57,texte);
+             ecrireTexteCentre(100,58,texte);
              readln(x);
              temp:=x*5;
              if(getGold()-temp>0) then
@@ -643,7 +717,7 @@ implementation
          3:
            begin
              texte:='Quelle quantité: ';
-             ecrireTexteCentre(100,57,texte);
+             ecrireTexteCentre(100,58,texte);
              readln(x);
              temp:=x*5;
              if(getGold()-temp>0) then
@@ -660,7 +734,7 @@ implementation
          4:
            begin
              texte:='Quelle quantité: ';
-             ecrireTexteCentre(100,57,texte);
+             ecrireTexteCentre(100,58,texte);
              readln(x);
              temp:=x*10;
              if(getGold()-temp>0) then
@@ -677,17 +751,133 @@ implementation
          5:
            begin
              texte:='Quelle quantité: ';
-             ecrireTexteCentre(100,57,texte);
+             ecrireTexteCentre(100,58,texte);
              readln(x);
              temp:=x*2;
              if(getGold()-temp>0) then
                 begin
                      setGold(getGold()-temp);
-                     setBois(getBois()+x);
+                     setOutil(getOutil()+x);
                 end
              else
                begin
                  write('Vous n''avez pas assez d''argent, appuyer sur entrée pour passer');
+                 readln();
+               end;
+           end;
+         6:ARRET:=false;
+         end;
+     end;
+   end;
+
+   procedure vente();
+   var
+     z,x:Integer;
+     texte:String;
+     ARRET:Boolean;
+   begin
+     ARRET:=true;
+     while (ARRET) do
+       begin
+         effacerEcran();
+         affMarchand();
+
+         texte:='1. Vendre du bois';
+         ecrireTexteCentre(100,50,texte);
+         texte:='2. Vendre du poisson';
+         ecrireTexteCentre(100,51,texte);
+         texte:='3. Vendre de la laine';
+         ecrireTexteCentre(100,52,texte);
+         texte:='4. Vendre du tissu';
+         ecrireTexteCentre(100,53,texte);
+         texte:='5. Vendre des outils';
+         ecrireTexteCentre(100,54,texte);
+         texte:='6. Revenir au menu précédent';
+         ecrireTexteCentre(100,55,texte);
+
+         texte:='Que voulez-vous faire: ';
+         ecrireTexteCentre(100,57,texte);
+
+         readln(z);
+
+         case z of
+         1:
+           begin
+             texte:='Quelle quantité: ';
+             ecrireTexteCentre(100,58,texte);
+             readln(x);
+             if(getBois()-x>=0) then
+                begin
+                     setBois(getBois()-x);
+                     setGold(getGold()+(x*5));
+                end
+             else
+               begin
+                 write('Vous n''avez pas assez de bois, appuyer sur entrée pour passer');
+                 readln();
+               end;
+           end;
+         2:
+           begin
+             texte:='Quelle quantité: ';
+             ecrireTexteCentre(100,58,texte);
+             readln(x);
+             if(getFish()-x>=0) then
+                begin
+                     setGold(getGold()+(x*5));
+                     setFish(getFish()-x);
+                end
+             else
+               begin
+                 write('Vous n''avez pas assez de poisson, appuyer sur entrée pour passer');
+                 readln();
+               end;
+           end;
+         3:
+           begin
+             texte:='Quelle quantité: ';
+             ecrireTexteCentre(100,58,texte);
+             readln(x);
+             if(getLaine()-x>=0) then
+                begin
+                     setGold(getGold()+x*5);
+                     setLaine(getLaine()-x);
+                end
+             else
+               begin
+                 write('Vous n''avez pas assez de laine, appuyer sur entrée pour passer');
+                 readln();
+               end;
+           end;
+         4:
+           begin
+             texte:='Quelle quantité: ';
+             ecrireTexteCentre(100,58,texte);
+             readln(x);
+             if(getTissu()-x>=0) then
+                begin
+                     setGold(getGold()+x*10);
+                     setTissu(getTissu()-x);
+                end
+             else
+               begin
+                 write('Vous n''avez pas assez d''argent, appuyer sur entrée pour passer');
+                 readln();
+               end;
+           end;
+         5:
+           begin
+             texte:='Quelle quantité: ';
+             ecrireTexteCentre(100,58,texte);
+             readln(x);
+             if(getOutil()-x>0) then
+                begin
+                     setGold(getGold()+x*2);
+                     setOutil(getOutil()-x);
+                end
+             else
+               begin
+                 write('Vous n''avez pas assez d''outil, appuyer sur entrée pour passer');
                  readln();
                end;
            end;
