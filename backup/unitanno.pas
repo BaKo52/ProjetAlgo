@@ -590,8 +590,6 @@ implementation
      texte:='Que voulez-vous faire: ';
      ecrireTexteCentre(100,56,texte);
 
-     readln(z);
-
      ARRET:=true;
 
      while ARRET=true do

@@ -531,16 +531,18 @@ implementation
              halt();
         end
      else
-         setGold(getGold+(getColon*25));  //Taxes
-         texte:='Vos colons vous on rapporté: ';
-         ecrireTexteCentre(100,10,texte);
-         write(getGold);
-         if (nbRound mod 3 = 0) then
-            begin
-                 marchand(); //Marchand
-            end;
+         begin
+           setGold(getGold+(getColon*25));  //Taxes
+           texte:='Vos colons vous on rapporté: ';
+           ecrireTexteCentre(100,10,texte);
+           write(getGold);
+           if (nbRound mod 3 = 0) then
+              begin
+                   marchand(); //Marchand
+              end;
 
-         ile();
+           ile();
+         end;
    end;
 
    procedure marchand();
