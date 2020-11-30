@@ -551,56 +551,56 @@ implementation
      z,x,temp:Integer;
      ARRET:Boolean;
    begin
-     effacerEcran();
-     dessinerCadreXY(95,1,104,3,simple,white,black);
-     texte:='MARCHAND';
-     ecrireTexteCentre(100,2,texte);
-
-     dessinerCadreXY(82,5,118,15,simple,white,black);
-
-     texte:='Argent :';
-     ecrireTexte(1,5,texte);
-     write(getGold);
-
-     texte:='Bois: 5 pièce d''or par laine';
-     ecrireTexteCentre(100,6,texte);
-
-     texte:='Poisson: 5 pièce d''or par laine';
-     ecrireTexteCentre(100,8,texte);
-
-     texte:='Laine: 5 pièce d''or par laine';
-     ecrireTexteCentre(100,10,texte);
-
-     texte:='Tissu: 10 pièce d''or par tissu';
-     ecrireTexteCentre(100,12,texte);
-
-     texte:='Outil: 2 pièce d''or par outil';
-     ecrireTexteCentre(100,14,texte);
-
-     texte:='1. Acheter du bois';
-     ecrireTexteCentre(100,50,texte);
-     texte:='2. Acheter du poisson';
-     ecrireTexteCentre(100,51,texte);
-     texte:='3. Acheter de la laine';
-     ecrireTexteCentre(100,52,texte);
-     texte:='4. Acheter du tissu';
-     ecrireTexteCentre(100,53,texte);
-     texte:='5. Acheter des outils';
-     ecrireTexteCentre(100,54,texte);
-     texte:='6. Sortir du marchand';
-     ecrireTexteCentre(100,55,texte);
-     texte:='Que voulez-vous faire: ';
-     ecrireTexteCentre(100,56,texte);
-
      ARRET:=true;
 
-     while ARRET=true do
+     while (ARRET) do
        begin
+         effacerEcran();
+         dessinerCadreXY(95,1,104,3,simple,white,black);
+         texte:='MARCHAND';
+         ecrireTexteCentre(100,2,texte);
+
+         dessinerCadreXY(82,5,118,15,simple,white,black);
+
+         texte:='Argent :';
+         ecrireTexte(1,5,texte);
+         write(getGold);
+
+         texte:='Bois: 5 pièce d''or par laine';
+         ecrireTexteCentre(100,6,texte);
+
+         texte:='Poisson: 5 pièce d''or par laine';
+         ecrireTexteCentre(100,8,texte);
+
+         texte:='Laine: 5 pièce d''or par laine';
+         ecrireTexteCentre(100,10,texte);
+
+         texte:='Tissu: 10 pièce d''or par tissu';
+         ecrireTexteCentre(100,12,texte);
+
+         texte:='Outil: 2 pièce d''or par outil';
+         ecrireTexteCentre(100,14,texte);
+
+         texte:='1. Acheter du bois';
+         ecrireTexteCentre(100,50,texte);
+         texte:='2. Acheter du poisson';
+         ecrireTexteCentre(100,51,texte);
+         texte:='3. Acheter de la laine';
+         ecrireTexteCentre(100,52,texte);
+         texte:='4. Acheter du tissu';
+         ecrireTexteCentre(100,53,texte);
+         texte:='5. Acheter des outils';
+         ecrireTexteCentre(100,54,texte);
+         texte:='6. Sortir du marchand';
+         ecrireTexteCentre(100,55,texte);
+         texte:='Que voulez-vous faire: ';
+         ecrireTexteCentre(100,56,texte);
+
          readln(z);
          case z of
          1:
            begin
-             texte:='Quel quantité: ';
+             texte:='Quelle quantité: ';
              ecrireTexteCentre(100,57,texte);
              readln(x);
              temp:=x*5;
@@ -613,7 +613,7 @@ implementation
            end;
          2:
            begin
-             texte:='Quel quantité: ';
+             texte:='Quelle quantité: ';
              ecrireTexteCentre(100,57,texte);
              readln(x);
              temp:=x*5;
@@ -626,7 +626,7 @@ implementation
            end;
          3:
            begin
-             texte:='Quel quantité: ';
+             texte:='Quelle quantité: ';
              ecrireTexteCentre(100,57,texte);
              readln(x);
              temp:=x*5;
@@ -639,7 +639,7 @@ implementation
            end;
          4:
            begin
-             texte:='Quel quantité: ';
+             texte:='Quelle quantité: ';
              ecrireTexteCentre(100,57,texte);
              readln(x);
              temp:=x*10;
@@ -652,7 +652,7 @@ implementation
            end;
          5:
            begin
-             texte:='Quel quantité: ';
+             texte:='Quelle quantité: ';
              ecrireTexteCentre(100,57,texte);
              readln(x);
              temp:=x*2;
@@ -669,9 +669,7 @@ implementation
            end;
          else
            effacerEcran();
-           marchand();
          end;
-         ColorierZone(black,Black,90,110,57);
        end;
    end;
 

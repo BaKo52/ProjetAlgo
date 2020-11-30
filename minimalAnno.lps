@@ -8,9 +8,8 @@
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="25"/>
         <CursorPos X="9" Y="54"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="56"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,15 +18,14 @@
         <UnitName Value="unitAnno"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="627"/>
-        <CursorPos X="44" Y="673"/>
-        <UsageCount Value="55"/>
+        <TopLine Value="585"/>
+        <CursorPos X="15" Y="558"/>
+        <UsageCount Value="56"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="GestionEcran.pas"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="34"/>
         <CursorPos X="17"/>
         <FoldState Value=" T3j24L4 piejS466]9ZjC433N"/>
         <UsageCount Value="29"/>
@@ -37,7 +35,6 @@
         <Filename Value="unitvar.pas"/>
         <UnitName Value="unitVar"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="55"/>
         <CursorPos X="63" Y="70"/>
         <FoldState Value=" T3iT3JQ piZka331{"/>
         <UsageCount Value="18"/>
