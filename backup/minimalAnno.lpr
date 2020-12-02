@@ -52,7 +52,7 @@ begin
       2:halt();      //quitte la partie
       else
         begin
-          presentation;
+          presentation();
           texte:='Alors on y va? ';
           ecrireTexteCentre(100,55,texte);
           readln(z);
