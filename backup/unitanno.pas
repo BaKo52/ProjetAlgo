@@ -20,32 +20,14 @@ interface
    //affichage du menu de création de partie
    procedure create();
 
-   //affichage du menu de gestion de l'île
-   procedure ile();
-
    //affichage du menu des choix
    procedure choixMenu();
 
    //affichage du menu de gestion des batiments
    procedure batiment();
 
-   //gestion de la production des batiments
-   procedure production();
-
    //gestion des tour
    procedure nextRound();
-
-   //procédure affichant le marchand
-   procedure AffMarchand();
-
-   //gestion de l'appartition du marchand
-   procedure marchand();
-
-   //procédure gérant l'achat pour le marchand
-   procedure achat();
-
-   //procédure gérant la vente pour le marchand
-   procedure vente();
 
 implementation
 
@@ -156,6 +138,8 @@ implementation
      ecrireTexteCentre(100,2,texte);
      couleurs(white,black);
 
+     dessinerCadreXY(9,6,30,10,simple,white,black);
+
      texte:='Nom: ';
      ecrireTexte(10,7,texte);
      write(nom);
@@ -168,6 +152,7 @@ implementation
      ecrireTexte(10,9,texte);
      write(nbRound);
 
+     dessinerCadreXY(109,6,132,13,simple,white,black);
 
      //affichage des ressources
      texte:='Nombre de ressources :';
@@ -192,6 +177,8 @@ implementation
      texte:='- Tissu : ';
      ecrireTexte(110,12,texte);
      write(getTissu);
+
+     dessinerCadreXY(109,29,158,39,simple,white,black);
 
      texte:='Nombre de colons : ';
      ecrireTexte(110,30,texte);
@@ -457,110 +444,6 @@ implementation
         setColon(getMaison()*4);
    end;
 
-   procedure nextRound();
-   var
-     texte:String;
-     res: Integer;
-   begin
-     EffacerEcran();
-     nbRound:=nbRound+1;
-     res:= getColon div 2;
-
-     production();
-
-     //Conso de poissons
-     if res<getFish then
-        begin
-             setFish(getFish-res);
-             texte:='Vos colons se délectent de vos poissons! Poissons restant: ';
-             ecrireTexteCentre(100,10,texte);
-             write(getFish);
-        end
-     else
-         begin
-              texte:='Vous n''avez plus assez de poisson, vos colons ont faim !';
-              ecrireTexteCentre(100,10,texte);
-              setColon(getColon-4);
-         end;
-
-     //Conso de tissu
-     if (res + 3)<getTissu then
-        begin
-             setTissu(getTissu-(res + 3));
-             texte:='Vos ressources en tissu subviennent à vos colons ! Tissu restant: ';
-             ecrireTexteCentre(100,12,texte);
-             write(getTissu);
-        end
-     else
-         begin
-              texte:='Vous n''avez plus assez de tissu, vos colons sont en colère !';
-              ecrireTexteCentre(100,12,texte);
-              setColon(getColon-2);
-         end;
-
-     //Conso de bois
-     if (res div 2)<getBois then
-        begin
-             setBois(getBois-(res div 2));
-             texte:='Vos ressources en bois subviennent à vos colons ! Bois restant: ';
-             ecrireTexteCentre(100,14,texte);
-             write(getBois);
-        end
-     else
-         begin
-              texte:='Vous n''avez plus assez de bois, vos colons ne peuvent plus se chauffer !';
-              ecrireTexteCentre(100,14,texte);
-              setColon(getColon-2);
-         end;
-
-     //Check centre-ville
-     if getCentreVille=TRUE then
-        begin
-             texte:='Vous avez un centre-ville, vos colons sont heureux !';
-             ecrireTexteCentre(100,16,texte);
-        end
-     else
-         texte:='Vous n''avez pas de centre-ville, vos colons sont mécontent !';
-         ecrireTexteCentre(100,16,texte);
-
-     //Check chapelle
-     if getChapelle=TRUE then
-        begin
-             texte:='Vous avez une chapelle, vos colons sont heureux !';
-             ecrireTexteCentre(100,18,texte);
-        end
-     else
-         texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
-         ecrireTexteCentre(100,18,texte);
-
-     readln();
-
-     //Passage vers le tour suivant ou fin de partie
-     EffacerEcran();
-     If getColon<1 then
-        begin
-             texte:='L''entièreté de vos colons est mort !';
-             ecrireTexteCentre(100,10,texte);
-             texte:='Vous avez perdu !';
-             ecrireTexteCentre(100,12,texte);
-             readln();
-             halt();
-        end
-     else
-         begin
-           setGold(getGold+(getColon*25));  //Taxes
-           texte:='Vos colons vous on rapporté: ';
-           ecrireTexteCentre(100,10,texte);
-           write(getGold);
-           if (nbRound mod 3 = 0) then
-              begin
-                   marchand(); //Marchand
-              end;
-
-           ile();
-         end;
-   end;
-
    procedure AffMarchand();
    var
      texte:String;
@@ -589,65 +472,20 @@ implementation
      write(getTissu);
 
      dessinerCadreXY(82,5,118,15,simple,white,black);
-     texte:='Bois: 5 pièce d''or par laine';
+     texte:='Bois: 5 pièces d''or par laine';
      ecrireTexteCentre(100,6,texte);
-     texte:='Poisson: 5 pièce d''or par laine';
+     texte:='Poisson: 5 pièces d''or par laine';
      ecrireTexteCentre(100,8,texte);
-     texte:='Laine: 5 pièce d''or par laine';
+     texte:='Laine: 5 pièces d''or par laine';
      ecrireTexteCentre(100,10,texte);
-     texte:='Tissu: 10 pièce d''or par tissu';
+     texte:='Tissu: 10 pièces d''or par tissu';
      ecrireTexteCentre(100,12,texte);
-     texte:='Outil: 2 pièce d''or par outil';
+     texte:='Outil: 2 pièces d''or par outil';
      ecrireTexteCentre(100,14,texte);
 
      texte:='Argent :';
      ecrireTexte(1,5,texte);
      write(getGold);
-   end;
-
-   procedure marchand();
-   var
-     texte:String;
-     z,x,temp:Integer;
-     ARRET:Boolean;
-   begin
-     ARRET:=true;
-
-     while (ARRET) do
-       begin
-         effacerEcran();
-         AffMarchand();
-
-         texte:='1. Acheter';
-         ecrireTexteCentre(100,20,texte);
-
-         texte:='2. Vendre';
-         ecrireTexteCentre(100,21,texte);
-
-         texte:='3. Sortir du marchand';
-         ecrireTexteCentre(100,22,texte);
-
-         texte:='Que voulez-vous faire: ';
-         ecrireTexteCentre(100,57,texte);
-
-         readln(z);
-         case z of
-           1:
-             begin
-               achat();
-             end;
-
-           2:
-             begin
-               vente();
-             end;
-           3:
-             begin
-               ARRET:=false;
-             end;
-
-         end;
-       end;
    end;
 
    procedure achat();
@@ -888,5 +726,154 @@ implementation
          end;
        end;
    end;
+
+   procedure marchand();
+   var
+     texte:String;
+     z:Integer;
+     ARRET:Boolean;
+   begin
+     ARRET:=true;
+
+     while (ARRET) do
+       begin
+         effacerEcran();
+         AffMarchand();
+
+         texte:='1. Acheter';
+         ecrireTexteCentre(100,20,texte);
+
+         texte:='2. Vendre';
+         ecrireTexteCentre(100,21,texte);
+
+         texte:='3. Sortir du marchand';
+         ecrireTexteCentre(100,22,texte);
+
+         texte:='Que voulez-vous faire: ';
+         ecrireTexteCentre(100,57,texte);
+
+         readln(z);
+         case z of
+           1:
+             begin
+               achat();
+             end;
+
+           2:
+             begin
+               vente();
+             end;
+           3:
+             begin
+               ARRET:=false;
+             end;
+
+         end;
+       end;
+   end;
+
+   procedure nextRound();
+      var
+        texte:String;
+        res: Integer;
+      begin
+        EffacerEcran();
+        nbRound:=nbRound+1;
+        res:= getColon div 2;
+
+        production();
+
+        //Conso de poissons
+        if res<getFish then
+           begin
+                setFish(getFish-res);
+                texte:='Vos colons se délectent de vos poissons! Poissons restant: ';
+                ecrireTexteCentre(100,10,texte);
+                write(getFish);
+           end
+        else
+            begin
+                 texte:='Vous n''avez plus assez de poisson, vos colons ont faim !';
+                 ecrireTexteCentre(100,10,texte);
+                 setColon(getColon-4);
+            end;
+
+        //Conso de tissu
+        if (res + 3)<getTissu then
+           begin
+                setTissu(getTissu-(res + 3));
+                texte:='Vos ressources en tissu subviennent à vos colons ! Tissu restant: ';
+                ecrireTexteCentre(100,12,texte);
+                write(getTissu);
+           end
+        else
+            begin
+                 texte:='Vous n''avez plus assez de tissu, vos colons sont en colère !';
+                 ecrireTexteCentre(100,12,texte);
+                 setColon(getColon-2);
+            end;
+
+        //Conso de bois
+        if (res div 2)<getBois then
+           begin
+                setBois(getBois-(res div 2));
+                texte:='Vos ressources en bois subviennent à vos colons ! Bois restant: ';
+                ecrireTexteCentre(100,14,texte);
+                write(getBois);
+           end
+        else
+            begin
+                 texte:='Vous n''avez plus assez de bois, vos colons ne peuvent plus se chauffer !';
+                 ecrireTexteCentre(100,14,texte);
+                 setColon(getColon-2);
+            end;
+
+        //Check centre-ville
+        if getCentreVille=TRUE then
+           begin
+                texte:='Vous avez un centre-ville, vos colons sont heureux !';
+                ecrireTexteCentre(100,16,texte);
+           end
+        else
+            texte:='Vous n''avez pas de centre-ville, vos colons sont mécontent !';
+            ecrireTexteCentre(100,16,texte);
+
+        //Check chapelle
+        if getChapelle=TRUE then
+           begin
+                texte:='Vous avez une chapelle, vos colons sont heureux !';
+                ecrireTexteCentre(100,18,texte);
+           end
+        else
+            texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
+            ecrireTexteCentre(100,18,texte);
+
+        readln();
+
+        //Passage vers le tour suivant ou fin de partie
+        EffacerEcran();
+        If getColon<1 then
+           begin
+                texte:='L''entièreté de vos colons est mort !';
+                ecrireTexteCentre(100,10,texte);
+                texte:='Vous avez perdu !';
+                ecrireTexteCentre(100,12,texte);
+                readln();
+                halt();
+           end
+        else
+            begin
+              setGold(getGold+(getColon*25));  //Taxes
+              texte:='Vos colons vous on rapporté: ';
+              ecrireTexteCentre(100,10,texte);
+              write(getGold);
+              if (nbRound mod 3 = 0) then
+                 begin
+                      marchand(); //Marchand
+                 end;
+
+              ile();
+            end;
+      end;
 
 end.

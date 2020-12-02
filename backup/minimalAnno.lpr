@@ -51,12 +51,12 @@ begin
         end;         // charge le menu de création du personnage
       2:halt();      //quitte la partie
       else
-      begin
-        presentation;
-        texte:='Alors on y va? ';
-        ecrireTexteCentre(100,55,texte);
-        readln(z);
-      end;
+        begin
+          presentation;
+          texte:='Alors on y va? ';
+          ecrireTexteCentre(100,55,texte);
+          readln(z);
+        end;
       end;
     end;
 
