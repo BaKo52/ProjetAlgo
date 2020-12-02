@@ -2,7 +2,6 @@ program minimalAnno;
 {$CODEPAGE UTF8}
 uses unitAnno,GestionEcran,SysUtils,unitvar;
 
-//test
 
 var
   z:Integer;     //z : variable contenant le menu choisi par l'utilisateur
