@@ -56,12 +56,23 @@ implementation
    procedure menuPrincipal();
    var
      texte:String;
+     logo:Text;
+     y:Integer;
 
    begin
      changerTailleConsole(200,60);
 
-     texte:='Anno 1701';
-     ecrireTexteCentre(100,10,texte);
+     effacerEcran();
+             assign(logo, 'intro.txt');
+             reset(logo);
+
+             y:=15;
+             while not eof(logo) do
+             begin
+               readln(logo, texte);
+               ecrireTexteCentre(100,y,texte);
+               y:=y+1;
+             end;
 
      texte:='1. Pour créer une Nouvelle Partie';
      ecrireTexteCentre(100,45,texte);
@@ -72,6 +83,7 @@ implementation
      texte:='Allez à ? ';
      ecrireTexteCentre(100,55,texte);
 
+     close(logo)
 
 
    end;
@@ -851,6 +863,14 @@ implementation
         else
             texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
             ecrireTexteCentre(100,18,texte);
+
+        dessinerCadreXY(1,4,15,7,simple,white,black);
+        texte:='Argent :';
+        ecrireTexte(2,5,texte);
+        write(getGold);
+        texte:='Tour: ';
+        ecrireTexte(2,6,texte);
+        write(nbRound-1);
 
         readln();
 
