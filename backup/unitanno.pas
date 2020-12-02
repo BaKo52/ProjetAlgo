@@ -483,9 +483,13 @@ implementation
      texte:='Outil: 2 pièces d''or par outil';
      ecrireTexteCentre(100,14,texte);
 
+     dessinerCadreXY(1,4,15,7,simple,white,black);
      texte:='Argent :';
-     ecrireTexte(1,5,texte);
+     ecrireTexte(2,5,texte);
      write(getGold);
+     texte:='Tour: ';
+     ecrireTexte(2,6,texte);
+     write(nbRound-1);
    end;
 
    procedure achat();

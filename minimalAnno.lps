@@ -8,19 +8,20 @@
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <CursorPos Y="4"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="unitanno.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitAnno"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="30" Y="141"/>
-        <FoldState Value=" T3b3741113}"/>
-        <UsageCount Value="63"/>
+        <TopLine Value="801"/>
+        <CursorPos X="9" Y="861"/>
+        <FoldState Value=" T3b37412 plApc3P]9kZlN3{a1R"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -42,124 +43,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="minimalAnno.lpr"/>
-        <Caret Line="52" Column="27" TopLine="15"/>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="626" Column="31" TopLine="570"/>
       </Position1>
       <Position2>
-        <Filename Value="minimalAnno.lpr"/>
-        <Caret Line="50" Column="24" TopLine="16"/>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="542" Column="18" TopLine="500"/>
       </Position2>
       <Position3>
-        <Filename Value="minimalAnno.lpr"/>
-        <Caret Line="53" Column="11" TopLine="23"/>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="630" Column="25" TopLine="585"/>
       </Position3>
       <Position4>
-        <Filename Value="minimalAnno.lpr"/>
-        <Caret Line="59" Column="11" TopLine="23"/>
+        <Filename Value="unitanno.pas"/>
+        <Caret Line="647" Column="37" TopLine="607"/>
       </Position4>
       <Position5>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="626" Column="31" TopLine="570"/>
+        <Caret Line="661" Column="18" TopLine="625"/>
       </Position5>
       <Position6>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="542" Column="18" TopLine="500"/>
+        <Caret Line="602" Column="24" TopLine="519"/>
       </Position6>
       <Position7>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="630" Column="25" TopLine="585"/>
+        <Caret Line="448" Column="31" TopLine="32"/>
       </Position7>
       <Position8>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="647" Column="37" TopLine="607"/>
+        <Caret Line="420" Column="24" TopLine="367"/>
       </Position8>
       <Position9>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="661" Column="18" TopLine="625"/>
+        <Caret Line="767" Column="18" TopLine="595"/>
       </Position9>
       <Position10>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="602" Column="24" TopLine="519"/>
+        <Caret Line="762" Column="19" TopLine="615"/>
       </Position10>
       <Position11>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="448" Column="31" TopLine="32"/>
+        <Caret Line="47" Column="50" TopLine="17"/>
       </Position11>
       <Position12>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="420" Column="24" TopLine="367"/>
+        <Caret Line="648" Column="14" TopLine="433"/>
       </Position12>
       <Position13>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="767" Column="18" TopLine="595"/>
+        <Caret Line="650" Column="20" TopLine="144"/>
       </Position13>
       <Position14>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="762" Column="19" TopLine="615"/>
+        <Caret Line="770" Column="20" TopLine="663"/>
       </Position14>
       <Position15>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="47" Column="50" TopLine="17"/>
+        <Caret Line="628" Column="34" TopLine="433"/>
       </Position15>
       <Position16>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="648" Column="14" TopLine="433"/>
+        <Caret Line="646" Column="23" TopLine="563"/>
       </Position16>
       <Position17>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="650" Column="20" TopLine="144"/>
+        <Caret Line="768" Column="24" TopLine="656"/>
       </Position17>
       <Position18>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="770" Column="20" TopLine="663"/>
+        <Caret Line="777" Column="20" TopLine="747"/>
       </Position18>
       <Position19>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="628" Column="34" TopLine="433"/>
+        <Caret Line="21" Column="23"/>
       </Position19>
       <Position20>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="646" Column="23" TopLine="563"/>
+        <Caret Line="539" Column="20" TopLine="515"/>
       </Position20>
       <Position21>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="768" Column="24" TopLine="656"/>
+        <Caret Line="619" Column="16" TopLine="588"/>
       </Position21>
       <Position22>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="777" Column="20" TopLine="747"/>
+        <Caret Line="624" Column="16" TopLine="588"/>
       </Position22>
       <Position23>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="21" Column="23"/>
+        <Caret Line="619" Column="16" TopLine="588"/>
       </Position23>
       <Position24>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="539" Column="20" TopLine="515"/>
+        <Caret Line="725" TopLine="56"/>
       </Position24>
       <Position25>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="619" Column="16" TopLine="588"/>
+        <Caret Line="181" Column="32" TopLine="161"/>
       </Position25>
       <Position26>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="624" Column="16" TopLine="588"/>
+        <Caret Line="147" Column="11" TopLine="30"/>
       </Position26>
       <Position27>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="619" Column="16" TopLine="588"/>
+        <Caret Line="141" Column="31" TopLine="11"/>
       </Position27>
       <Position28>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="725" TopLine="56"/>
+        <Caret Line="492" Column="21" TopLine="218"/>
       </Position28>
       <Position29>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="181" Column="32" TopLine="161"/>
+        <Caret Line="861" Column="23" TopLine="793"/>
       </Position29>
       <Position30>
         <Filename Value="unitanno.pas"/>
-        <Caret Line="147" Column="11" TopLine="30"/>
+        <Caret Line="891" Column="5" TopLine="801"/>
       </Position30>
     </JumpHistory>
     <RunParams>

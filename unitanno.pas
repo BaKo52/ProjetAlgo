@@ -138,7 +138,7 @@ implementation
      ecrireTexteCentre(100,2,texte);
      couleurs(white,black);
 
-     dessinerCadreXY(9,6,30,9,simple,white,black);
+     dessinerCadreXY(9,6,30,10,simple,white,black);
 
      texte:='Nom: ';
      ecrireTexte(10,7,texte);
@@ -147,6 +147,10 @@ implementation
      texte:='Argent: ';
      ecrireTexte(10,8,texte);
      write(getGold);
+
+     texte:='Tour: ';
+     ecrireTexte(10,9,texte);
+     write(nbRound);
 
      dessinerCadreXY(109,6,132,13,simple,white,black);
 
@@ -479,9 +483,13 @@ implementation
      texte:='Outil: 2 pièces d''or par outil';
      ecrireTexteCentre(100,14,texte);
 
+     dessinerCadreXY(1,4,15,7,simple,white,black);
      texte:='Argent :';
-     ecrireTexte(1,5,texte);
+     ecrireTexte(2,5,texte);
      write(getGold);
+     texte:='Tour: ';
+     ecrireTexte(2,6,texte);
+     write(nbRound-1);
    end;
 
    procedure achat();
@@ -843,6 +851,14 @@ implementation
         else
             texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
             ecrireTexteCentre(100,18,texte);
+
+        dessinerCadreXY(1,4,15,7,simple,white,black);
+        texte:='Argent :';
+        ecrireTexte(2,5,texte);
+        write(getGold);
+        texte:='Tour: ';
+        ecrireTexte(2,6,texte);
+        write(nbRound-1);
 
         readln();
 
