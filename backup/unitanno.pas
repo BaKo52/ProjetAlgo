@@ -63,25 +63,28 @@ implementation
      changerTailleConsole(200,60);
 
      effacerEcran();
-             assign(logo, 'intro.txt');
-             reset(logo);
+     assign(logo, 'logo.txt');
+     reset(logo);
 
-             y:=15;
-             while not eof(logo) do
-             begin
-               readln(logo, texte);
-               ecrireTexteCentre(100,y,texte);
-               y:=y+1;
-             end;
+     y:=15;
+     while not eof(logo) do
+       begin
+         readln(logo, texte);
+         ecrireTexteCentre(100,y,texte);
+         y:=y+1;
+       end;
 
-     texte:='1. Pour créer une Nouvelle Partie';
-     ecrireTexteCentre(100,45,texte);
+     texte:='1. Pour créer une nouvelle partie';
+     ecrireTexteCentre(100,46,texte);
 
-     texte:='2. Pour Quitter';
+     texte:='2. Pour charger une sauvegarde';
+     ecrireTexteCentre(100,48,texte);
+
+     texte:='3. Pour quitter le jeu';
      ecrireTexteCentre(100,50,texte);
 
      texte:='Allez à ? ';
-     ecrireTexteCentre(100,55,texte);
+     ecrireTexteCentre(100,52,texte);
 
      close(logo)
 
@@ -113,6 +116,9 @@ implementation
         texte:='2. Pour Quitter';
         ecrireTexteCentre(100,50,texte);
 
+        texte:='Alors on y va? ';
+        ecrireTexteCentre(100,55,texte);
+
         close(intro);
       end;
 
@@ -123,7 +129,7 @@ implementation
    begin
      effacerEcran();
 
-     nbRound:=1; //Initialisation du nombre de tour
+     initialisation(); //Initialisation des ressources
 
      couleurs(black,LightGray);
      texte:='CREATION DE VOTRE PERSONNAGE';
@@ -258,7 +264,7 @@ implementation
      ecrireTexte(10, 31, texte);
 
      //Quitter le jeu
-     texte:='3. Quitter le jeu';
+     texte:='3. Sauvegarder et quitter le jeu';
      ecrireTexte(10, 32, texte);
 
      //demande du choix
