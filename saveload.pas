@@ -3,7 +3,7 @@ unit saveLoad;
 {$mode objfpc}{$H+}
 
 interface
-  uses unitVar, Classes, SysUtils;
+  uses unitVar, Classes, SysUtils, gestionEcran;
 
   procedure save(emplacement : Integer);
 
@@ -41,7 +41,7 @@ implementation
     writeln(fichier, getChapelle());
     writeln(fichier, getCentreVille());
 
-    close(fichier)
+    close(fichier);
 
   end;
 

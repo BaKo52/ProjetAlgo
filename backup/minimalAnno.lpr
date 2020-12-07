@@ -37,7 +37,6 @@ begin
             1,2,3:
               begin
                 load(z);
-                nbRound := 1;
                 loaded := true;
               end
             else
