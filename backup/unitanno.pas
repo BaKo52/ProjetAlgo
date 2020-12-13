@@ -23,8 +23,11 @@ interface
    //affichage du menu des choix
    procedure choixMenu();
 
-   //affichage du menu de gestion des batiments
+   //affichage du menu de gestion des batiments/soldats
    procedure batiment();
+
+   //affichage du menu de gestion des bateaux
+   procedure naval();
 
    //gestion des tour
    procedure nextRound();
@@ -60,6 +63,8 @@ implementation
      y:Integer;
 
    begin
+     nbRound:=1; //Initialisation du nombre de tour
+
      changerTailleConsole(200,60);
 
      effacerEcran();
@@ -260,12 +265,16 @@ implementation
      ecrireTexte(10, 30, texte);
 
      //accéder au menu de gestion des bâtiments
-     texte:='2. Accéder au menu de gestion des bâtiments';
+     texte:='2. Accéder au menu de gestion des bâtiments et des soldats';
      ecrireTexte(10, 31, texte);
 
-     //Quitter le jeu
-     texte:='3. Sauvegarder et quitter le jeu';
+     //accéder au menu de gestion des bateaux
+     texte:='3. Accéder au menu de gestion des bateaux';
      ecrireTexte(10, 32, texte);
+
+     //Quitter le jeu
+     texte:='4. Sauvegarder et quitter le jeu';
+     ecrireTexte(10, 33, texte);
 
      //demande du choix
      texte:='Que souhaitez-vous faire ? ';
@@ -307,11 +316,17 @@ implementation
          texte:='7. Construire un centre-ville: -1000 or, -45 bois, -20 outils et -20 tissu';
          ecrireTexte(10, 36, texte);
 
-         texte:='8. Retour au menu précédent';
+         texte:='8. Construire un chantier naval: -1000 or, -100 bois, - 20 outils et -10 tissu';
          ecrireTexte(10, 37, texte);
 
+         texte:='9. Recrutez 5 soldats: -25 or, -5 outils, -10 tissu et -25 fish';
+         ecriretexte(10,38, texte);
+
+         texte:='10. Retour au menu précédent';
+         ecrireTexte(10, 40, texte);
+
          texte:='Quel bâtiment voulez-vous construire ? ';
-         ecrireTexte(10, 39, texte);
+         ecrireTexte(10, 42, texte);
 
          readln(z);
          case z of
@@ -430,10 +445,98 @@ implementation
                      readln();
                  end;
            end;
-         8:ARRET:=false;
+         8:
+           begin
+             if ((getGold>999) AND (getBois>99) AND (getOutil>19) AND (getTissu>9)) then
+                begin
+                   setNaval(true);
+                   setGold(getGold-1000);
+                   setBois(getBois-100);
+                   setOutil(getOutil-20);
+                   settissu(getTissu-10);
+                end
+             else
+                 begin
+                     texte:='Vous n''avez pas les ressources pour construire un chantier naval';
+                     ecrireTexte(10, 39, texte);
+                     readln();
+                 end;
+           end;
+
+         9:
+           begin
+             if ((getGold>24) AND (getOutil>4) AND (getTissu>9) AND (getFish>24)) then
+                begin
+                   setGold(getGold-25);
+                   setOutil(getOutil-5);
+                   settissu(getTissu-10);
+                   setFish(getFish-25);
+                end
+             else
+                 begin
+                     texte:='Vous n''avez pas les ressources pour recruter des soldats';
+                     ecrireTexte(10, 39, texte);
+                     readln();
+                 end;
+           end;
+
+         10:ARRET:=false;
          end;
      end;
    end;
+
+   procedure naval();
+   var
+     texte:String;
+     z:Integer;
+     ARRET:Boolean;
+   begin
+     if getNaval=true then
+        begin
+             ARRET:=True;
+
+             while (ARRET) do
+               begin
+                 effacerEcran();
+
+                 ile();
+
+                 texte:='1. Construire un navire : -500 or, - 150 bois et -20 outils';
+                 ecrireTexte(10, 30, texte);
+
+                 texte:='2. Retour au menu précédent';
+                 ecrireTexte(10, 32, texte);
+
+                 readln(z);
+
+                 case z of
+                 1:
+                   begin
+                     if ((getGold>499) AND (getBois>149) AND (getOutil>19)) then
+                        begin
+                           setBateau(getBateau+1);
+                           setGold(getGold-500);
+                           setBois(getBois-150);
+                           setOutil(getOutil-20);
+                        end
+                     else
+                         begin
+                           texte:='Vous n''avez pas les ressources pour construire un navire';
+                           ecrireTexte(10, 35, texte);
+                           readln();
+                         end;
+                   end;
+                 2:ARRET:=false;
+                 end;
+               end;
+             else
+                 begin
+                   texte:='Vous n''avez pas construit de chantier naval';
+                   ecrireTexte(10, 35, texte);
+                   readln();
+                 end;
+   end;
+
 
    procedure production ();
    var
@@ -788,6 +891,62 @@ implementation
            3:
              begin
                ARRET:=false;
+             end;
+
+         end;
+       end;
+   end;
+
+   procedure AffAttaque();
+   var
+     texte:String;
+   begin
+     dessinerCadreXY(95,1,104,3,double,white,black);
+     texte:='Attaque de pirates';
+     ecrireTexteCentre(100,2,texte);
+
+     dessinerCadreXY(149,24,173,31,simple,white,black);
+     texte:='Nombre de soldats :';
+     ecrireTexte(150,25,texte);
+     write(getSoldat);
+     texte:='Nombre de pirates : ';
+     ecrireTexte(150,26,texte);
+     write('50');
+
+   end;
+
+   procedure attaque();
+   var
+     texte:String;
+     z:Integer;
+     ARRET:Boolean;
+   begin
+     ARRET:=true;
+
+     while (ARRET) do
+       begin
+         effacerEcran();
+         AffAttaque();
+
+         texte:='1. Se battre';
+         ecrireTexteCentre(100,20,texte);
+
+         texte:='2. Capituler';
+         ecrireTexteCentre(100,21,texte);
+
+         texte:='Que voulez-vous faire: ';
+         ecrireTexteCentre(100,57,texte);
+
+         readln(z);
+         case z of
+           1:
+             begin
+               combat();
+             end;
+
+           2:
+             begin
+               capituler();
              end;
 
          end;

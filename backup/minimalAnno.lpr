@@ -93,7 +93,7 @@ begin
         2:batiment();  //menu de construction
         3:
           begin
-            ecrireTexte(10,35,'Quel emplacement de sauvegarde utiliser ? 1,2 ou 3 ?');
+            ecrireTexte(10,35,'Quel emplacement de sauvegarde utiliser ? 1,2 ou 3 ? ');
             readln(z);
             case z of
               1,2,3: save(z);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Compiler Value="C:\lazarus\fpc\3.2.0\bin\x86_64-win64\fpc.exe" Date="1357350767"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq -FiC:\Users\bkott\Documents\GitHub\ProjetAlgo\lib\x86_64-win64 -FuC:\Users\bkott\Documents\GitHub\ProjetAlgo\ -FUC:\Users\bkott\Documents\GitHub\ProjetAlgo\lib\x86_64-win64\ -FEC:\Users\bkott\Documents\GitHub\ProjetAlgo\ -oC:\Users\bkott\Documents\GitHub\ProjetAlgo\minimalAnno.exe minimalAnno.lpr"/>
+  <Compiler Value="C:\lazarus\fpc\3.2.0\bin\x86_64-win64\fpc.exe" Date="1357348719"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq &quot;-FiC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\lib\x86_64-win64&quot; &quot;-FuC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\&quot; &quot;-FUC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\lib\x86_64-win64\&quot; &quot;-FEC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\&quot; &quot;-oC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\minimalAnno.exe&quot; minimalAnno.lpr"/>
+  <Complete Value="False"/>
 </CONFIG>

@@ -37,6 +37,10 @@ interface
    procedure setColon(val:Integer);
    function getColon : Integer;
 
+   //soldats
+   procedure setSoldat(val:Integer);
+   function getSoldat : Integer;
+
    //maison
    procedure setMaison(val:Integer);
    function getMaison : Integer;
@@ -65,10 +69,18 @@ interface
    procedure setCentreVille(val:Boolean);
    function getCentreVille : Boolean;
 
+   //chantier naval
+   procedure setNaval(val:Boolean);
+   function getNaval : Boolean;
+
+   //bateaux
+   procedure setBateau(val:Boolean);
+   function getBateau : Boolean;
+
 implementation
    var
-     fish,bois,outil,laine,tissu,gold,colon,maison,cabaneP,cabaneB,bergerie,atelier:Integer;
-     chapelle,centreVille:Boolean;
+     fish,bois,outil,laine,tissu,gold,colon,soldat,maison,cabaneP,cabaneB,bergerie,atelier,bateaux:Integer;
+     chapelle,centreVille,chantierNaval:Boolean;
 
    procedure initialisation;
    begin
@@ -79,15 +91,18 @@ implementation
      tissu:= 100;
      gold:= 50000;
      colon:= 12;
+     soldat:=0;
 
      maison:= 3;
      cabaneP:= 0;
      cabaneB:= 0;
      bergerie:= 0;
      atelier:= 0;
+     bateaux:=0;
 
      chapelle:= false;
      centreVille:= false;
+     chantierNaval:=false
 
    end;
 
@@ -168,6 +183,28 @@ implementation
      getColon:=colon;
    end;
 
+   //soldats
+   procedure setSoldat(val:Integer);
+   begin
+     soldat:=val;
+   end;
+
+   function getSoldat : Integer;
+   begin
+     getSoldat:=soldat;
+   end;
+
+   //bateau
+   procedure setBateau(val:Integer);
+   begin
+     bateaux:=val;
+   end;
+
+   function getBateau : Integer;
+   begin
+     getBateau:=bateaux;
+   end;
+
    //maison
    procedure setMaison(val:Integer);
    begin
@@ -243,6 +280,17 @@ implementation
    function getCentreVille : Boolean;
    begin
      getCentreVille:=centreVille;
+   end;
+
+   //Chantier naval
+   procedure setNaval(val:Boolean);
+   begin
+     chantierNaval:=val;
+   end;
+
+   function getNaval : Boolean;
+   begin
+     getNaval:=chantierNaval;
    end;
 
 end.
