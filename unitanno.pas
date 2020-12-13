@@ -528,7 +528,8 @@ implementation
                    end;
                  2:ARRET:=false;
                  end;
-               end
+               end;
+             end
              else
                  begin
                    texte:='Vous n''avez pas construit de chantier naval';
