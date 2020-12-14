@@ -529,6 +529,7 @@ implementation
                  2:ARRET:=false;
                  end;
                end;
+             end
              else
                  begin
                    texte:='Vous n''avez pas construit de chantier naval';
@@ -911,8 +912,157 @@ implementation
      write(getSoldat);
      texte:='Nombre de pirates : ';
      ecrireTexte(150,26,texte);
-     write('50');
+     write('Inconnu');
 
+   end;
+
+   procedure combat();
+   var
+     z,temp:Integer;
+     texte:String;
+     ARRET:Boolean;
+   begin
+     while (ARRET) do
+       begin
+         effacerEcran();
+         affAttaque();
+
+         texte:='1. Partir au combat sur le rivage';
+         ecrireTexteCentre(100,50,texte);
+         texte:='2. Tendre un piège aux envahisseurs';
+         ecrireTexteCentre(100,51,texte);
+         texte:='3. Construire des défenses pour résister à l''attaque';
+
+         texte:='Que voulez-vous faire: ';
+         ecrireTexteCentre(100,57,texte);
+
+         readln(z);
+
+         case z of
+         1:
+           begin
+             texte:='Vos hommes partent défendre votre colonie... ';
+             ecrireTexteCentre(100,58,texte);
+             Randomize;
+             if (getSoldat>0) then
+                begin
+                   temp:= random(10)+1;
+                   if (getSoldat()-temp>=0) then
+                      begin
+                         write('Vous avez repoussé l''invahsion !');
+                         writeln('Vous avez perdu',temp,' Soldats. Il vous reste',getSoldat(),' soldats.')
+                      end
+                   else
+                   setBois(getBois()-20);
+                   setfish(getFish()-15);
+                   setTissu(getTissu()-20);
+                   write('Vos soldats ont tous péri durant cette attaque... Vous avez perdu 20 uités de bois, 15 unités de poissons et 20 unités tissus');
+                end
+             else
+             setBois(getBois()-20);
+             setfish(getFish()-15);
+             setTissu(getTissu()-20);
+             write('Vos soldats n''ont pas été assez nombreux pour défendre cette attaque... Vous avez perdu 20 uités de bois, 15 unités de poissons et 20 unités tissus');
+           end;
+         2:
+           begin
+             texte:='Vos hommes se préparent à tendre un piège... ';
+             ecrireTexteCentre(100,58,texte);
+             Randomize;
+             if (getSoldat>0) then
+                begin
+                   temp:= random(5)+1;
+                   if (getSoldat()-temp>=0) then
+                      begin
+                         setBois(getBois()-15);
+                         setFish(getFish()-5);
+                         setTissu(getTissu()-10);
+                         write('Vous avez repoussé l''invahsion mais vous avez perdu quelques ressources !');
+                         writeln('Vous avez perdu',temp,' Soldats. Il vous reste',getSoldat(),' soldats.')
+                      end
+                   else
+                   setBois(getBois()-50);
+                   setfish(getFish()-30);
+                   setTissu(getTissu()-50);
+                   write('Vos soldats ont tous péri durant cette attaque... Vous avez perdu 50 uités de bois, 30 unités de poissons et 50 unités tissus');
+                end
+             else
+             setBois(getBois()-20);
+             setfish(getFish()-15);
+             setTissu(getTissu()-20);
+             write('Vos soldats n''ont pas été assez nombreux pour défendre cette attaque... Vous avez perdu 20 uités de bois, 15 unités de poissons et 20 unités tissus');
+           end;
+         3:
+           begin
+             texte:='Vos hommes se préparent à défendre la colonie... ';
+             ecrireTexteCentre(100,58,texte);
+             Randomize;
+             if (getSoldat>0) then
+                begin
+                   temp:= random(3)+1;
+                   if (getSoldat()-temp>=0) then
+                      begin
+                         setBois(getBois()-40);
+                         setFish(getFish()-10);
+                         setTissu(getTissu()-20);
+                         write('Vous avez repoussé l''invahsion !');
+                         writeln('Vous avez perdu',temp,' Soldats. Il vous reste',getSoldat(),' soldats.');
+                      end
+                   else
+                   setBois(getBois()-60);
+                   setfish(getFish()-30);
+                   setTissu(getTissu()-50);
+                   write('Vos soldats ont tous péri durant cette attaque... Vous avez perdu 50 uités de bois, 30 unités de poissons et 50 unités tissus');
+                end
+             else
+             setBois(getBois()-60);
+             setfish(getFish()-30);
+             setTissu(getTissu()-50);
+             write('Vos soldats n''ont pas été assez nombreux pour défendre cette attaque... Vous avez perdu 60 uités de bois, 30 unités de poissons et 50 unités tissus');
+             end;
+         end;
+       end;
+     ARRET:=false;
+   end;
+
+   procedure capituler();
+   var
+      x,y,temp:Integer;
+      texte:String;
+      ARRET:Boolean;
+   begin
+        while (ARRET) do
+        begin
+             effacerEcran();
+             affAttaque();
+             Randomize;
+             begin
+             texte:='Vous avez décider de laisser les pirates envhair votre colonie...';
+             ecrireTexteCentre(100,58,texte);
+             Randomize;
+             if (getSoldat>0) then
+                begin
+                   temp:= random(5)+1;
+                   setSoldat(getSoldat()-temp);
+                   x:=random(5)+1;
+                   setColon(getColon()-x);
+                   setBois(getBois()-50);
+                   setFish(getFish()-50);
+                   setTissu(getTissu()-50);
+                   write('L''ennemi a tué quelques habitants et soldats');
+                   writeln('Vous avez perdu',temp,' soldats. Il vous reste',getSoldat(),' soldats.');
+                   writeln('Vous avez perdu',x,' colons. Il vous reste',getColon(),' colons.');
+                end
+             else
+             y:=random(7)+1;
+             setColon(getColon()-y);
+
+             setBois(getBois()-20);
+             setfish(getFish()-15);
+             setTissu(getTissu()-20);
+             write('Vos soldats n''ont pas été assez nombreux pour défendre cette attaque... Vous avez perdu 20 uités de bois, 15 unités de poissons et 20 unités tissus');
+             end;
+        end;
    end;
 
    procedure attaque();
@@ -943,7 +1093,6 @@ implementation
              begin
                combat();
              end;
-
            2:
              begin
                capituler();
@@ -951,6 +1100,7 @@ implementation
 
          end;
        end;
+     ARRET:=false;
    end;
 
    procedure nextRound();
