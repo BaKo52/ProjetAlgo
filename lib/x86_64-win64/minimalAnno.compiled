@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Compiler Value="C:\lazarus\fpc\3.2.0\bin\x86_64-win64\fpc.exe" Date="1357348719"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq &quot;-FiC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\lib\x86_64-win64&quot; &quot;-FuC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\&quot; &quot;-FUC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\lib\x86_64-win64\&quot; &quot;-FEC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\&quot; &quot;-oC:\Users\quent\OneDrive\Bureau\projet algo2\ProjetAlgo\minimalAnno.exe&quot; minimalAnno.lpr"/>
+  <Compiler Value="C:\lazarus\fpc\3.0.4\bin\x86_64-win64\fpc.exe" Date="1351327143"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq &quot;-FiD:\Dijon L1\S1\Algo\m1102\ProjetAlgo\lib\x86_64-win64&quot; &quot;-FuD:\Dijon L1\S1\Algo\m1102\ProjetAlgo\&quot; &quot;-FUD:\Dijon L1\S1\Algo\m1102\ProjetAlgo\lib\x86_64-win64\&quot; &quot;-FED:\Dijon L1\S1\Algo\m1102\ProjetAlgo\&quot; &quot;-oD:\Dijon L1\S1\Algo\m1102\ProjetAlgo\minimalAnno.exe&quot; minimalAnno.lpr"/>
 </CONFIG>

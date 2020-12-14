@@ -91,7 +91,8 @@ begin
         case z of
         1:nextRound(); //passer le tour
         2:batiment();  //menu de construction
-        3:
+        3:naval(); //menu du chantier naval
+        4:
           begin
             ecrireTexte(10,35,'Quel emplacement de sauvegarde utiliser ? 1,2 ou 3 ? ');
             readln(z);
@@ -109,5 +110,6 @@ begin
 
         end;
       end;
+    end;
 
 end.

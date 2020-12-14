@@ -74,8 +74,8 @@ interface
    function getNaval : Boolean;
 
    //bateaux
-   procedure setBateau(val:Boolean);
-   function getBateau : Boolean;
+   procedure setBateau(val:Integer);
+   function getBateau : Integer;
 
 implementation
    var
@@ -102,7 +102,7 @@ implementation
 
      chapelle:= false;
      centreVille:= false;
-     chantierNaval:=false
+     chantierNaval:= false;
 
    end;
 
@@ -184,7 +184,7 @@ implementation
    end;
 
    //soldats
-   procedure setSoldat(val:Integer);
+   procedure ²setSoldat(val:Integer);
    begin
      soldat:=val;
    end;
