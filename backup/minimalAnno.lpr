@@ -1,6 +1,6 @@
 program minimalAnno;
 {$CODEPAGE UTF8}
-uses unitAnno,GestionEcran,SysUtils,unitvar, saveLoad;
+uses unitAnno,GestionEcran,SysUtils,unitvar, saveLoad, unitNaval, unitFinTour;
 
 
 var
@@ -37,6 +37,7 @@ begin
               begin
                 load(z);
                 loaded := true;
+                ARRET := true;
               end
             else
               begin
@@ -55,7 +56,7 @@ begin
         end;
       end;
 
-    if (loaded = false) then      // check si le jouer a chargé une sauvegarde ou non
+    if not(loaded) then      // check si le jouer a chargé une sauvegarde ou non
       begin
 
         ARRET:=false;
@@ -78,9 +79,9 @@ begin
               end;
             end;
           end;
-
-        ARRET:=true;
       end;
+
+    ARRET:=false;
 
     //Menu de la partie
     while(not(ARRET)) do

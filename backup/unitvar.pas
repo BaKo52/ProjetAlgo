@@ -5,18 +5,6 @@ unit unitVar;
 interface
    uses Classes, SysUtils;
 
-   type
-    PBateau = ^bateau;
-
-    bateau = record
-      nom : String;
-      succ, prec : PBateau;
-    end;
-
-    listeBateau = record
-      pDeb, pFin : PBateau;
-    end;
-
    //Unité de gestion des ressources: getX donne la valeur de la ressource, setX la modifie
    //initialisation
    procedure initialisation;
@@ -89,39 +77,36 @@ interface
    procedure setBateau(val:Integer);
    function getBateau : Integer;
 
-   function getListe : listeBateau ;
-
 implementation
    var
-     fish,bois,outil,laine,tissu,gold,colon,soldat,maison,cabaneP,cabaneB,bergerie,atelier,bateaux:Integer;
+     fish,bois,outil,laine,tissu,gold,colon,soldat,maison,cabaneP,cabaneB,bergerie,atelier,bateaux,nbRound:Integer;
+     nom : String;
      chapelle,centreVille,chantierNaval:Boolean;
-     liste : listeBateau;
 
    procedure initialisation;
    begin
-     fish:= 100;
-     bois:= 100;
-     outil:= 100;
-     laine:= 100;
-     tissu:= 100;
-     gold:= 50000;
-     colon:= 12;
-     soldat:=0;
+     fish := 100;
+     bois := 100;
+     outil := 100;
+     laine := 100;
+     tissu := 100;
+     gold := 50000;
+     colon := 12;
+     soldat := 0;
 
-     maison:= 3;
-     cabaneP:= 0;
-     cabaneB:= 0;
-     bergerie:= 0;
-     atelier:= 0;
-     bateaux:=0;
+     maison := 3;
+     cabaneP := 0;
+     cabaneB := 0;
+     bergerie := 0;
+     atelier := 0;
+     bateaux := 0;
+     nbRound := 1;
 
-     chapelle:= false;
-     centreVille:= false;
-     chantierNaval:= false;
+     nom := '';
 
-     liste.pDeb := NIL;
-     liste.pFin := NIL;
-
+     chapelle := false;
+     centreVille := false;
+     chantierNaval := false;
    end;
 
    //fish
@@ -311,9 +296,24 @@ implementation
      getNaval:=chantierNaval;
    end;
 
-   function getListe : listeBateau ;
+   procedure setNbRound(val : Integer);
    begin
-     getListe := liste;
+     nbRound := val;
+   end;
+
+   function getNbRound : Integer;
+   begin
+     getNbRound := nbRound;
+   end;
+
+   procedure setNom(val : String);
+   begin
+     nom := val;
+   end;
+
+   function getNom : String;
+   begin
+     getNom := nom;
    end;
 
 end.

@@ -1,9 +1,10 @@
 unit unitNaval;
 
 {$mode objfpc}{$H+}
+{$CODEPAGE UTF8}
 
 interface
-  uses Classes, SysUtils;
+  uses Classes, SysUtils, gestionEcran, unitVar;
 
   type
     PBateau = ^bateau;
@@ -21,7 +22,7 @@ interface
   procedure naval();
 
   //affiche la liste des bateaux du début vers la fin
-  procedure afficheDebversFin(l : listeBateau);
+  procedure afficheDebVersFin(l : listeBateau; x,y : Integer);
 
   //ajoute un bateau à la fin de la liste
   procedure ajouteFin(var l : listeBateau ; nom : String);
@@ -29,7 +30,142 @@ interface
   //enlève le premier bateau de la liste
   procedure depileDeb(var l : listeBateau);
 
+  //procédure gérant l'attaque de pirate
+  procedure attaque();
+
+  //affichage des ressources, du nom et des bâtiments
+  procedure ile();
+
+var
+  l : listeBateau;
+
 implementation
+
+  procedure ile();
+   var
+     texte:String;
+
+   begin
+     effacerEcran;
+
+     dessinerCadreXY(95,1,105,3,double,white,black);
+
+     texte:='Isla Soma';
+     couleurs(white,lightRed);
+     ecrireTexteCentre(100,2,texte);
+     couleurs(white,black);
+
+     dessinerCadreXY(9,6,30,10,simple,white,black);
+
+     texte:='Nom: ';
+     ecrireTexte(10,7,texte);
+     write(getNom());
+
+     texte:='Argent: ';
+     ecrireTexte(10,8,texte);
+     write(getGold);
+
+     texte:='Tour: ';
+     ecrireTexte(10,9,texte);
+     write(getNbRound);
+
+     dessinerCadreXY(109,6,134,15,simple,white,black);
+
+     //affichage des ressources
+     texte:='Nombre de ressources :';
+     ecrireTexte(110,7,texte);
+
+     texte:='- Bois : ';
+     ecrireTexte(110,8,texte);
+     write(getBois);
+
+     texte:='- Poissons : ';
+     ecrireTexte(110,9,texte);
+     write(getFish);
+
+     texte:='- Outils : ';
+     ecrireTexte(110,10,texte);
+     write(getOutil);
+
+     texte:='- Laine : ';
+     ecrireTexte(110,11,texte);
+     write(getLaine);
+
+     texte:='- Tissu : ';
+     ecrireTexte(110,12,texte);
+     write(getTissu);
+
+     texte:='- Nombre de soldat : ';
+     ecrireTexte(110,13,texte);
+     write(getSoldat);
+
+     texte:='- Nombre de bateau : ';
+     ecrireTexte(110,14,texte);
+     write(getBateau);
+
+     dessinerCadreXY(109,29,161,40,simple,white,black);
+
+     texte:='Nombre de colons : ';
+     ecrireTexte(110,30,texte);
+     write(getColon);
+     write('/',getMaison*4);
+
+     texte:='Liste des bâtiments construits : ';
+     ecrireTexte(110,31,texte);
+
+     texte:='- Maisons: ';
+     ecrireTexte(110,32,texte);
+     write(getMaison);
+
+     texte:='- Cabane de pêcheur: ';
+     ecrireTexte(110,33,texte);
+     write(getCabaneP);
+
+     texte:='- Cabane de bucheron: ';
+     ecrireTexte(110,34,texte);
+     write(getCabaneB);
+
+     texte:='- Bergerie: ';
+     ecrireTexte(110,35,texte);
+     write(getBergerie);
+
+     texte:='- Atelier de tisserand: ';
+     ecrireTexte(110,36,texte);
+     write(getAtelier);
+
+     if (getChapelle = false) then
+       begin
+         texte:='Vous n''avez pas encore construit de chapelle';
+         ecrireTexte(110,37,texte);
+       end
+     else
+       begin
+         texte:='Vous avez construit une chapelle';
+         ecrireTexte(110,37,texte);
+       end;
+
+     if (getCentreVille = false) then
+       begin
+         texte:='Vous n''avez pas encore construit de centre-ville';
+         ecrireTexte(110,38,texte);
+       end
+     else
+       begin
+         texte:='Vous avez construit un centre-ville';
+         ecrireTexte(110,38,texte);
+       end;
+
+       if (getNaval = false) then
+       begin
+         texte:='Vous n''avez pas encore construit de chantier naval';
+         ecrireTexte(110,39,texte);
+       end
+     else
+       begin
+         texte:='Vous avez construit un chantier naval';
+         ecrireTexte(110,39,texte);
+       end;
+   end;
 
   procedure ajouteFin(var l : listeBateau ; nom : String);
     var
@@ -71,22 +207,43 @@ implementation
         end;
     end;
 
-  procedure afficheDebversFin(l : listeBateau);
+  procedure afficheDebVersFin(l : listeBateau; x,y : Integer);
    var
-     x : PBateau;
+     temp : PBateau;   //variable contenant l'élément en cours de lecture dans la chaine
+     i : Integer;      //compteur
+     xStart : Integer; //x de départ gardé pour plus tard
+     yStart : Integer; //y de départ gardé pour plus tard
    begin
-     x := l.pDeb;
+     //intitialise les variables
+     temp := l.pDeb;
+     i := 1;
+     xStart := x;
+     yStart := y;
 
-     writeln('Premier bateau :');
-     write('Votre bateau s''appelle : ', x^.nom);
+     //fait le premier bateau en dehors de la boucle car temp = l.pFin
+     ecrireTexte(x,y,'Bateau n°');
+     write(i, ' : ');
+     writeln(temp^.nom);
 
-     x :=x^.succ;
+     //incrémente i et y pour la première écriture
+     i := i + 1;
+     y := y +1;
 
-     while ((x <> l.pFin) AND (x <> NIL)) do
+     while ((temp <> l.pFin) AND (temp <> NIL)) do     // tant que l'on n'est pas à la fin de la liste
      begin
-       writeln('Premier bateau :');
-       writeln('Votre bateau s''appelle : ', x^.nom);
-       x := x^.succ;
+       ecrireTexte(x,y,'Bateau n°');
+       write(i, ' : ');     //écrit le numéro du bateau
+       writeln(temp^.nom);  //écrit le nom du bateau
+       temp := temp^.succ;  //prend l'élément suivant de la liste
+       i := i + 1;
+       y := y + 1;   //incrémente y et i
+
+       if (y = 48) then  //si le texte rencontre les choix que doit prendre l'utilisateur
+         begin
+           y := yStart; //reset le y au y de départ
+           x := xStart + 35; //reset le x au x de départ avec un décalage de 35 (plus grande String des noms de bateaux)
+           xStart := xStart + 35 //rajoute 35 au start si le texte rerencontre les choix de l'utilisateur
+         end;
      end;
    end;
 
@@ -94,7 +251,7 @@ implementation
      var
        texte:String;
      begin
-       dessinerCadreXY(95,1,104,3,double,white,black);
+       dessinerCadreXY(90,1,109,3,double,white,black);
        texte:='Attaque de pirates';
        ecrireTexteCentre(100,2,texte);
 
@@ -323,122 +480,6 @@ implementation
      ARRET := TRUE;
    end;
 
-  procedure nextRound();
-    var
-      texte:String;
-      res: Integer;
-    begin
-      EffacerEcran();
-      nbRound:=nbRound+1;
-      res:= getColon div 2;
-
-      production();
-
-      //Conso de poissons
-      if res<getFish then
-        begin
-          setFish(getFish-res);
-          texte:='Vos colons se délectent de vos poissons! Poissons restant: ';
-          ecrireTexteCentre(100,10,texte);
-          write(getFish);
-        end
-      else
-        begin
-          texte:='Vous n''avez plus assez de poisson, vos colons ont faim !';
-          ecrireTexteCentre(100,10,texte);
-          setColon(getColon-4);
-        end;
-
-      //Conso de tissu
-      if (res + 3)<getTissu then
-        begin
-          setTissu(getTissu-(res + 3));
-          texte:='Vos ressources en tissu subviennent à vos colons ! Tissu restant: ';
-          ecrireTexteCentre(100,12,texte);
-          write(getTissu);
-        end
-      else
-        begin
-          texte:='Vous n''avez plus assez de tissu, vos colons sont en colère !';
-          ecrireTexteCentre(100,12,texte);
-          setColon(getColon-2);
-        end;
-
-      //Conso de bois
-      if (res div 2)<getBois then
-        begin
-          setBois(getBois-(res div 2));
-          texte:='Vos ressources en bois subviennent à vos colons ! Bois restant: ';
-          ecrireTexteCentre(100,14,texte);
-          write(getBois);
-        end
-      else
-        begin
-          texte:='Vous n''avez plus assez de bois, vos colons ne peuvent plus se chauffer !';
-          ecrireTexteCentre(100,14,texte);
-          setColon(getColon-2);
-        end;
-
-      //Check centre-ville
-      if getCentreVille=TRUE then
-        begin
-          texte:='Vous avez un centre-ville, vos colons sont heureux !';
-          ecrireTexteCentre(100,16,texte);
-        end
-      else
-        texte:='Vous n''avez pas de centre-ville, vos colons sont mécontent !';
-        ecrireTexteCentre(100,16,texte);
-
-      //Check chapelle
-      if getChapelle=TRUE then
-        begin
-          texte:='Vous avez une chapelle, vos colons sont heureux !';
-          ecrireTexteCentre(100,18,texte);
-        end
-      else
-        texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
-        ecrireTexteCentre(100,18,texte);
-
-      dessinerCadreXY(1,4,15,7,simple,white,black);
-      texte:='Argent :';
-      ecrireTexte(2,5,texte);
-      write(getGold);
-      texte:='Tour: ';
-      ecrireTexte(2,6,texte);
-      write(nbRound-1);
-
-      readln();
-
-      //Passage vers le tour suivant ou fin de partie
-      EffacerEcran();
-      If getColon<1 then
-        begin
-          texte:='L''entièreté de vos colons est mort !';
-          ecrireTexteCentre(100,10,texte);
-          texte:='Vous avez perdu !';
-          ecrireTexteCentre(100,12,texte);
-          readln();
-          halt();
-        end
-      else
-        begin
-          setGold(getGold+(getColon*25));  //Taxes
-          texte:='Vos colons vous on rapporté: ';
-          ecrireTexteCentre(100,10,texte);
-          write(getGold);
-          if (nbRound mod 3 = 0) then
-             begin
-                  marchand(); //Marchand
-             end;
-          if (nbRound mod 8 = 0)then
-             begin
-                attaque(); //attaque sur la colonie
-             end;
-
-          ile();
-        end;
-    end;
-
   procedure naval();
     var
       texte : String;
@@ -446,10 +487,9 @@ implementation
       ARRET : Boolean;
       fichier : Text;
       tabBateau : Array [0..16] of String;
-      l : listeBateau;
     begin
       randomize();
-      if getNaval()=true then
+      if getNaval() then
         begin
           ARRET:=false;
 
@@ -459,13 +499,17 @@ implementation
 
               ile();
 
+              if (l.pDeb <> NIL)
+              then afficheDebVersFin(l,10,12)
+              else ecrireTexte(10, 12, 'Vous n''avez pas encore de bateaux');
+
               texte:='1. Construire un navire : -500 or, - 50 bois et -20 outils';
-              ecrireTexte(10, 30, texte);
+              ecrireTexte(10, 50, texte);
 
               texte:='2. Retour au menu précédent';
-              ecrireTexte(10, 32, texte);
+              ecrireTexte(10, 52, texte);
 
-              ecrireTexte(10,34,'Que voulez-vous faire ? ');
+              ecrireTexte(10, 54, 'Que voulez-vous faire ? ');
 
               readln(z);
 
@@ -474,30 +518,30 @@ implementation
                 begin
                   if ((getGold>499) AND (getBois>49) AND (getOutil>19)) then
                      begin
-                        setBateau(getBateau+1);
-                        setGold(getGold-500);
-                        setBois(getBois-50);
-                        setOutil(getOutil-20);
+                       setBateau(getBateau+1);
+                       setGold(getGold-500);
+                       setBois(getBois-50);
+                       setOutil(getOutil-20);
 
-                        assign(fichier, 'nomBateau.txt');
-                        reset(fichier);
-                        for i:= 0 to 16 do
-                          begin
-                            readln(fichier, tabBateau[i]);
-                          end;
+                       assign(fichier, 'nomBateau.txt');
+                       reset(fichier);
+                       for i:= 0 to 16 do
+                         begin
+                           readln(fichier, tabBateau[i]);
+                         end;
 
-                        i := random(16);
-                        l := getListe();
-                        ajouteFin(l, tabBateau[i]);
+                       i := random(16);
+                       ajouteFin(l, tabBateau[i]);
                      end
                   else
-                      begin
-                        texte:='Vous n''avez pas les ressources pour construire un navire';
-                        ecrireTexte(10, 35, texte);
-                        readln();
-                      end;
+                    begin
+                      texte:='Vous n''avez pas les ressources pour construire un navire';
+                      ecrireTexte(10, 35, texte);
+                      readln();
+                    end;
                 end;
-              2:ARRET:=true;
+              2: ARRET := true
+              else writeln('Mauvaise saisie');
               end;
             end;
           end

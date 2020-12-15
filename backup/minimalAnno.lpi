@@ -26,7 +26,7 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <Units Count="4">
+    <Units Count="6">
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -45,6 +45,16 @@
         <Filename Value="naval.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="unitnaval.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="unitNaval"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="unitfintour.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="unitFinTour"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

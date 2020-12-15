@@ -3,7 +3,7 @@ unit saveLoad;
 {$mode objfpc}{$H+}
 
 interface
-  uses unitVar, Classes, SysUtils, gestionEcran;
+  uses unitVar, Classes, SysUtils;
 
   procedure save(emplacement : Integer);
 
@@ -26,6 +26,7 @@ implementation
     rewrite(fichier);     //ouverture du fichier en mode écriture (RAZ)
 
     //écriture de toute les variables dans le fichier
+    writeln(fichier, getNom());
     writeln(fichier, getFish());
     writeln(fichier, getBois());
     writeln(fichier, getOutil());
@@ -63,6 +64,8 @@ implementation
 
     reset(fichier);  // ouverture du fichier en  mode lecture
 
+
+    readln(fichier, texte);
 
     readln(fichier,temp); // ouverture du fichier et lecture de la variable
     setFish(temp);            // attribution de la variable lue à une des variables du jeu
