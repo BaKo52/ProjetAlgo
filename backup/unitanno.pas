@@ -175,7 +175,7 @@ implementation
      ecrireTexte(10,9,texte);
      write(nbRound);
 
-     dessinerCadreXY(109,6,132,13,simple,white,black);
+     dessinerCadreXY(109,6,134,14,simple,white,black);
 
      //affichage des ressources
      texte:='Nombre de ressources :';
@@ -200,6 +200,14 @@ implementation
      texte:='- Tissu : ';
      ecrireTexte(110,12,texte);
      write(getTissu);
+
+     texte:='- Nombre de soldat : ';
+     ecrireTexte(110,13,texte);
+     write(getSoldat);
+
+     texte:='- Nombre de bateau : ';
+     ecrireTexte(110,13,texte);
+     write(getBateau);
 
      dessinerCadreXY(109,29,161,40,simple,white,black);
 
@@ -330,7 +338,7 @@ implementation
          texte:='8. Construire un chantier naval: -1000 or, -100 bois, - 20 outils et -10 tissu';
          ecrireTexte(10, 37, texte);
 
-         texte:='9. Recrutez 5 soldats: -25 or, -5 outils, -10 tissu et -25 fish';
+         texte:='9. Recrutez 5 soldats: -25 or, -5 outils, -10 tissu et -25 poissons';
          ecriretexte(10,38, texte);
 
          texte:='10. Retour au menu précédent';
@@ -482,6 +490,7 @@ implementation
                    setOutil(getOutil-5);
                    settissu(getTissu-10);
                    setFish(getFish-25);
+                   setSoldat(getSoldat+5);
                 end
              else
                  begin
@@ -512,7 +521,7 @@ implementation
 
                  ile();
 
-                 texte:='1. Construire un navire : -500 or, - 150 bois et -20 outils';
+                 texte:='1. Construire un navire : -500 or, - 50 bois et -20 outils';
                  ecrireTexte(10, 30, texte);
 
                  texte:='2. Retour au menu précédent';
