@@ -23,15 +23,6 @@ implementation
       3:assign(fichier, 'savefile/save3.txt');
     end;
 
-    seekEOF(fichier);
-
-    if (filePos(fichier) < 14) then
-      begin
-        couleurs(red,black);
-        ecrireTexteCentre(100,54,'Le fichier ne contient pas de variables, le jeu va s''arrêter afin d''éviter des erreurs');
-        readln();
-      end;
-
     rewrite(fichier);     //ouverture du fichier en mode écriture (RAZ)
 
     //écriture de toute les variables dans le fichier
@@ -49,6 +40,7 @@ implementation
     writeln(fichier, getAtelier());
     writeln(fichier, getChapelle());
     writeln(fichier, getCentreVille());
+    writeln(fichier, getNaval());
 
     close(fichier);
 
@@ -117,6 +109,11 @@ implementation
     if(texte = 'FALSE')
     then setCentreVille(false)
     else setCentreVille(true);
+
+    readln(fichier,texte);
+    if(texte = 'FALSE')
+    then setNaval(false)
+    else setNaval(true);
 
   end;
 

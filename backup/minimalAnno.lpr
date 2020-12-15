@@ -8,9 +8,8 @@ var
 
   ARRET: Boolean; //Variable d'arrêt
 
-  loaded : Boolean; //variable servant à savoir si l'utilisateur à chargé une sauvegarde
+  loaded : Boolean; //variable servant à savoir si l'utilisateur a chargé une sauvegarde
 begin
-
     loaded := false;
 
     //Lancement du menu principal
@@ -18,16 +17,16 @@ begin
 
     readln(z); //lecture de z
 
-    ARRET := true;
+    ARRET := false;
 
     //Choix menu Principal
-    while ARRET=true do
+    while not(ARRET) do
       begin
         case z of //passage vers la présentation du jeu
         1:
           begin
             presentation();
-            ARRET := false;
+            ARRET := true;
           end;                   //charge le menu de présentation
         2:
           begin
@@ -59,17 +58,17 @@ begin
     if (loaded = false) then      // check si le jouer a chargé une sauvegarde ou non
       begin
 
-        ARRET:=true;
+        ARRET:=false;
 
         readln(z);
 
-        while ARRET=true do
+        while not(ARRET) do
           begin
             case z of
             1:
               begin
                 create();
-                ARRET:=false;
+                ARRET:=true;
               end;         // charge le menu de création du personnage
             2:halt();      //quitte la partie
             else
@@ -80,7 +79,7 @@ begin
             end;
           end;
 
-        ARRET:=FALSE;
+        ARRET:=true;
       end;
 
     //Menu de la partie
@@ -110,6 +109,5 @@ begin
 
         end;
       end;
-    end;
 
 end.

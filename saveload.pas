@@ -3,7 +3,7 @@ unit saveLoad;
 {$mode objfpc}{$H+}
 
 interface
-  uses unitVar, Classes, SysUtils, gestionEcran;
+  uses unitVar, Classes, SysUtils;
 
   procedure save(emplacement : Integer);
 
@@ -40,6 +40,7 @@ implementation
     writeln(fichier, getAtelier());
     writeln(fichier, getChapelle());
     writeln(fichier, getCentreVille());
+    writeln(fichier, getNaval());
 
     close(fichier);
 
@@ -108,6 +109,11 @@ implementation
     if(texte = 'FALSE')
     then setCentreVille(false)
     else setCentreVille(true);
+
+    readln(fichier,texte);
+    if(texte = 'FALSE')
+    then setNaval(false)
+    else setNaval(true);
 
   end;
 

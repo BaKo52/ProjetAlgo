@@ -65,6 +65,12 @@ interface
     // Change la couleur de la zone
     procedure ColorierZone(couleur : Byte ;couleurT : Byte; xStart,xEnd,y:Integer);
 
+    //automatisation de l'affichage du texte avec des coordonnées x et y (ne centre pas le texte)
+    procedure ecrireTexte(x1,y1:Integer;texte1:String);
+
+    //automatisation de l'affichage du texte avec des coordonnées x et y (centre le texte)
+    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
+
     const
       // Codes des couleurs
       Black        = 0;
@@ -330,5 +336,23 @@ implementation
       TextAttr := (LastMode and $0F) or ((couleur shl 4) and $F0);
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), TextAttr);
     end;
+
+    procedure ecrireTexteCentre(x1,y1:Integer;texte1:String);
+   var
+     pos:Coordonnees;
+   begin
+     pos.x:=x1-round(length(texte1)/2);
+     pos.y:=y1;
+     ecrireEnPosition(pos,texte1);
+   end;
+
+   procedure ecrireTexte(x1,y1:Integer;texte1:String);
+   var
+     pos:Coordonnees;
+   begin
+     pos.x:=x1;
+     pos.y:=y1;
+     ecrireEnPosition(pos,texte1);
+   end;
 end.
 

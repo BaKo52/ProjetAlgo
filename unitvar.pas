@@ -77,10 +77,13 @@ interface
    procedure setBateau(val:Integer);
    function getBateau : Integer;
 
+   function getListe : listeBateau ;
+
 implementation
    var
      fish,bois,outil,laine,tissu,gold,colon,soldat,maison,cabaneP,cabaneB,bergerie,atelier,bateaux:Integer;
      chapelle,centreVille,chantierNaval:Boolean;
+     liste : listeBateau;
 
    procedure initialisation;
    begin
@@ -103,6 +106,9 @@ implementation
      chapelle:= false;
      centreVille:= false;
      chantierNaval:= false;
+
+     liste.pDeb := NIL;
+     liste.pFin := NIL;
 
    end;
 
@@ -291,6 +297,11 @@ implementation
    function getNaval : Boolean;
    begin
      getNaval:=chantierNaval;
+   end;
+
+   function getListe : listeBateau ;
+   begin
+     getListe := liste;
    end;
 
 end.
