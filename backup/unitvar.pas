@@ -77,36 +77,53 @@ interface
    procedure setBateau(val:Integer);
    function getBateau : Integer;
 
+   procedure setNbRound(val : Integer);
+
+   function getNbRound : Integer;
+
+   procedure setNom(val : String);
+
+   function getNom : String;
+
 implementation
    var
-     fish,bois,outil,laine,tissu,gold,colon,soldat,maison,cabaneP,cabaneB,bergerie,atelier,bateaux,nbRound:Integer;
+     r : record //record contenant les données des ressources
+       fish, bois, outil, laine, tissu, gold, colon, soldat, bateaux : Integer;
+     end;
+
+     b : record //record contenant les données des bâtiments
+       maison, cabaneP, cabaneB, bergerie, atelier : Integer;
+       chapelle, centreVille, chantierNaval : Boolean;
+     end;
+
+     nbRound:Integer;
      nom : String;
-     chapelle,centreVille,chantierNaval:Boolean;
+
 
    procedure initialisation;
    begin
-     fish := 100;
-     bois := 100;
-     outil := 100;
-     laine := 100;
-     tissu := 100;
-     gold := 50000;
-     colon := 12;
-     soldat := 0;
+     r.fish := 100;
+     r.bois := 100;
+     r.outil := 100;
+     r.laine := 100;
+     r.tissu := 100;
+     r.gold := 50000;
+     r.colon := 12;
+     r.soldat := 0;
+     r.bateaux := 0;
 
-     maison := 3;
-     cabaneP := 0;
-     cabaneB := 0;
-     bergerie := 0;
-     atelier := 0;
-     bateaux := 0;
-     nbRound := 1;
+     b.maison := 3;
+     b.cabaneP := 0;
+     b.cabaneB := 0;
+     b.bergerie := 0;
+     b.atelier := 0;
+
+     b.chapelle := false;
+     b.centreVille := false;
+     b.chantierNaval := false;
 
      nom := '';
-
-     chapelle := false;
-     centreVille := false;
-     chantierNaval := false;
+     nbRound := 1;
    end;
 
    //fish

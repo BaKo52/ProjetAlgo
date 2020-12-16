@@ -87,221 +87,230 @@ interface
 
 implementation
    var
-     fish,bois,outil,laine,tissu,gold,colon,soldat,maison,cabaneP,cabaneB,bergerie,atelier,bateaux,nbRound:Integer;
+     r : record //record contenant les données des ressources
+       fish, bois, outil, laine, tissu, gold, colon, soldat, bateaux : Integer;
+     end;
+
+     b : record //record contenant les données des bâtiments
+       maison, cabaneP, cabaneB, bergerie, atelier : Integer;
+       chapelle, centreVille, chantierNaval : Boolean;
+     end;
+
+     nbRound:Integer;
      nom : String;
-     chapelle,centreVille,chantierNaval:Boolean;
+
 
    procedure initialisation;
    begin
-     fish := 100;
-     bois := 100;
-     outil := 100;
-     laine := 100;
-     tissu := 100;
-     gold := 50000;
-     colon := 12;
-     soldat := 0;
+     r.fish := 100;
+     r.bois := 100;
+     r.outil := 100;
+     r.laine := 100;
+     r.tissu := 100;
+     r.gold := 50000;
+     r.colon := 12;
+     r.soldat := 0;
+     r.bateaux := 0;
 
-     maison := 3;
-     cabaneP := 0;
-     cabaneB := 0;
-     bergerie := 0;
-     atelier := 0;
-     bateaux := 0;
-     nbRound := 1;
+     b.maison := 3;
+     b.cabaneP := 0;
+     b.cabaneB := 0;
+     b.bergerie := 0;
+     b.atelier := 0;
+
+     b.chapelle := false;
+     b.centreVille := false;
+     b.chantierNaval := false;
 
      nom := '';
-
-     chapelle := false;
-     centreVille := false;
-     chantierNaval := false;
+     nbRound := 1;
    end;
 
    //fish
    procedure setFish(val:Integer);
    begin
-     fish:=val;
+     r.fish:=val;
    end;
 
    function getFish : Integer;
    begin
-     getFish:=fish;
+     getFish:=r.fish;
    end;
 
    //gold
    procedure setGold(val:Integer);
    begin
-     gold:=val;
+     r.gold:=val;
    end;
 
    function getGold : Integer;
    begin
-     getGold:=gold;
+     getGold:=r.gold;
    end;
 
    //bois
    procedure setBois(val:Integer);
    begin
-     bois:=val;
+     r.bois:=val;
    end;
 
    function getBois : Integer;
    begin
-     getBois:=bois;
+     getBois:=r.bois;
    end;
 
    //outil
    procedure setOutil(val:Integer);
    begin
-     outil:=val;
+     r.outil:=val;
    end;
 
    function getOutil : Integer;
    begin
-     getOutil:=outil;
+     getOutil:=r.outil;
    end;
 
    //laine
    procedure setLaine(val:Integer);
    begin
-     laine:=val;
+     r.laine:=val;
    end;
 
    function getLaine : Integer;
    begin
-     getLaine:=laine;
+     getLaine:=r.laine;
    end;
 
    //tissu
    procedure setTissu(val:Integer);
    begin
-     tissu:=val;
+     r.tissu:=val;
    end;
 
    function getTissu : Integer;
    begin
-     getTissu:=Tissu;
+     getTissu:=r.Tissu;
    end;
 
    //colon
    procedure setColon(val:Integer);
    begin
-     colon:=val;
+     r.colon:=val;
    end;
 
    function getColon : Integer;
    begin
-     getColon:=colon;
+     getColon:=r.colon;
    end;
 
    //soldats
    procedure setSoldat(val:Integer);
    begin
-     soldat:=val;
+     r.soldat:=val;
    end;
 
    function getSoldat : Integer;
    begin
-     getSoldat:=soldat;
+     getSoldat:=r.soldat;
    end;
 
    //bateau
    procedure setBateau(val:Integer);
    begin
-     bateaux:=val;
+     r.bateaux:=val;
    end;
 
    function getBateau : Integer;
    begin
-     getBateau:=bateaux;
+     getBateau:=r.bateaux;
    end;
 
    //maison
    procedure setMaison(val:Integer);
    begin
-     maison:=val;
+     b.maison:=val;
    end;
 
    function getMaison : Integer;
    begin
-     getMaison:=maison;
+     getMaison:=b.maison;
    end;
 
    //cabaneP
    procedure setCabaneP(val:Integer);
    begin
-     cabaneP:=val;
+     b.cabaneP:=val;
    end;
 
    function getCabaneP : Integer;
    begin
-     getCabaneP:=cabaneP;
+     getCabaneP:=b.cabaneP;
    end;
 
    //cabaneB
    procedure setCabaneB(val:Integer);
    begin
-     cabaneB:=val;
+     b.cabaneB:=val;
    end;
 
    function getCabaneB : Integer;
    begin
-     getCabaneB:=cabaneB;
+     getCabaneB:=b.cabaneB;
    end;
 
    //bergerie
    procedure setBergerie(val:Integer);
    begin
-     bergerie:=val;
+     b.bergerie:=val;
    end;
 
    function getBergerie : Integer;
    begin
-     getBergerie:=bergerie;
+     getBergerie:=b.bergerie;
    end;
 
    //atelier
    procedure setAtelier(val:Integer);
    begin
-     atelier:=val;
+     b.atelier:=val;
    end;
 
    function getAtelier : Integer;
    begin
-     getAtelier:=atelier;
+     getAtelier:=b.atelier;
    end;
 
    //chapelle
    procedure setChapelle(val:Boolean);
    begin
-     chapelle:=val;
+     b.chapelle:=val;
    end;
 
    function getChapelle : Boolean;
    begin
-     getChapelle:=chapelle;
+     getChapelle:=b.chapelle;
    end;
 
    //centre-ville
    procedure setCentreVille(val:Boolean);
    begin
-     centreVille:=val;
+     b.centreVille:=val;
    end;
 
    function getCentreVille : Boolean;
    begin
-     getCentreVille:=centreVille;
+     getCentreVille:=b.centreVille;
    end;
 
    //Chantier naval
    procedure setNaval(val:Boolean);
    begin
-     chantierNaval:=val;
+     b.chantierNaval:=val;
    end;
 
    function getNaval : Boolean;
    begin
-     getNaval:=chantierNaval;
+     getNaval:=b.chantierNaval;
    end;
 
    procedure setNbRound(val : Integer);
