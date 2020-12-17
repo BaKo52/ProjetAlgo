@@ -4,14 +4,12 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="12"/>
-        <CursorPos X="12" Y="60"/>
-        <FoldState Value=" T0N6X042F"/>
-        <UsageCount Value="92"/>
+        <CursorPos X="14" Y="4"/>
+        <UsageCount Value="94"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,19 +17,18 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitAnno"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="16"/>
         <CursorPos X="41" Y="24"/>
         <FoldState Value=" T3Q3a121w"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="94"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="saveload.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="saveLoad"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="65" Y="40"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -40,17 +37,17 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="36" Y="72"/>
         <FoldState Value=" T3B2r%"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="33"/>
       </Unit3>
       <Unit4>
         <Filename Value="unitnaval.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitNaval"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="448"/>
-        <CursorPos X="97" Y="453"/>
+        <TopLine Value="465"/>
+        <CursorPos X="30" Y="531"/>
         <FoldState Value=" T3i02{h213P"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -60,147 +57,156 @@
         <EditorIndex Value="2"/>
         <TopLine Value="43"/>
         <CursorPos X="17" Y="4"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="GestionEcran.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <CursorPos X="7" Y="16"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="unitvar.pas"/>
         <UnitName Value="unitVar"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="289"/>
-        <CursorPos X="6" Y="318"/>
-        <UsageCount Value="37"/>
+        <CursorPos Y="3"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="unitvarbot1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="unitVarBot1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="272"/>
+        <CursorPos X="26" Y="312"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit8>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="unitanno.pas"/>
-        <Caret Line="832" TopLine="436"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="155" Column="130" TopLine="158"/>
       </Position1>
       <Position2>
-        <Filename Value="unitanno.pas"/>
-        <Caret Line="6" Column="48"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="149" Column="121" TopLine="129"/>
       </Position2>
       <Position3>
-        <Filename Value="unitfintour.pas"/>
-        <Caret Line="6" Column="69"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="176" Column="18" TopLine="136"/>
       </Position3>
       <Position4>
-        <Filename Value="unitfintour.pas"/>
-        <Caret Line="18" Column="5"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="180" Column="26" TopLine="140"/>
       </Position4>
       <Position5>
-        <Filename Value="unitanno.pas"/>
-        <Caret Line="23" Column="35"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="42" Column="15" TopLine="30"/>
       </Position5>
       <Position6>
-        <Filename Value="unitanno.pas"/>
-        <Caret Line="26" Column="55"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="190" Column="26" TopLine="151"/>
       </Position6>
       <Position7>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="35" Column="3" TopLine="16"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="197" Column="18" TopLine="158"/>
       </Position7>
       <Position8>
-        <Filename Value="unitanno.pas"/>
-        <Caret Line="245" Column="9" TopLine="212"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="201" Column="26" TopLine="162"/>
       </Position8>
       <Position9>
-        <Filename Value="minimalAnno.lpr"/>
-        <Caret Line="60" Column="12" TopLine="14"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="208" Column="18" TopLine="169"/>
       </Position9>
       <Position10>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="468" Column="205" TopLine="461"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="212" Column="27" TopLine="173"/>
       </Position10>
       <Position11>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="489" Column="36" TopLine="470"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="219" Column="19" TopLine="180"/>
       </Position11>
       <Position12>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="491" Column="78" TopLine="424"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="223" Column="28" TopLine="184"/>
       </Position12>
       <Position13>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="511" Column="24" TopLine="229"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="232" Column="19" TopLine="191"/>
       </Position13>
       <Position14>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="222" Column="16" TopLine="40"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="236" Column="27" TopLine="195"/>
       </Position14>
       <Position15>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="210" Column="47" TopLine="40"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="241" Column="19" TopLine="202"/>
       </Position15>
       <Position16>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="216" Column="13" TopLine="39"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="252" Column="20" TopLine="213"/>
       </Position16>
       <Position17>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="25" Column="61" TopLine="5"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="245" Column="28" TopLine="221"/>
       </Position17>
       <Position18>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="523" Column="45" TopLine="486"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="255" Column="28" TopLine="217"/>
       </Position18>
       <Position19>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="500" Column="33" TopLine="486"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="277" Column="20" TopLine="233"/>
       </Position19>
       <Position20>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="500" Column="33" TopLine="491"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="274" Column="21" TopLine="235"/>
       </Position20>
       <Position21>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="522" Column="31" TopLine="491"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="267" Column="30" TopLine="246"/>
       </Position21>
       <Position22>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="523" Column="20" TopLine="491"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="278" Column="28" TopLine="239"/>
       </Position22>
       <Position23>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="521" Column="21" TopLine="491"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="285" Column="20" TopLine="246"/>
       </Position23>
       <Position24>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="523" Column="20" TopLine="491"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="286" Column="37" TopLine="275"/>
       </Position24>
       <Position25>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="482" Column="46" TopLine="473"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="298" Column="64" TopLine="275"/>
       </Position25>
       <Position26>
-        <Filename Value="unitnaval.pas"/>
-        <Caret Line="491" Column="15" TopLine="469"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="271" Column="103" TopLine="292"/>
       </Position26>
       <Position27>
-        <Filename Value="unitvar.pas"/>
-        <Caret Line="13" Column="8" TopLine="133"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="294" Column="86" TopLine="261"/>
       </Position27>
       <Position28>
-        <Filename Value="unitvar.pas"/>
-        <Caret Line="128" Column="8" TopLine="116"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="308" Column="56" TopLine="289"/>
       </Position28>
       <Position29>
-        <Filename Value="unitvar.pas"/>
-        <Caret Line="9"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="81" Column="25" TopLine="60"/>
       </Position29>
       <Position30>
-        <Filename Value="unitvar.pas"/>
-        <Caret Line="95" Column="62" TopLine="72"/>
+        <Filename Value="unitvarbot1.pas"/>
+        <Caret Line="298" Column="102" TopLine="279"/>
       </Position30>
     </JumpHistory>
     <RunParams>

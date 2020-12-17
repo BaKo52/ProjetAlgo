@@ -1,6 +1,7 @@
 program minimalAnno;
 {$CODEPAGE UTF8}
-uses unitAnno,GestionEcran,SysUtils,unitvar, saveLoad, unitNaval, unitFinTour;
+uses unitAnno, GestionEcran, SysUtils, unitvar, saveLoad, unitNaval,
+  unitFinTour, unitVarBot1;
 
 
 var
@@ -58,7 +59,6 @@ begin
 
     if not(loaded) then      // check si le jouer a chargé une sauvegarde ou non
       begin
-
         ARRET:=false;
 
         readln(z);

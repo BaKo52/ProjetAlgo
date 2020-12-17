@@ -529,7 +529,6 @@ implementation
                          begin
                            readln(fichier, tabBateau[i]);
                          end;
-
                        i := random(16);
                        ajouteFin(l, tabBateau[i]);
                      end

@@ -26,7 +26,7 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <Units Count="6">
+    <Units Count="7">
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -55,6 +55,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitFinTour"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="unitvarbot1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="unitVarBot1"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

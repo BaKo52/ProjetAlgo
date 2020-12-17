@@ -243,7 +243,6 @@ implementation
            y := yStart; //reset le y au y de départ
            x := xStart + 35; //reset le x au x de départ avec un décalage de 35 (plus grande String des noms de bateaux)
            xStart := xStart + 35 //rajoute 35 au start si le texte rerencontre les choix de l'utilisateur
-
          end;
      end;
    end;
