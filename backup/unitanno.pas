@@ -546,7 +546,8 @@ implementation
          case z of
          1:
            begin
-             texte:='Quelle quantité: ';
+             texte:='Quelle quantité: ';                                     
+         5:
              ecrireTexteCentre(100,58,texte);
              readln(x);
              if(getBois()-x>=0) then
