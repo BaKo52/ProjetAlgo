@@ -3,7 +3,7 @@ unit unitAnno;
 {$mode objfpc}{$H+} {$CODEPAGE UTF8}
 
 interface
-  uses Classes, SysUtils, GestionEcran, unitvar, unitNaval;
+  uses Classes, SysUtils, GestionEcran, unitvar, unitNaval, unitGestionEvents;
 
   //affichage du menu principal
   procedure menuPrincipal();
@@ -101,6 +101,7 @@ implementation
      effacerEcran();
 
      initialisation(); //Initialisation des ressources
+     initialisationEvents(); //Initialisation des events
 
      couleurs(black,LightGray);
      texte:='CREATION DE VOTRE PERSONNAGE';

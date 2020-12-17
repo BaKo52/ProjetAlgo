@@ -4,7 +4,7 @@ unit unitFinTour;
 {$CODEPAGE UTF8}
 
 interface
-  uses Classes, SysUtils, unitVar, unitNaval, unitAnno, gestionEcran;
+  uses Classes, SysUtils, unitVar, unitNaval, unitAnno, gestionEcran, unitGestionEvents;
 
   //gestion des tour
   procedure nextRound();
@@ -152,6 +152,7 @@ procedure nextRound();
           begin
             attaque(); //attaque sur la colonie
           end;
+        gestionEvents(getNbRound());
         ile();
       end;
   end;
