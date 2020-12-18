@@ -17,7 +17,7 @@ interface
 
    //Unité de gestion des ressources: getX donne la valeur de la ressource, setX la modifie
    //initialisation
-   procedure initialisation;
+   procedure initialisationBot1;
 
    //fish
    procedure setFishBot1(val:Integer);
@@ -106,7 +106,7 @@ implementation
      nom : String;
 
 
-   procedure initialisation;
+   procedure initialisationBot1;
    begin
      bot1.r.fish := 100;
      bot1.r.bois := 100;
@@ -128,7 +128,7 @@ implementation
      bot1.b.centreVille := false;
      bot1.b.chantierNaval := false;
 
-     nom := '';
+     nom := 'Pol BOT';
      nbRound := 1;
    end;
 
@@ -289,23 +289,23 @@ implementation
    //chapelle
    procedure setChapelleBot1(val:Boolean);
    begin
-     bot1.b.chapelle:=val;
+     bot1.b.chapelle := val;
    end;
 
    function getChapelleBot1 : Boolean;
    begin
-     getChapelleBot1:=bot1.b.chapelle;
+     getChapelleBot1 := bot1.b.chapelle;
    end;
 
    //centre-ville
    procedure setCentreVilleBot1(val:Boolean);
    begin
-     bot1.b.centreVille:=val;
+     bot1.b.centreVille := val;
    end;
 
    function getCentreVilleBot1 : Boolean;
    begin
-     getCentreVilleBot1:=bot1.b.centreVille;
+     getCentreVilleBot1 := bot1.b.centreVille;
    end;
 
    //Chantier naval
@@ -316,7 +316,7 @@ implementation
 
    function getNavalBot1 : Boolean;
    begin
-     getNavalBot1:=bot1.b.chantierNaval;
+     getNavalBot1 := bot1.b.chantierNaval;
    end;
 
    procedure setNbRoundBot1(val : Integer);

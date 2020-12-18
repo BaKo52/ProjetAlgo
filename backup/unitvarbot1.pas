@@ -87,13 +87,13 @@ interface
    procedure setBateauBot1(val:Integer);
    function getBateauBot1 : Integer;
 
-   procedure setNbRound(val : Integer);
+   procedure setNbRoundBot1(val : Integer);
 
-   function getNbRound : Integer;
+   function getNbRoundBot1 : Integer;
 
-   procedure setNom(val : String);
+   procedure setNomBot1(val : String);
 
-   function getNom : String;
+   function getNomBot1 : String;
 
 implementation
    var
@@ -319,24 +319,24 @@ implementation
      getNavalBot1:=bot1.b.chantierNaval;
    end;
 
-   procedure setNbRound(val : Integer);
+   procedure setNbRoundBot1(val : Integer);
    begin
      nbRound := val;
    end;
 
-   function getNbRound : Integer;
+   function getNbRoundBot1 : Integer;
    begin
-     getNbRound := nbRound;
+     getNbRoundBot1 := nbRound;
    end;
 
-   procedure setNom(val : String);
+   procedure setNomBot1(val : String);
    begin
      nom := val;
    end;
 
-   function getNom : String;
+   function getNomBot1 : String;
    begin
-     getNom := nom;
+     getNomBot1 := nom;
    end;
 
 end.
