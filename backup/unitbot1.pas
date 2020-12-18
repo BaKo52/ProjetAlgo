@@ -10,13 +10,13 @@ uses
 implementation
 
 procedure affichageRessourceBot1();
-begin
-  couleurs(black, white);
-  ecrireTexteCentre(100, 2, 'Ressources de ');
-  writeln(getNomBot1());
+  begin
+    couleurs(black, white);
+    ecrireTexteCentre(100, 2, 'Ressources de ');
+    writeln(getNomBot1());
 
-  ecrireTexte
-end;
+    ecrireTexte
+  end;
 
 procedure productionBot1();
   var

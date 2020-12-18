@@ -15,7 +15,6 @@ procedure affichageRessourceBot1();
     ecrireTexteCentre(100, 2, 'Ressources de ');
     writeln(getNomBot1());
 
-    ecrireTexte
   end;
 
 procedure productionBot1();
