@@ -15,6 +15,13 @@ interface
        chapelle, centreVille, chantierNaval : Boolean;
      end;
 
+     bot = record //record gérant les données du bot
+       r : r;
+       b : b;
+       nom : String;
+       nbRound : Integer;
+     end;
+
    //Unité de gestion des ressources: getX donne la valeur de la ressource, setX la modifie
    //initialisation
    procedure initialisationBot1;
@@ -97,14 +104,7 @@ interface
 
 implementation
    var
-     bot1 : record //record gérant les données du joueur 1
-       r : r;
-       b : b;
-     end;
-
-     nbRound:Integer;
-     nom : String;
-
+     bot1 : bot;
 
    procedure initialisationBot1;
    begin
@@ -128,8 +128,8 @@ implementation
      bot1.b.centreVille := false;
      bot1.b.chantierNaval := false;
 
-     nom := 'Pol BOT';
-     nbRound := 1;
+     bot1.nom := 'Pol BOT';
+     bot1.nbRound := 1;
    end;
 
    //fish
@@ -321,22 +321,22 @@ implementation
 
    procedure setNbRoundBot1(val : Integer);
    begin
-     nbRound := val;
+     bot1.nbRound := val;
    end;
 
    function getNbRoundBot1 : Integer;
    begin
-     getNbRoundBot1 := nbRound;
+     getNbRoundBot1 := bot1.nbRound;
    end;
 
    procedure setNomBot1(val : String);
    begin
-     nom := val;
+     bot1.nom := val;
    end;
 
    function getNomBot1 : String;
    begin
-     getNomBot1 := nom;
+     getNomBot1 := bot1.nom;
    end;
 
 end.
