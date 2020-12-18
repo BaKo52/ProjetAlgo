@@ -1,7 +1,6 @@
 unit unitGestionEvents;
 
 {$mode objfpc}{$H+}
-{$CODEPAGE UTF8}
 
 interface
 uses unitVar,GestionEcran;
