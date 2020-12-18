@@ -152,8 +152,8 @@ procedure nextRound();
           begin
             attaque(); //attaque sur la colonie
           end;
-        gestionEvents(getNbRound());
         ile();
+        gestionEvents(getNbRound());
       end;
   end;
 

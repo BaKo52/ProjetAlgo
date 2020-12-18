@@ -1,6 +1,6 @@
 unit unitGestionEvents;
 
-{$mode objfpc}{$H+}
+{$mode objfpc}{$H+} 
 {$CODEPAGE UTF8}
 
 interface
@@ -53,7 +53,11 @@ var
   texte:String;
   destroyMaison:Integer;
   destroyAtelier:Integer;
-  killEvent3_Colons:Integer;
+  killColon:Integer;
+  killSoldats,soldatsRestants:Integer;
+  event3soldatsGo:Boolean;
+  ressourceB,ressourceP,ressourceO,ressourceL,ressourceT:Integer;
+  event3ligneAff:Integer;
 
 
   begin
@@ -67,11 +71,11 @@ var
         if (getFinEventx()=false) then
            begin
               setFinEventx(true);
-              numEvent:=random(2)+1;
+              numEvent:=3;//random(2)+1;
 
               // 1 : Incendie
               // 2 : Maladie
-              // 3 : Indiens qui viennent tuer des colons et des soldats
+              // 3 : Indiens qui viennent tuer des colons et des soldats/récupérer des ressources
               // 4 : Les productions sont augmentées (un festin contre x ressources ?)
               if( numEvent=1 ) then
                  begin
@@ -89,9 +93,9 @@ var
                  end
               else if( numEvent=3 ) then
                  begin
-                  setFinEvent(nbRound+5);
+                  setFinEvent(nbRound+3);
                   EffacerEcran();
-                  texte:='Deux de vos colons sont morts pour une raison non expliquée.';
+                  texte:='Du grabuge a été entendu dans la fin de la nuit.';
                   ecrireTexteCentre(100,10,texte);
                  end
 
@@ -240,50 +244,171 @@ var
 
       //************************************ Event 3 ***************************
 
-        else if( numEvent=3 ) then // EN DEV - NON FAIT
+        else if( numEvent=3 ) then
            begin
-             if(nbRound=getFinEvent()-2) then
+             if(nbRound=getFinEvent()-3) then
                 begin
-                  texte:='Une maison a été détruite, les habitants mourront vite si rien n''est fait.';
+                  killColon:=random(6); 
+                  randomize;
+                  killSoldats:=random(6);
+                  if(killSoldats>getSoldat()) then
+                     killSoldats:=getSoldat();
+                  texte:='Des indiens ont été vu en train de fuir.';
                   ecrireTexteCentre(100,30,texte);
-                  setMaison(getMaison()-1);
+                  if((killColon<>0) or (killSoldats<>0)) then
+                     begin
+                       if(killColon<>0) then
+                          begin
+                            texte:='Colons : - ';
+                            ecrireTexteCentre(100,31,texte);
+                            write(killColon);
+                            setColon(getColon()-killColon);
+                          end;
+                       if(killSoldats<>0) then
+                          begin
+                            texte:='Soldats : - ';
+                            ecrireTexteCentre(100,32,texte);
+                            write(killSoldats);
+                            setSoldat(getSoldat()-killSoldats);
+                          end;
+                     end
+                  else
+                  begin
+                  texte:='Aucun mort n''a été trouvé.';
+                  ecrireTexteCentre(100,31,texte);
+                  end;
                   readln;
                 end
+
+             else if(nbRound=getFinEvent()-2) then
+                begin
+                  if(killSoldats>getSoldat()) then
+                     killSoldats:=getSoldat();
+                  if(getSoldat>=15) then
+                     begin
+                        EffacerEcran();
+                        texte:='Des soldats partent dans la nuit pour contre-attaquer les indiens.';
+                        ecrireTexteCentre(100,10,texte);
+                        texte:='Soldats : - 15';
+                        ecrireTexteCentre(100,30,texte);
+                        event3soldatsGo:=true;
+                        setSoldat(getSoldat()-15);
+                     end
+                  else
+                  begin
+                        EffacerEcran();
+                        texte:='Les indiens reviennent dans la nuit et volent des ressources';
+                        ecrireTexteCentre(100,10,texte);
+                        ressourceB:=round(getBois()/4);
+                        ressourceP:=round(getFish()/4);
+                        ressourceO:=round(getOutil()/5);
+                        ressourceL:=round(getLaine()/4);
+                        ressourceT:=round(getTissu()/4);
+                        event3ligneAff:=30;
+                        if(getBois()>4) then
+                           begin
+                            texte:='Bois : - ';
+                            ecrireTexteCentre(100,event3ligneAff,texte);
+                            write(ressourceB);
+                            event3ligneAff:=event3ligneAff+1;
+                            setBois(getBois()-RessourceB);
+                           end;
+                        if(getFish()>4) then
+                           begin
+                            texte:='Poissons : - ';
+                            ecrireTexteCentre(100,event3ligneAff,texte);
+                            write(ressourceP);
+                            event3ligneAff:=event3ligneAff+1; 
+                            setFish(getFish()-RessourceP);
+                           end;
+                        if(getOutil()>4) then
+                           begin
+                            texte:='Outils : - ';
+                            ecrireTexteCentre(100,event3ligneAff,texte);
+                            write(ressourceO);
+                            event3ligneAff:=event3ligneAff+1; 
+                            setOutil(getOutil()-RessourceO);
+                           end;
+                        if(getLaine()>4) then
+                           begin
+                            texte:='Laine : - ';
+                            ecrireTexteCentre(100,event3ligneAff,texte);
+                            write(ressourceL);
+                            event3ligneAff:=event3ligneAff+1; 
+                            setLaine(getLaine()-RessourceL);
+                           end;
+                        if(getTissu()>4) then
+                           begin
+                            texte:='Tissu : - ';
+                            ecrireTexteCentre(100,event3ligneAff,texte);
+                            write(ressourceT);
+                            event3ligneAff:=event3ligneAff+1; 
+                            setTissu(getTissu()-RessourceT);
+                           end;
+                  end;
+
+                readln;
+                end
+
              else if(nbRound=getFinEvent()-1) then
                 begin
-                   EffacerEcran();
-                   destroyMaison:=random(3);
-                   destroyAtelier:=random(2);
-                   texte:='L''incendie continue sa route et emporte des choses avec lui . . .';
-                   ecrireTexteCentre(100,10,texte);
-                   if(destroyMaison<>0) then
-                      begin
-                       texte:='Une/des maison(s) a/ont été détruite(s) : - ';
-                       ecrireTexteCentre(95,30,texte);
-                       setMaison(getMaison()-destroyMaison);
-                       write(destroyMaison, ' maison(s)');
-                      end
-                   else if ((destroyAtelier<>0) AND (getAtelier()<>0)) then
-                      begin
-                       texte:='Un/des atelier(s) a/ont été détruit(s) : - ';
-                       ecrireTexteCentre(95,31,texte);
-                       setAtelier(getAtelier()-destroyAtelier);
-                       write(destroyAtelier, ' atelier(s)');
-                      end
-                   else
-                       begin
-                       EffacerEcran();
-                       texte:='Vous êtes chanceux aujourd''hui, l''incendie n''a rien emporté avec lui.';
-                       ecrireTexteCentre(100,10,texte);
-                       end;
+                  if (event3soldatsGo=true) then
+                     begin
+                        EffacerEcran();
+                        killSoldats:=random(8)+2;
+                        texte:='Les soldats partis la veille reviennent. Il y a tout de même des morts.';
+                        ecrireTexteCentre(100,10,texte);
+                        texte:='Ils ont les bras chargés.';
+                        ecrireTexteCentre(100,11,texte);
 
-                   readln;
+                        soldatsRestants:=15-killSoldats;
+                        ressourceB:=soldatsRestants*20;
+                        ressourceP:=soldatsRestants*20;
+                        ressourceO:=soldatsRestants*15;
+                        ressourceL:=soldatsRestants*20;
+                        ressourceT:=soldatsRestants*20;
+
+
+                        texte:='Bois : + ';
+                        ecrireTexteCentre(100,30,texte);
+                        write(ressourceB);
+                        setBois(getBois()+RessourceB);
+
+                        texte:='Poisson : + ';
+                        ecrireTexteCentre(100,31,texte);
+                        write(ressourceB);
+                        setFish(getFish()+RessourceP);
+
+                        texte:='Outil : + ';
+                        ecrireTexteCentre(100,32,texte);
+                        write(ressourceB);
+                        setOutil(getOutil()+RessourceO);
+
+                        texte:='Laine : + ';
+                        ecrireTexteCentre(100,33,texte);
+                        write(ressourceB);
+                        setLaine(getLaine()+RessourceL);
+
+                        texte:='Tissu : + ';
+                        ecrireTexteCentre(100,34,texte);
+                        write(ressourceB);
+                        setTissu(getTissu()+RessourceT);
+
+                        texte:='Soldats : + ';
+                        ecrireTexteCentre(100,34,texte);
+                        write(soldatsRestants);
+                        setSoldat(getSoldat()+soldatsRestants);
+
+
+                     end;
+                  readln;
                 end;
-            end;
-
-
-
+             end;
      end
+
+
+
+
   else if (getFinEventx()=true) then
     begin
         setfinEventx(false);
@@ -303,6 +428,13 @@ var
             ecrireTexteCentre(100,10,texte);
             texte:='Les Colons restant continueront de se méfier pendant quelque temps.';
             ecrireTexteCentre(100,11,texte);
+            readln;
+           end
+        else if( numEvent=3 ) then
+           begin
+            EffacerEcran();
+            texte:='Les Indiens ne viendront plus vous embêter avant un moment.';
+            ecrireTexteCentre(100,10,texte);
             readln;
            end
     end;
