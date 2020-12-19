@@ -4,7 +4,7 @@ unit unitFinTour;
 {$CODEPAGE UTF8}
 
 interface
-  uses Classes, SysUtils, unitVar, unitNaval, unitAnno, gestionEcran, unitGestionEvents;
+  uses Classes, SysUtils, unitVar, unitNaval, unitAnno, gestionEcran, unitGestionEvents, unitBot1;
 
   //gestion des tour
   procedure nextRound();
@@ -25,10 +25,10 @@ procedure production ();
     setBois(getBois()+(getCabaneB()*5)); //Une cabane de bucheron produit 5 bois
 
     //Production de tissu
-    res:= getAtelier()*5;
-    if res<getLaine() then
+    res:= getAtelier()*5;       //met le nombre de laine requit pour créer le tissu dans une variable temporaire
+    if res<getLaine() then      //check si le joueur à assez de laine
       begin
-        setLaine(getLaine()-res);
+        setLaine(getLaine()-res);             //soustrait la laine pour créer du tissu à la laine du bot
         setTissu(getTissu()+(getAtelier*10)); //Un atelier produit 10 tissu pour 5 laines
       end;
 
@@ -152,6 +152,11 @@ procedure nextRound();
           begin
             attaque(); //attaque sur la colonie
           end;
+
+        effacerEcran();
+        productionBot1();
+        affichageRessourceBot1();
+
         ile();
         gestionEvents(getNbRound());
       end;

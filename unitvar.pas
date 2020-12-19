@@ -92,7 +92,6 @@ interface
    function getNbRound : Integer;
 
    procedure setNom(val : String);
-
    function getNom : String;
 
 implementation

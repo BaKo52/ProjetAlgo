@@ -1,7 +1,7 @@
 program minimalAnno;
 {$CODEPAGE UTF8}
 uses unitAnno, GestionEcran, SysUtils, unitvar, saveLoad, unitNaval,
-  unitFinTour, unitGestionEvents;
+  unitFinTour, unitGestionEvents, unitVarBot1;
 
 
 var
@@ -37,6 +37,7 @@ begin
             1,2,3:
               begin
                 load(z);
+                intialisationBot1();
                 loaded := true;
                 ARRET := true;
               end
@@ -69,6 +70,7 @@ begin
             1:
               begin
                 create();
+                InitialisationBot1();
                 ARRET:=true;
               end;         // charge le menu de création du personnage
             2:halt();      //quitte la partie

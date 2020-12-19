@@ -6,11 +6,11 @@ interface
    uses Classes, SysUtils;
 
    type
-     ressource = record //record contenant les données des ressources
+     r = record //record contenant les données des ressources
        fish, bois, outil, laine, tissu, gold, colon, soldat, bateaux : Integer;
      end;
 
-     batiment = record //record contenant les données des bâtiments
+     b = record //record contenant les données des bâtiments
        maison, cabaneP, cabaneB, bergerie, atelier : Integer;
        chapelle, centreVille, chantierNaval : Boolean;
      end;
@@ -92,14 +92,20 @@ interface
    function getNbRound : Integer;
 
    procedure setNom(val : String);
-
    function getNom : String;
+
+   procedure setEtatBot1(val :Boolean);
+   function getEtatBot1 : Boolean;
 
 implementation
    var
      j : record //record gérant les données du joueur 1
-       r : ressource;
-       b : batiment;
+       r : r;
+       b : b;
+     end;
+
+     etatBot : record
+       bot1 : Boolean;
      end;
 
      nbRound:Integer;
@@ -337,6 +343,16 @@ implementation
    function getNom : String;
    begin
      getNom := nom;
+   end;
+
+   procedure setEtatBot1(val : Boolean);
+   begin
+     etatBot.bot1 := val;
+   end;
+
+   function getEtatBot1 : Boolean;
+   begin
+     getEtatBot1 := etatBot.bot1;
    end;
 
 end.

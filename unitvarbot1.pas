@@ -20,6 +20,9 @@ interface
        b : b;
        nom : String;
        nbRound : Integer;
+       etat : Boolean       //booléen servant à savoir si le bot a perdu ou non
+                            //false : le bot est encore dans la partie
+                            //true : le bot a perdu
      end;
 
    //Unité de gestion des ressources: getX donne la valeur de la ressource, setX la modifie
@@ -32,7 +35,7 @@ interface
 
    //gold
    procedure setGoldBot1(val:Integer);
-   function setGoldBot1 : Integer;
+   function getGoldBot1 : Integer;
 
    //bois
    procedure setBoisBot1(val:Integer);
@@ -95,12 +98,14 @@ interface
    function getBateauBot1 : Integer;
 
    procedure setNbRoundBot1(val : Integer);
-
    function getNbRoundBot1 : Integer;
 
    procedure setNomBot1(val : String);
-
    function getNomBot1 : String;
+
+   //procédure et donction gérant l'état du bot 1
+   procedure setEtatBot1(val :Boolean);
+   function getEtatBot1 : Boolean;
 
 implementation
    var
@@ -130,6 +135,7 @@ implementation
 
      bot1.nom := 'Pol BOT';
      bot1.nbRound := 1;
+     bot1.etat := false; //on la passe à false le bot n'est pas mort
    end;
 
    //fish
@@ -149,9 +155,9 @@ implementation
      bot1.r.gold:=val;
    end;
 
-   function setGoldBot1 : Integer;
+   function getGoldBot1 : Integer;
    begin
-     setGoldBot1:=bot1.r.gold;
+     getGoldBot1:=bot1.r.gold;
    end;
 
    //bois
@@ -339,5 +345,14 @@ implementation
      getNomBot1 := bot1.nom;
    end;
 
+   procedure setEtatBot1(val : Boolean);
+   begin
+     bot1.etat := val;
+   end;
+
+   function getEtatBot1 : Boolean;
+   begin
+     getEtatBot1 := bot1.etat;
+   end;
 end.
 
