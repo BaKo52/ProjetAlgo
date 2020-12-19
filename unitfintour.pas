@@ -142,10 +142,10 @@ procedure nextRound();
       end
     else
       begin
-        setGold(getGold+(getColon*25));  //Taxes
+        setGold(getGold()+(getColon()*25));  //Taxes
         texte:='Vos colons vous on rapporté: ';
         ecrireTexteCentre(100,10,texte);
-        write(getGold);
+        write(getGold());
         if (GetNbRound() mod 3 = 0) then
            begin
              marchand(); //Marchand

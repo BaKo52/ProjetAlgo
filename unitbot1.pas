@@ -25,10 +25,14 @@ var
   //record contenant les besoins des colons du bot
   besoin : Record
     fish, tissu, bois : Integer;
-    boolFish, boolTissu, boolBois : Boolean;
+  end;
+
+  manque : Record
+    fish, tissu, bois, outil, laine, gold, marchand : Boolean;
     //booléen indiquand si le bot est en manque de poisson, de tissu ou de bois
     //false : il n'en a pas besoin
     //true : il en a besoin
+    //marchand : booléen indiquant si le bot devra marchander pour obtenir ses ressources (dernier recours du bot)
   end;
 
   //record contenant les estimations des ressources du bot
@@ -180,19 +184,19 @@ procedure planification();
     if (estimation.fish <= 0) then
       begin
         estimation.colon := estimation.colon - 4; //le bot comme le joueur perd 4 colons si il manque de poisson
-        besoin.boolFish := true;                  //le bot a besoin de poisson
+        manque.fish := true;                  //le bot a besoin de poisson
       end;
 
     if (estimation.tissu <= 0) then
       begin
         estimation.colon := estimation.colon - 2; //même perte en colon que pour le joueur
-        besoin.boolTissu := true;                 //le bot a besoin de tissu
+        manque.Tissu := true;                 //le bot a besoin de tissu
       end;
 
     if (estimation.bois <= 0) then
       begin
         estimation.colon := estimation.colon - 2; //même perte en colon que pour le joueur
-        besoin.boolBois := true;                  //le bot a besoin de bois
+        manque.Bois := true;                  //le bot a besoin de bois
       end;
   end;
 
@@ -207,33 +211,181 @@ procedure initialisationEstimationBot1();
     estimation.attaque := false;
   end;
 
+procedure mortBot1();
+  begin
+    effacerEcran();
+    couleurs(green,black);
+    ecrireTexteCentre(100, 29, 'Votre adversaire est mort !');
+    ecrireTexteCentre(100, 31, 'Vous avez gagné bravo !');
+    setEtatBot1(true);
+    readln();
+    halt();
+  end;
+
 procedure tourBot1();
   begin
-    //estimation pour le tour
-    planification();
-
-    //--------------------Suites de test logiques déterminant les actions du bot--------------------
-
-    if (getCabanePBot1() < 1) then
+    if not(getEtatBot1) then
       begin
+        //estimation pour le tour
+        planification();
 
-      end;
-    (getCabaneBBot1() < 1)
-    (getBergerieBot1() < 1)
+        //on incrémente le compteur de tour du bot
+        setNbRoundBot1(getNbRoundBot1() + 1 );
+
+        //--------------------Suites de test logiques déterminant les actions du bot--------------------
+
+          //les trois prochains tests servent pour les premiers tours
+          //il servent à ce que le bot ai une production stable de chaque matériau de base
+        if (getCabanePBot1() < 6) then
+          begin
+            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              begin
+                setCabanePBot1(getCabanePBot1+1);
+                setGoldBot1(getGoldBot1-500);
+                setBoisBot1(getBoisBot1-20);
+                setOutilBot1(getOutilBot1-10);
+              end
+            else
+              begin
+                manque.marchand := true;
+                if not(getGoldBot1 > 499) then
+                  manque.gold := true;
+                if not(getBoisBot1 > 19) then
+                  manque.bois := true;
+                if not(getOutilBot1 > 9) then
+                  manque.outil := true;
+              end;
+          end;
+
+        if (getCabaneBBot1() < 6) then
+          begin
+            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              begin
+                setCabaneBBot1(getCabaneBBot1+1);
+                setGoldBot1(getGoldBot1-500);
+                setBoisBot1(getBoisBot1-20);
+                setOutilBot1(getOutilBot1-10);
+              end
+            else
+              begin
+                manque.marchand := true;
+                if not(getGoldBot1 > 499) then
+                  manque.gold := true;
+                if not(getBoisBot1 > 19) then
+                  manque.bois := true;
+                if not(getOutilBot1 > 9) then
+                  manque.outil := true;
+              end;
+          end;
+
+        if (getBergerieBot1() < 6) then
+          begin
+            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              begin
+                setBergerie(getBergerie+1);
+                setGoldBot1(getGoldBot1-500);
+                setBoisBot1(getBoisBot1-20);
+                setOutilBot1(getOutilBot1-10);
+              end
+            else
+              begin
+                manque.marchand := true;
+                if not(getGoldBot1 > 499) then
+                  manque.gold := true;
+                if not(getBoisBot1 > 19) then
+                  manque.bois := true;
+                if not(getOutilBot1 > 9) then
+                  manque.outil := true;
+              end;
+          end;
 
 
-    if (besoin.boolBois = true) then
-      begin
-        //besoin de cabane de bûcheron
+
+        //on va tester si le bot a besoin d'une (ou plus) des trois ressources vitales pour les colons
+        //à savoir le bois, le poisson ou le tissu
+        if (manque.Bois = true) then
+          begin
+            //si le bot a besoin de bois il est obligé de l'acheter
+            //car la construction de la cabane demande du bois en elle-même
+            manque.marchand := true;
+          end;
+        if (manque.Tissu = true) then
+          begin
+            //on va tester lequel entre l'atelier et la bergerie ralenti l'autre
+            //on test pour savoir si on a plus d'atelier que de bergerie (il serait en manque de laine)
+            if (getAtelierBot1() > getBergerieBot1()) then
+              begin
+                //si c'est vrai on fait acheter une bergerie au bot
+                if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+                  begin
+                    setBergerieBot1(getBergerieBot1 + 1);
+                    setGoldBot1(getGoldBot1 - 500);
+                    setBoisBot1(getBoisBot1 - 20);
+                    setOutilBot1(getOutilBot1 - 10);
+                    manque.Tissu := false;
+                  end
+                //si on ne peut acheter le batiment on va marchander
+                else manque.marchand := true;
+              end
+            //sinon on retest pour savoir si c'est l'inverse
+            //on aurait trop de laine et pas assez d'atelier pour la transformer
+            else if (getAtelierBot1() < getBergerieBot1()) then
+              begin
+                //si c'est vrai on fait acheter un atelier au bot
+                if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9) AND (getLaineBot1 > 9)) then
+                  begin
+                    setAtelierBot1(getAtelierBot1 + 1);
+                    setGoldBot1(getGoldBot1 - 500);
+                    setBoisBot1(getBoisBot1 - 20);
+                    setOutilBot1(getOutilBot1 - 10);
+                    setLaineBot1(getLaineBot1 - 10);
+                    manque.Tissu := false;
+                  end
+                //si on ne peut acheter le batiment on va marchander
+                else manque.marchand := true;
+              end
+            //sinon on lui fait acheter les deux
+            else
+              begin
+                if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+                  begin
+                    setBergerieBot1(getBergerieBot1 + 1);
+                    setGoldBot1(getGoldBot1 - 500);
+                    setBoisBot1(getBoisBot1 - 20);
+                    setOutilBot1(getOutilBot1 - 10);
+                    manque.Tissu := false;
+                  end
+                //si on ne peut pas acheter le bâtiment on va marchander
+                else manque.marchand := true;
+                if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9) AND (getLaineBot1 > 9)) then
+                   begin
+                      setAtelierBot1(getAtelierBot1 + 1);
+                      setGoldBot1(getGoldBot1 - 500);
+                      setBoisBot1(getBoisBot1 - 20);
+                      setOutilBot1(getOutilBot1 - 10);
+                      setLaineBot1(getLaineBot1 - 10);
+                      manque.Tissu := false;
+                   end
+                //si on ne peut pas acheter le bâtiment on va marchander
+                else manque.marchand := true;
+              end;
+          end;
+        if(manque.Fish = true) then
+          begin
+            //si le bot a besoin de poisson on lui fait acheter une cabane de pêcheur s"il a les ressources
+            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              begin
+                setCabanePBot1(getCabanePBot1+1);
+                setGoldBot1(getGoldBot1-500);
+                setBoisBot1(getBoisBot1-20);
+                setOutilBot1(getOutilBot1-10);
+                manque.fish := false;
+              end
+            //si on ne peut pas acheter le bâtiment on va marchander
+            else manque.marchand := true;
+          end;
       end;
-    if (besoin.boolTissu = true) then
-      begin
-        //besoin atelier + faire check nbAtelier > nbBergerie alors construire bergerie sinon si nbAtelier < nbBergerie alors construire atelier sinon construire les deux
-      end;
-    if(besoin.boolFish = true) then
-      begin
-        //besoin de poisson
-      end;
+
 
   end;
 end.

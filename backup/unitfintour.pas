@@ -156,6 +156,7 @@ procedure nextRound();
           end;
 
         effacerEcran();
+
         tourBot1();
         readln();
 
