@@ -3,7 +3,7 @@ unit saveLoad;
 {$mode objfpc}{$H+}
 
 interface
-  uses unitVar, Classes, SysUtils;
+  uses unitVar, Classes, SysUtils, unitNaval;
 
   procedure save(emplacement : Integer);
 
@@ -42,6 +42,8 @@ implementation
     writeln(fichier, getChapelle());
     writeln(fichier, getCentreVille());
     writeln(fichier, getNaval());
+    writeln(fichier, getSoldat());
+    writeln(fichier, getBateaux());
 
     close(fichier);
 
@@ -55,6 +57,7 @@ implementation
     temp : Integer;
     // variable recevant la variable booléenne pour chapelle et centreVille (on utilisera des ifs car readln(fichier, variable) ne prend pas en compte les booléens
     texte : String;
+    i : Integer;
   begin
     case emplacement of   // assignation du nom physique^au nom logique en fonction de l'emplacement de sauvegarde choisi
       1:assign(fichier, 'savefile/save1.txt');
@@ -66,6 +69,7 @@ implementation
 
 
     readln(fichier, texte);
+    setNom(texte);
 
     readln(fichier,temp); // ouverture du fichier et lecture de la variable
     setFish(temp);            // attribution de la variable lue à une des variables du jeu
@@ -118,6 +122,13 @@ implementation
     then setNaval(false)
     else setNaval(true);
 
+    readln(fichier,temp);
+    setSoldat(temp);
+
+    readln(fichier,temp);
+    attributionNomLoad(temp);
+
+    close(fichier);
   end;
 
 end.

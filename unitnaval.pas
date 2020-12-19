@@ -16,6 +16,7 @@ interface
 
     listeBateau = record
       pDeb, pFin : PBateau;
+      longueur : Integer;
     end;
 
   //affichage du menu de gestion des bateaux
@@ -36,10 +37,38 @@ interface
   //affichage des ressources, du nom et des bâtiments
   procedure ile();
 
+  procedure attributionNomLoad(longueur : Integer);
+
+  function getBateaux() : Integer;
+
 var
   l : listeBateau;
 
 implementation
+
+  //procédure servant à nommer les bateaux si le joueur charge une sauvegarde
+  procedure attributionNomLoad(longueur : Integer);
+    var
+      fichier : Text;
+      tabBateau : Array [0..16] of String;
+      i, temp : Integer;
+    begin
+      if (longueur > 0) then
+        begin
+          assign(fichier, 'nomBateau.txt');
+          reset(fichier);
+          for i:= 0 to 16 do
+            begin
+              readln(fichier, tabBateau[i]);
+            end;
+          for i := 0 to longueur do
+            begin
+              temp := random(16);
+              ajouteFin(l, tabBateau[temp]);
+            end;
+          close(fichier);
+        end;
+    end;
 
   procedure ile();
    var
@@ -185,6 +214,7 @@ implementation
         end
       else l.pDeb := x;
       l.pFin := x;
+      l.longueur := l.longueur + 1;
     end;
 
   procedure depileDeb(var l : listeBateau);
@@ -204,6 +234,8 @@ implementation
 
           //je libère la mémoire de mon ancien sommet
           dispose(x);
+
+          l.longueur := l.longueur - 1;
         end;
     end;
 
@@ -246,6 +278,11 @@ implementation
          end;
      end;
    end;
+
+  function getBateaux() : Integer;
+    begin
+      getBateaux := l.longueur;
+    end;
 
   procedure AffAttaque();
      var

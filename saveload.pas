@@ -3,7 +3,7 @@ unit saveLoad;
 {$mode objfpc}{$H+}
 
 interface
-  uses unitVar, Classes, SysUtils;
+  uses unitVar, Classes, SysUtils, unitNaval;
 
   procedure save(emplacement : Integer);
 
@@ -42,6 +42,8 @@ implementation
     writeln(fichier, getChapelle());
     writeln(fichier, getCentreVille());
     writeln(fichier, getNaval());
+    writeln(fichier, getSoldat());
+    writeln(fichier, getBateaux());
 
     close(fichier);
 
@@ -119,6 +121,13 @@ implementation
     then setNaval(false)
     else setNaval(true);
 
+    readln(fichier,temp);
+    setSoldat(temp);
+
+    readln(fichier,temp);
+    attributionNomLoad(temp);
+
+    close(fichier);
   end;
 
 end.

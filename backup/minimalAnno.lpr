@@ -1,7 +1,7 @@
 program minimalAnno;
 {$CODEPAGE UTF8}
 uses unitAnno, GestionEcran, SysUtils, unitvar, saveLoad, unitNaval,
-  unitFinTour, unitGestionEvents, unitVarBot1; unitBot1;
+  unitFinTour, unitGestionEvents, unitVarBot1, unitBot1;
 
 
 var
@@ -37,6 +37,7 @@ begin
             1,2,3:
               begin
                 load(z);
+                attributionNomLoad()
                 initialisationBot1();
                 initialisationEstimationBot1();
                 loaded := true;
