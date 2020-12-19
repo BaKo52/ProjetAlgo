@@ -24,16 +24,16 @@ procedure production ();
     //Production de bois
     setBois(getBois()+(getCabaneB()*5)); //Une cabane de bucheron produit 5 bois
 
+    //Production de Laine
+    setLaine(getLaine()+(getBergerie*5)); //Une bergerie produit 5 laines
+
     //Production de tissu
     res:= getAtelier()*5;       //met le nombre de laine requit pour créer le tissu dans une variable temporaire
     if res<getLaine() then      //check si le joueur à assez de laine
       begin
-        setLaine(getLaine()-res);             //soustrait la laine pour créer du tissu à la laine du bot
+        setLaine(getLaine()-res);             //soustrait res à la laine pour créer du tissu
         setTissu(getTissu()+(getAtelier*10)); //Un atelier produit 10 tissu pour 5 laines
       end;
-
-    //Production de Laine
-    setLaine(getLaine()+(getBergerie*15)); //Une bergerie produit 5 laines
 
     //Nouveau colons
     setColon(getColon()+round(getColon()/5)); //donne 20% de la population en colon supplémentaire par tour
@@ -114,8 +114,10 @@ procedure nextRound();
         ecrireTexteCentre(100,18,texte);
       end
     else
-      texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
-      ecrireTexteCentre(100,18,texte);
+      begin
+        texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
+        ecrireTexteCentre(100,18,texte);
+      end;
 
     dessinerCadreXY(1,4,15,7,simple,white,black);
     texte:='Argent :';

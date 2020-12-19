@@ -28,7 +28,7 @@ procedure production ();
     res:= getAtelier()*5;       //met le nombre de laine requit pour créer le tissu dans une variable temporaire
     if res<getLaine() then      //check si le joueur à assez de laine
       begin
-        setLaine(getLaine()-res);
+        setLaine(getLaine()-res);             //soustrait la laine pour créer du tissu à la laine du bot
         setTissu(getTissu()+(getAtelier*10)); //Un atelier produit 10 tissu pour 5 laines
       end;
 
@@ -114,8 +114,10 @@ procedure nextRound();
         ecrireTexteCentre(100,18,texte);
       end
     else
-      texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
-      ecrireTexteCentre(100,18,texte);
+      begin
+        texte:='Vous n''avez pas de chapelle, vos colons sont mécontent !';
+        ecrireTexteCentre(100,18,texte);
+      end;
 
     dessinerCadreXY(1,4,15,7,simple,white,black);
     texte:='Argent :';

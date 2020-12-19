@@ -135,7 +135,7 @@ implementation
 
      bot1.nom := 'Pol BOT';
      bot1.nbRound := 1;
-     bot1.etat := false; //on la passe à false le bot n'est pas mort
+     bot1.etat := false; //on la passe à false : le bot n'est pas encore mort
    end;
 
    //fish

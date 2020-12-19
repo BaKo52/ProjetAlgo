@@ -21,6 +21,8 @@ interface
        nom : String;
        nbRound : Integer;
        etat : Boolean       //booléen servant à savoir si le bot a perdu ou non
+                            //false : le bot est encore dans la partie
+                            //true : le bot a perdu
      end;
 
    //Unité de gestion des ressources: getX donne la valeur de la ressource, setX la modifie
@@ -109,6 +111,10 @@ implementation
    var
      bot1 : bot;
 
+     besoinBot1 : Record
+       bois, fish, tissu : Integer;
+     end;
+
    procedure initialisationBot1;
    begin
      bot1.r.fish := 100;
@@ -133,7 +139,11 @@ implementation
 
      bot1.nom := 'Pol BOT';
      bot1.nbRound := 1;
-     bot1.etat := false; //on la passe à false le bot n'est pas mort
+     bot1.etat := false; //on la passe à false : le bot n'est pas encore mort
+
+     besoinBot1.bois := 0;
+     besoinBot1.fish := 0;
+     besoinBot1.tissu := 0;
    end;
 
    //fish

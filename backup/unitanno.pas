@@ -3,7 +3,7 @@ unit unitAnno;
 {$mode objfpc}{$H+} {$CODEPAGE UTF8}
 
 interface
-  uses Classes, SysUtils, GestionEcran, unitvar, unitNaval;
+  uses Classes, SysUtils, GestionEcran, unitvar, unitNaval, unitGestionEvents;
 
   //affichage du menu principal
   procedure menuPrincipal();
@@ -101,6 +101,7 @@ implementation
      effacerEcran();
 
      initialisation(); //Initialisation des ressources
+     initialisationEvents(); //Initialisation des events
 
      couleurs(black,LightGray);
      texte:='CREATION DE VOTRE PERSONNAGE';
@@ -201,8 +202,10 @@ implementation
                end
              else
                begin
+                 couleurs(red,black);
                  texte:='Vous n''avez pas les ressources pour construire une maison';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
                  readln();
                end;
            end;
@@ -217,8 +220,10 @@ implementation
                end
              else
                begin
+                 couleurs(red,black);
                  texte:='Vous n''avez pas les ressources pour construire une cabane de bucheron';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
                  readln();
                end;
            end;
@@ -233,8 +238,10 @@ implementation
                end
              else
                begin
+                 couleurs(red,black);
                  texte:='Vous n''avez pas les ressources pour construire une cabane de pêcheur';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
                  readln();
                end;
            end;
@@ -249,8 +256,10 @@ implementation
                end
              else
                begin
+                 couleurs(red,black);
                  texte:='Vous n''avez pas les ressources pour construire une bergerie';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
                  readln();
                end;
            end;
@@ -266,8 +275,10 @@ implementation
                end
              else
                begin
+                 couleurs(red,black);
                  texte:='Vous n''avez pas les ressources pour construire une atelier de tisserand';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
                  readln();
                end;
            end;
@@ -283,8 +294,10 @@ implementation
                end
              else
                begin
+                 couleurs(red,black);
                  texte:='Vous n''avez pas les ressources pour construire une chapelle';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
                  readln();
                end;
            end;
@@ -300,8 +313,10 @@ implementation
                end
              else
                begin
+                 couleurs(red,black);
                  texte:='Vous n''avez pas les ressources pour construire un centre-ville';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
                  readln();
                end;
            end;
@@ -317,8 +332,10 @@ implementation
                end
              else
                begin
+                 couleurs(red,black);
                  texte:='Vous n''avez pas les ressources pour construire un chantier naval';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
                  readln();
                end;
            end;
@@ -336,7 +353,7 @@ implementation
              else
                begin
                  texte:='Vous n''avez pas les ressources pour recruter des soldats';
-                 ecrireTexte(10, 39, texte);
+                 ecrireTexte(10, 43, texte);
                  readln();
                end;
            end;
@@ -546,8 +563,7 @@ implementation
          case z of
          1:
            begin
-             texte:='Quelle quantité: ';                                     
-         5:
+             texte:='Quelle quantité: ';
              ecrireTexteCentre(100,58,texte);
              readln(x);
              if(getBois()-x>=0) then
