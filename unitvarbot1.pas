@@ -134,7 +134,7 @@ implementation
      bot1.b.chantierNaval := false;
 
      bot1.nom := 'Pol BOT';
-     bot1.nbRound := 1;
+     bot1.nbRound := 0;
      bot1.etat := false; //on la passe à false : le bot n'est pas encore mort
    end;
 

@@ -17,19 +17,27 @@ procedure productionBot1();
 //procédure gérant les tests que va faire le bot pour savoir quoi faire pendant son tour
 procedure tourBot1();
 
+//procédure servant à initialiser les valeurs d'estimation pour le premier tour du bot
+procedure initialisationEstimationBot1();
+
 implementation
 var
   //record contenant les besoins des colons du bot
   besoin : Record
     fish, tissu, bois : Integer;
+    boolFish, boolTissu, boolBois : Boolean;
+    //booléen indiquand si le bot est en manque de poisson, de tissu ou de bois
+    //false : il n'en a pas besoin
+    //true : il en a besoin
   end;
 
   //record contenant les estimations des ressources du bot
   estimation : Record
-    fish, tissu, bois, laine, gold, colon, soldat, bateaux, outil : Integer;
-    attaque : Boolean; //booléen indiquant si le bot se mesure en capacité d'attaquer le joueur
-                       //false : il n'estime pas être en mesure d'attaquer le joueur
-                       //true : il estime être en mesure de vaincre le joueur
+    fish, tissu, bois, laine, colon : Integer;
+    attaque : Boolean;
+    //attaque : booléen indiquant si le bot se mesure en capacité d'attaquer le joueur
+    //false : il n'estime pas être en mesure d'attaquer le joueur
+    //true : il estime être en mesure de vaincre le joueur
   end;
 
 procedure affichageRessourceBot1();
@@ -110,8 +118,6 @@ procedure affichageRessourceBot1();
       begin
         ecrireTexte(3, 26, 'Le bot a un chantier naval');
       end;
-
-    readln();
   end;
 
 procedure productionBot1();
@@ -120,6 +126,7 @@ procedure productionBot1();
   begin
     //Production de poissons
     setFishBot1(getFishBot1()+(getCabanePBot1()*4)); //Une cabane de pêcheur produit 4 poissons
+
 
     //Production de bois
     setBoisBot1(getBoisBot1()+(getCabaneBBot1()*5)); //Une cabane de bucheron produit 5 bois
@@ -142,6 +149,7 @@ procedure productionBot1();
   end;
 
 //procédure planifiant les ressources qu'aura le bot à la fin du prochain tour
+//après la procédure de production et avant le code qui regarde si le bot a perdu
 procedure planification();
   var
     res : Integer;
@@ -155,11 +163,6 @@ procedure planification();
     //estimation de la quantité de poisson du bot et on continue avec chaque ressource
     estimation.fish := getFishBot1() + getCabanePBot1() * 4 - besoin.fish;
     estimation.bois:= getBoisBot1() + getCabaneBBot1() * 5 - besoin.bois;
-    estimation.colon:= getColonBot1() + getColonBot1() div 5;
-    estimation.gold:= getGoldBot1() + estimation.colon * 25;
-    //on utilise estimation.colon pour calculer les taxes car le joueur gagne des colons ensuite gagne les taxes
-    //en faisant donc payer les nouveaux colons
-
     estimation.laine:= getLaineBot1() + getBergerieBot1() * 5;
 
     res:= getAtelierBot1()*5;       //met le nombre de laine requit pour créer le tissu dans une variable temporaire
@@ -168,68 +171,70 @@ procedure planification();
         estimation.laine := estimation.laine - res;
         estimation.tissu := getAtelierBot1() * 10 - besoin.tissu;
       end;
-    //on utilise estimation.laine pour la même raison que pour les colons et l'or
+    //on utilise estimation.laine pour calculer si le bot a assez de laine pour produire le
+    //car le bot produit de la laine ensuite utilise celle-ci pour faire du tissu comme le joueur
+    //dans le code côté joueur on a : production de laine ensuite production de tissu
+
+    estimation.colon:= getColonBot1() + getColonBot1() div 5;
+
+    if (estimation.fish <= 0) then
+      begin
+        estimation.colon := estimation.colon - 4; //le bot comme le joueur perd 4 colons si il manque de poisson
+        besoin.boolFish := true;                  //le bot a besoin de poisson
+      end;
+
+    if (estimation.tissu <= 0) then
+      begin
+        estimation.colon := estimation.colon - 2; //même perte en colon que pour le joueur
+        besoin.boolTissu := true;                 //le bot a besoin de tissu
+      end;
+
+    if (estimation.bois <= 0) then
+      begin
+        estimation.colon := estimation.colon - 2; //même perte en colon que pour le joueur
+        besoin.boolBois := true;                  //le bot a besoin de bois
+      end;
   end;
 
-procedure initialisationEstimation()
-  var
-    res : Integer;
+//procédure servant à initialiser les valeurs d'estimation pour le premier tour du bot
+procedure initialisationEstimationBot1();
   begin
-    planification();
-
+    estimation.bois := getBoisBot1();
+    estimation.tissu := getTissuBot1();
+    estimation.fish := getFishBot1();
+    estimation.laine := getLaineBot1();
+    estimation.colon := getColonBot1();
     estimation.attaque := false;
-    estimation.bateaux:= 0;
   end;
 
 procedure tourBot1();
-  var
-    res : Integer;
   begin
-    //Conso de poissons
-    if estimation.fish>0 then
+    //estimation pour le tour
+    planification();
+
+    //--------------------Suites de test logiques déterminant les actions du bot--------------------
+
+    if (getCabanePBot1() < 1) then
       begin
-        setFish(estimation);
-        texte:='Vos colons se délectent de vos poissons! Poissons restant: ';
-        ecrireTexteCentre(100,10,texte);
-        write(getFish);
-      end
-    else
+
+      end;
+    (getCabaneBBot1() < 1)
+    (getBergerieBot1() < 1)
+
+
+    if (besoin.boolBois = true) then
       begin
-        texte:='Vous n''avez plus assez de poisson, vos colons ont faim !';
-        ecrireTexteCentre(100,10,texte);
-        setColon(getColon-4);
+        //besoin de cabane de bûcheron
+      end;
+    if (besoin.boolTissu = true) then
+      begin
+        //besoin atelier + faire check nbAtelier > nbBergerie alors construire bergerie sinon si nbAtelier < nbBergerie alors construire atelier sinon construire les deux
+      end;
+    if(besoin.boolFish = true) then
+      begin
+        //besoin de poisson
       end;
 
-    //Conso de tissu
-    if (res + 3)<getTissu then
-      begin
-        setTissu(getTissu-(res + 3));
-        texte:='Vos ressources en tissu subviennent à vos colons ! Tissu restant: ';
-        ecrireTexteCentre(100,12,texte);
-        write(getTissu);
-      end
-    else
-      begin
-        texte:='Vous n''avez plus assez de tissu, vos colons sont en colère !';
-        ecrireTexteCentre(100,12,texte);
-        setColon(getColon-2);
-      end;
-
-    //Conso de bois
-    if (res div 2)<getBois then
-      begin
-        setBois(getBois-(res div 2));
-        texte:='Vos ressources en bois subviennent à vos colons ! Bois restant: ';
-        ecrireTexteCentre(100,14,texte);
-        write(getBois);
-      end
-    else
-      begin
-        texte:='Vous n''avez plus assez de bois, vos colons ne peuvent plus se chauffer !';
-        ecrireTexteCentre(100,14,texte);
-        setColon(getColon-2);
-      end;
   end;
-
 end.
 

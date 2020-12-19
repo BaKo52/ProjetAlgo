@@ -171,22 +171,22 @@ implementation
          texte:='5. Construire un atelier de tisserand: -500 or, -20 bois, -10 outils et -10 laines';
          ecrireTexte(10, 34, texte);
 
-         texte:='6. Construire une chapelle: -1500 or, -80 bois, -30 outils et -30 tissu';
+         texte:='6. Construire une chapelle: -1500 or, -80 bois, -30 outils et -30 tissus';
          ecrireTexte(10, 35, texte);
 
-         texte:='7. Construire un centre-ville: -1000 or, -45 bois, -20 outils et -20 tissu';
+         texte:='7. Construire un centre-ville: -1000 or, -45 bois, -20 outils et -20 tissus';
          ecrireTexte(10, 36, texte);
 
-         texte:='8. Construire un chantier naval: -1000 or, -100 bois, - 20 outils et -10 tissu';
+         texte:='8. Construire un chantier naval: -1000 or, -100 bois, - 20 outils et -10 tissus';
          ecrireTexte(10, 37, texte);
 
-         texte:='9. Recrutez 5 soldats: -25 or, -5 outils, -10 tissu et -25 poissons';
+         texte:='9. Recrutez 5 soldats: -25 or, -5 outils, -10 tissus et -25 poissons';
          ecriretexte(10,38, texte);
 
          texte:='10. Retour au menu précédent';
          ecrireTexte(10, 40, texte);
 
-         texte:='Quel bâtiment voulez-vous construire ? ';
+         texte:='Que voulez-vous faire ? ';
          ecrireTexte(10, 42, texte);
 
          readln(z);

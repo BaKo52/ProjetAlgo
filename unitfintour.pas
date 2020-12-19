@@ -36,9 +36,9 @@ procedure production ();
       end;
 
     //Nouveau colons
-    setColon(getColon()+round(getColon()/5)); //donne 20% de la population en colon supplémentaire par tour
+    setColon(getColon()+ getColon() div 5); //donne 20% de la population en colon supplémentaire par tour
     if(getColon()>(getMaison()*4)) then
-       setColon(getMaison()*4);
+      setColon(getMaison()*4);
   end;
 
 procedure nextRound();
@@ -156,8 +156,13 @@ procedure nextRound();
           end;
 
         effacerEcran();
+
+        tourBot1();
+        readln();
+
         productionBot1();
         affichageRessourceBot1();
+        readln();
 
         ile();
         gestionEvents(getNbRound());
