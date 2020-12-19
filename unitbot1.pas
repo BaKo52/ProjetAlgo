@@ -6,7 +6,7 @@ unit unitBot1;
 interface
 
 uses
-  Classes, SysUtils, unitVarBot1, unitVar, gestionEcran;
+  Classes, SysUtils, unitVarBot1, gestionEcran;
 
 //procédure gérant l'affichage des ressources du bot pour garder le joueur informé de l'avancement du bot
 procedure affichageRessourceBot1();
@@ -154,6 +154,9 @@ procedure productionBot1();
 
 //procédure planifiant les ressources qu'aura le bot à la fin du prochain tour
 //après la procédure de production et avant le code qui regarde si le bot a perdu
+//le but de cette procédure est de savoir si, dans l'état actuel, le bot survivra
+//si les valeurs sont bonnes (i.e. tout les colons ne sont pas morts)
+//alors le bot utilisera les ressources pour préparer son attaque sur le joueur
 procedure planification();
   var
     res : Integer;
@@ -184,19 +187,28 @@ procedure planification();
     if (estimation.fish <= 0) then
       begin
         estimation.colon := estimation.colon - 4; //le bot comme le joueur perd 4 colons s"il manque de poisson
-        manque.fish := true;                  //le bot a besoin de poisson
+        if ((estimation.colon) <= 0) then         //si le nombre de colon est critique (inférieur ou égal à 0) alors le bot est notifié qu'il doit combler le manque
+          begin
+            manque.fish := true;                  //le bot a besoin de poisson
+          end;
       end;
 
     if (estimation.tissu <= 0) then
       begin
         estimation.colon := estimation.colon - 2; //même perte en colon que pour le joueur
-        manque.Tissu := true;                 //le bot a besoin de tissu
+        if ((estimation.colon) <= 0) then         //si le nombre de colon est critique (inférieur ou égal à 0) alors le bot est notifié qu'il doit combler le manque
+          begin
+            manque.tissu := true;                  //le bot a besoin de tissu
+          end;
       end;
 
     if (estimation.bois <= 0) then
       begin
         estimation.colon := estimation.colon - 2; //même perte en colon que pour le joueur
-        manque.Bois := true;                  //le bot a besoin de bois
+        if ((estimation.colon) <= 0) then         //si le nombre de colon est critique (inférieur ou égal à 0) alors le bot est notifié qu'il doit combler le manque
+          begin
+            manque.Bois := true;                  //le bot a besoin de bois
+          end;
       end;
   end;
 
@@ -236,7 +248,10 @@ procedure tourBot1();
 
           //les trois prochains tests servent pour les premiers tours
           //il servent à ce que le bot ai une production stable de chaque matériau de base
-        if (getCabanePBot1() < 6) then
+          //le bot va créer des cabane de pêcheur, de bucheron et des bergeries, jusqu'à ce qu'il en ai 10
+          //ensuite il s'arrêtera (10 parrait être un nombre de bâtiments où la production est stable et suffissante)
+
+        if ((getCabanePBot1() - 1) = getBergerieBot1()) then
           begin
             if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
               begin
@@ -244,20 +259,21 @@ procedure tourBot1();
                 setGoldBot1(getGoldBot1-500);
                 setBoisBot1(getBoisBot1-20);
                 setOutilBot1(getOutilBot1-10);
-              end
-            else
-              begin
-                manque.marchand := true;
-                if not(getGoldBot1 > 499) then
-                  manque.gold := true;
-                if not(getBoisBot1 > 19) then
-                  manque.bois := true;
-                if not(getOutilBot1 > 9) then
-                  manque.outil := true;
               end;
           end;
 
-        if (getCabaneBBot1() < 6) then
+        if ((getCabaneBBot1() - 1) = getBergerieBot1()) then
+          begin
+            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              begin
+                setBergerieBot1(getBergerieBot1+1);
+                setGoldBot1(getGoldBot1-500);
+                setBoisBot1(getBoisBot1-20);
+                setOutilBot1(getOutilBot1-10);
+              end;
+          end;
+
+        if (((getCabaneBBot1() - 1) = getCabanePBot1()) OR (getCabaneBBot1() = 0)) then
           begin
             if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
               begin
@@ -265,39 +281,10 @@ procedure tourBot1();
                 setGoldBot1(getGoldBot1-500);
                 setBoisBot1(getBoisBot1-20);
                 setOutilBot1(getOutilBot1-10);
-              end
-            else
-              begin
-                manque.marchand := true;
-                if not(getGoldBot1 > 499) then
-                  manque.gold := true;
-                if not(getBoisBot1 > 19) then
-                  manque.bois := true;
-                if not(getOutilBot1 > 9) then
-                  manque.outil := true;
               end;
           end;
 
-        if (getBergerieBot1() < 6) then
-          begin
-            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
-              begin
-                setBergerie(getBergerie+1);
-                setGoldBot1(getGoldBot1-500);
-                setBoisBot1(getBoisBot1-20);
-                setOutilBot1(getOutilBot1-10);
-              end
-            else
-              begin
-                manque.marchand := true;
-                if not(getGoldBot1 > 499) then
-                  manque.gold := true;
-                if not(getBoisBot1 > 19) then
-                  manque.bois := true;
-                if not(getOutilBot1 > 9) then
-                  manque.outil := true;
-              end;
-          end;
+
 
 
 
@@ -384,6 +371,9 @@ procedure tourBot1();
             //si on ne peut pas acheter le bâtiment on va marchander
             else manque.marchand := true;
           end;
+
+
+
       end;
 
 

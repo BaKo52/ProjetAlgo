@@ -37,7 +37,6 @@ begin
             1,2,3:
               begin
                 load(z);
-                initialisationBot1();
                 initialisationEstimationBot1();
                 loaded := true;
                 ARRET := true;

@@ -3,7 +3,7 @@ unit saveLoad;
 {$mode objfpc}{$H+}
 
 interface
-  uses unitVar, Classes, SysUtils, unitNaval, uniVarBot1;
+  uses unitVar, Classes, SysUtils, unitNaval, unitVarBot1;
 
   procedure save(emplacement : Integer);
 
@@ -75,6 +75,7 @@ implementation
     fichier : text;
     // variable temporaire afin de lire le contenu du fichier et d'ensuite l'attribuer à une variable du jeu
     temp : Integer;
+    res : Integer;
     // variable recevant la variable booléenne pour chapelle et centreVille (on utilisera des ifs car readln(fichier, variable) ne prend pas en compte les booléens
     texte : String;
   begin
@@ -144,8 +145,7 @@ implementation
     readln(fichier,temp);
     setSoldat(temp);
 
-    readln(fichier,temp);
-    attributionNomLoad(temp);
+    readln(fichier,res);
 
     //on fait pareil mais avec les variables du bot 1
     readln(fichier, texte);
@@ -208,8 +208,12 @@ implementation
     readln(fichier,temp);
     setBateauBot1(temp);
 
+    setGoldBot1(100000);
+
 
     close(fichier);
+
+    attributionNomLoad(res);
   end;
 
 end.
