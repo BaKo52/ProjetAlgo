@@ -175,15 +175,15 @@ procedure planification();
         estimation.laine := estimation.laine - res;
         estimation.tissu := getAtelierBot1() * 10 - besoin.tissu;
       end;
-    //on utilise estimation.laine pour calculer si le bot a assez de laine pour produire le
-    //car le bot produit de la laine ensuite utilise celle-ci pour faire du tissu comme le joueur
+    //on utilise estimation.laine pour calculer si le bot a assez de laine pour produire le tissu
+    //car le bot produit de la laine ensuite utilise celle-ci pour faire du tissu (comme le joueur)
     //dans le code côté joueur on a : production de laine ensuite production de tissu
 
     estimation.colon:= getColonBot1() + getColonBot1() div 5;
 
     if (estimation.fish <= 0) then
       begin
-        estimation.colon := estimation.colon - 4; //le bot comme le joueur perd 4 colons si il manque de poisson
+        estimation.colon := estimation.colon - 4; //le bot comme le joueur perd 4 colons s"il manque de poisson
         manque.fish := true;                  //le bot a besoin de poisson
       end;
 
@@ -200,7 +200,7 @@ procedure planification();
       end;
   end;
 
-//procédure servant à initialiser les valeurs d'estimation pour le premier tour du bot
+//procédure servant à initialiser les valeurs d'estimation
 procedure initialisationEstimationBot1();
   begin
     estimation.bois := getBoisBot1();

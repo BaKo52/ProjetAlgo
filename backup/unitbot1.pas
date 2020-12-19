@@ -175,8 +175,8 @@ procedure planification();
         estimation.laine := estimation.laine - res;
         estimation.tissu := getAtelierBot1() * 10 - besoin.tissu;
       end;
-    //on utilise estimation.laine pour calculer si le bot a assez de laine pour produire le
-    //car le bot produit de la laine ensuite utilise celle-ci pour faire du tissu comme le joueur
+    //on utilise estimation.laine pour calculer si le bot a assez de laine pour produire le tissu
+    //car le bot produit de la laine ensuite utilise celle-ci pour faire du tissu (comme le joueur)
     //dans le code côté joueur on a : production de laine ensuite production de tissu
 
     estimation.colon:= getColonBot1() + getColonBot1() div 5;
@@ -200,7 +200,7 @@ procedure planification();
       end;
   end;
 
-//procédure servant à initialiser les valeurs d'estimation pour le premier tour du bot
+//procédure servant à initialiser les valeurs d'estimation
 procedure initialisationEstimationBot1();
   begin
     estimation.bois := getBoisBot1();
@@ -253,7 +253,7 @@ procedure tourBot1();
                 if not(getBoisBot1 > 19) then
                   manque.bois := true;
                 if not(getOutilBot1 > 9) then
-                  manque.outil := true
+                  manque.outil := true;
               end;
           end;
 
@@ -274,7 +274,7 @@ procedure tourBot1();
                 if not(getBoisBot1 > 19) then
                   manque.bois := true;
                 if not(getOutilBot1 > 9) then
-                  manque.outil := true
+                  manque.outil := true;
               end;
           end;
 
@@ -295,14 +295,14 @@ procedure tourBot1();
                 if not(getBoisBot1 > 19) then
                   manque.bois := true;
                 if not(getOutilBot1 > 9) then
-                  manque.outil := true
+                  manque.outil := true;
               end;
           end;
 
 
 
         //on va tester si le bot a besoin d'une (ou plus) des trois ressources vitales pour les colons
-        //le bois, le poisson ou le tissu
+        //à savoir le bois, le poisson ou le tissu
         if (manque.Bois = true) then
           begin
             //si le bot a besoin de bois il est obligé de l'acheter

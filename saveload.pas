@@ -3,7 +3,7 @@ unit saveLoad;
 {$mode objfpc}{$H+}
 
 interface
-  uses unitVar, Classes, SysUtils, unitNaval;
+  uses unitVar, Classes, SysUtils, unitNaval, unitVarBot1;
 
   procedure save(emplacement : Integer);
 
@@ -17,7 +17,7 @@ implementation
     fichier : text;  //variable contenant le nom physique du fichier
   begin
 
-    case emplacement of   // assignation du nom physique^au nom logique en fonction de l'emplacement de sauvegarde choisi
+    case emplacement of   // assignation du nom physique au nom logique en fonction de l'emplacement de sauvegarde choisi
       1:assign(fichier, 'savefile/save1.txt');
       2:assign(fichier, 'savefile/save2.txt');
       3:assign(fichier, 'savefile/save3.txt');
@@ -25,7 +25,7 @@ implementation
 
     rewrite(fichier);     //ouverture du fichier en mode écriture (RAZ)
 
-    //écriture de toute les variables dans le fichier
+    //écriture de toute les variables du joueur dans le fichier
     writeln(fichier, getNom());
     writeln(fichier, getFish());
     writeln(fichier, getBois());
@@ -44,6 +44,26 @@ implementation
     writeln(fichier, getNaval());
     writeln(fichier, getSoldat());
     writeln(fichier, getBateaux());
+
+    //écriture de toutes les variables du bot 1 dans le fichier
+    writeln(fichier, getNomBot1());
+    writeln(fichier, getFishBot1());
+    writeln(fichier, getBoisbot1());
+    writeln(fichier, getOutilBot1());
+    writeln(fichier, getLaineBot1());
+    writeln(fichier, getTissuBot1());
+    writeln(fichier, getGoldBot1());
+    writeln(fichier, getColonBot1());
+    writeln(fichier, getMaisonBot1());
+    writeln(fichier, getCabanePBot1());
+    writeln(fichier, getCabaneBBot1());
+    writeln(fichier, getBergerieBot1());
+    writeln(fichier, getAtelierBot1());
+    writeln(fichier, getChapelleBot1());
+    writeln(fichier, getCentreVilleBot1());
+    writeln(fichier, getNavalBot1());
+    writeln(fichier, getSoldatBot1());
+    writeln(fichier, getBateauBot1());
 
     close(fichier);
 
@@ -126,6 +146,68 @@ implementation
 
     readln(fichier,temp);
     attributionNomLoad(temp);
+
+    //on fait pareil mais avec les variables du bot 1
+    readln(fichier, texte);
+    setNomBot1(texte);
+
+    readln(fichier,temp);
+    setFishBot1(temp);
+
+    readln(fichier,temp);
+    setBoisBot1(temp);
+
+    readln(fichier,temp);
+    setOutilBot1(temp);
+
+    readln(fichier,temp);
+    setLaineBot1(temp);
+
+    readln(fichier,temp);
+    setTissuBot1(temp);
+
+    readln(fichier,temp);
+    setGoldBot1(temp);
+
+    readln(fichier,temp);
+    setColonBot1(temp);
+
+    readln(fichier,temp);
+    setMaisonBot1(temp);
+
+    readln(fichier,temp);
+    setCabanePBot1(temp);
+
+    readln(fichier,temp);
+    setCabaneBBot1(temp);
+
+    readln(fichier,temp);
+    setBergerieBot1(temp);
+
+    readln(fichier,temp);
+    setAtelierBot1(temp);
+
+    readln(fichier,texte);
+    if(texte = 'FALSE')
+    then setChapelleBot1(false)
+    else setChapelleBot1(true);
+
+    readln(fichier,texte);
+    if(texte = 'FALSE')
+    then setCentreVilleBot1(false)
+    else setCentreVilleBot1(true);
+
+    readln(fichier,texte);
+    if(texte = 'FALSE')
+    then setNavalBot1(false)
+    else setNavalBot1(true);
+
+    readln(fichier,temp);
+    setSoldatBot1(temp);
+
+    readln(fichier,temp);
+    setBateauBot1(temp);
+
 
     close(fichier);
   end;

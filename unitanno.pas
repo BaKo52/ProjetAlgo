@@ -284,7 +284,7 @@ implementation
            end;
          6:
            begin
-             if ((getGold>1499) AND (getBois>79) AND (getOutil>29) AND (getTissu>29)) then
+             if ((getGold>1499) AND (getBois>79) AND (getOutil>29) AND (getTissu>29) AND not(getChapelle())) then
                begin
                   setChapelle(true);
                   setGold(getGold-1500);
@@ -295,7 +295,7 @@ implementation
              else
                begin
                  couleurs(red,black);
-                 texte:='Vous n''avez pas les ressources pour construire une chapelle';
+                 texte:='Vous n''avez pas les ressources pour construire une chapelle ou vous avez déjà une chapelle';
                  ecrireTexte(10, 43, texte);
                  couleurs(white,black);
                  readln();
@@ -303,7 +303,7 @@ implementation
            end;
          7:
            begin
-             if ((getGold>999) AND (getBois>44) AND (getOutil>19) AND (getTissu>19)) then
+             if ((getGold>999) AND (getBois>44) AND (getOutil>19) AND (getTissu>19) AND not(getCentreVille())) then
                begin
                   setCentreVille(true);
                   setGold(getGold-1000);
@@ -314,7 +314,7 @@ implementation
              else
                begin
                  couleurs(red,black);
-                 texte:='Vous n''avez pas les ressources pour construire un centre-ville';
+                 texte:='Vous n''avez pas les ressources pour construire un centre-ville ou vous avez déjà un centre-ville';
                  ecrireTexte(10, 43, texte);
                  couleurs(white,black);
                  readln();
@@ -322,7 +322,7 @@ implementation
            end;
          8:
            begin
-             if ((getGold>999) AND (getBois>99) AND (getOutil>19) AND (getTissu>9)) then
+             if ((getGold>999) AND (getBois>99) AND (getOutil>19) AND (getTissu>9) AND not(getNaval())) then
                begin
                   setNaval(true);
                   setGold(getGold-1000);
@@ -333,7 +333,7 @@ implementation
              else
                begin
                  couleurs(red,black);
-                 texte:='Vous n''avez pas les ressources pour construire un chantier naval';
+                 texte:='Vous n''avez pas les ressources pour construire un chantier naval ou vous avez déjà un chantier naval';
                  ecrireTexte(10, 43, texte);
                  couleurs(white,black);
                  readln();
