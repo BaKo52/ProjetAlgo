@@ -769,10 +769,10 @@ procedure tourBot1();
         if ( (not(getNavalBot1())) AND (getGoldBot1() > 999) AND (getBoisBot1() > 99) AND (getOutilBot1() > 19) AND (getTissuBot1() > 9) ) then
           begin
             setNavalBot1(true);
-            setGoldBot1(getGold-1000);
-            setBoisBot1(getBois-100);
-            setOutilBot1(getOutil-20);
-            settissuBot1(getTissu-10);
+            setGoldBot1(getGoldBot1-1000);
+            setBoisBot1(getBoisBot1-100);
+            setOutilBot1(getOutilBot1-20);
+            setTissuBot1(getTissuBot1-10);
           end;
 
           //ensuite il va utiliser tout les ressources restantes (i.e. celle qu'il n'a pas utilisé pour sauver les colons)
