@@ -180,11 +180,14 @@ implementation
          texte:='8. Construire un chantier naval: -1000 or, -100 bois, - 20 outils et -10 tissus';
          ecrireTexte(10, 37, texte);
 
-         texte:='9. Recrutez 5 soldats: -25 or, -5 outils, -10 tissus et -25 poissons';
-         ecriretexte(10,38, texte);
+         texte:='9. Construire un entrepot: -500 or, -100 bois et - 20 outils';
+         ecrireTexte(10, 38, texte);
 
-         texte:='10. Retour au menu précédent';
-         ecrireTexte(10, 40, texte);
+         texte:='10. Recrutez 5 soldats: -25 or, -5 outils, -10 tissus et -25 poissons';
+         ecriretexte(10,39, texte);
+
+         texte:='11. Retour au menu précédent';
+         ecrireTexte(10, 41, texte);
 
          texte:='Que voulez-vous faire ? ';
          ecrireTexte(10, 42, texte);
@@ -342,6 +345,25 @@ implementation
 
          9:
            begin
+             if ((getGold>499) AND (getOutil>19) AND (getBois>99)) then
+               begin
+                 setGold(getGold-500);
+                 setOutil(getOutil-20);
+                 setBois(getBois-100);
+                 setEntrepot(getEntrepot+1);
+               end
+             else
+               begin
+                 couleurs(red,black);
+                 texte:='Vous n''avez pas les ressources pour construire un entrepot.';
+                 ecrireTexte(10, 43, texte);
+                 couleurs(white,black);
+                 readln();
+               end;
+           end;
+
+         10:
+           begin
              if ((getGold>24) AND (getOutil>4) AND (getTissu>9) AND (getFish>24)) then
                begin
                  setGold(getGold-25);
@@ -353,13 +375,13 @@ implementation
              else
                begin
                  couleurs(red,black);
-                 texte:='Vous n''avez pas les ressources pour recruter des soldats';
+                 texte:='Vous n''avez pas les ressources pour recruter des soldats.';
                  ecrireTexte(10, 43, texte);
                  couleurs(white,black);
                  readln();
                end;
            end;
-         10:ARRET:=false;
+         11:ARRET:=false;
          end;
      end;
    end;

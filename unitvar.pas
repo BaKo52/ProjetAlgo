@@ -11,7 +11,7 @@ interface
      end;
 
      b = record //record contenant les données des bâtiments
-       maison, cabaneP, cabaneB, bergerie, atelier : Integer;
+       maison, cabaneP, cabaneB, bergerie, atelier, entrepot : Integer;
        chapelle, centreVille, chantierNaval : Boolean;
      end;
 
@@ -71,6 +71,10 @@ interface
    procedure setAtelier(val:Integer);
    function getAtelier : Integer;
 
+   //entrepots
+   procedure setEntrepot(val:Integer);
+   function getEntrepot : Integer;
+
    //chapelle
    procedure setChapelle(val:Boolean);
    function getChapelle : Boolean;
@@ -122,6 +126,7 @@ implementation
      j.b.cabaneB := 0;
      j.b.bergerie := 0;
      j.b.atelier := 0;
+     j.b.entrepot := 1;
 
      j.b.chapelle := false;
      j.b.centreVille := false;
@@ -283,6 +288,17 @@ implementation
    function getAtelier : Integer;
    begin
      getAtelier:=j.b.atelier;
+   end;
+
+   //entrepot
+   procedure setEntrepot(val:Integer);
+   begin
+     j.b.entrepot:=val;
+   end;
+
+   function getEntrepot : Integer;
+   begin
+     getEntrepot:=j.b.entrepot;
    end;
 
    //chapelle

@@ -106,23 +106,23 @@ implementation
 
      texte:='- Bois : ';
      ecrireTexte(110,8,texte);
-     write(getBois);
+     write(getBois,'/',getEntrepot*200);
 
      texte:='- Poissons : ';
      ecrireTexte(110,9,texte);
-     write(getFish);
+     write(getFish,'/',getEntrepot*200);
 
      texte:='- Outils : ';
      ecrireTexte(110,10,texte);
-     write(getOutil);
+     write(getOutil,'/',getEntrepot*200);
 
      texte:='- Laine : ';
      ecrireTexte(110,11,texte);
-     write(getLaine);
+     write(getLaine,'/',getEntrepot*200);
 
      texte:='- Tissu : ';
      ecrireTexte(110,12,texte);
-     write(getTissu);
+     write(getTissu,'/',getEntrepot*200);
 
      texte:='- Nombre de soldat : ';
      ecrireTexte(110,13,texte);
@@ -132,7 +132,7 @@ implementation
      ecrireTexte(110,14,texte);
      write(getBateau);
 
-     dessinerCadreXY(109,29,161,40,simple,white,black);
+     dessinerCadreXY(109,29,161,41,simple,white,black);
 
      texte:='Nombre de colons : ';
      ecrireTexte(110,30,texte);
@@ -162,37 +162,41 @@ implementation
      ecrireTexte(110,36,texte);
      write(getAtelier);
 
+     texte:='- Entrepots: ';
+     ecrireTexte(110,37,texte);
+     write(getEntrepot);
+
      if (getChapelle = false) then
        begin
          texte:='Vous n''avez pas encore construit de chapelle';
-         ecrireTexte(110,37,texte);
+         ecrireTexte(110,38,texte);
        end
      else
        begin
          texte:='Vous avez construit une chapelle';
-         ecrireTexte(110,37,texte);
+         ecrireTexte(110,38,texte);
        end;
 
      if (getCentreVille = false) then
        begin
          texte:='Vous n''avez pas encore construit de centre-ville';
-         ecrireTexte(110,38,texte);
+         ecrireTexte(110,39,texte);
        end
      else
        begin
          texte:='Vous avez construit un centre-ville';
-         ecrireTexte(110,38,texte);
+         ecrireTexte(110,39,texte);
        end;
 
        if (getNaval = false) then
        begin
          texte:='Vous n''avez pas encore construit de chantier naval';
-         ecrireTexte(110,39,texte);
+         ecrireTexte(110,40,texte);
        end
      else
        begin
          texte:='Vous avez construit un chantier naval';
-         ecrireTexte(110,39,texte);
+         ecrireTexte(110,40,texte);
        end;
    end;
 

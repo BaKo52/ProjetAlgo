@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <Compiler Value="C:\lazarus\fpc\3.2.0\bin\x86_64-win64\fpc.exe" Date="1357350767"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq -FiC:\Users\bkott\Documents\GitHub\ProjetAlgo\lib\x86_64-win64 -FuC:\Users\bkott\Documents\GitHub\ProjetAlgo\ -FUC:\Users\bkott\Documents\GitHub\ProjetAlgo\lib\x86_64-win64\ -FEC:\Users\bkott\Documents\GitHub\ProjetAlgo\ -oC:\Users\bkott\Documents\GitHub\ProjetAlgo\minimalAnno.exe minimalAnno.lpr"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq -FiS:\Users\Utilisateur\Documents\GitHub\ProjetAlgo\lib\x86_64-win64 -FuS:\Users\Utilisateur\Documents\GitHub\ProjetAlgo\ -FUS:\Users\Utilisateur\Documents\GitHub\ProjetAlgo\lib\x86_64-win64\ -FES:\Users\Utilisateur\Documents\GitHub\ProjetAlgo\ -oS:\Users\Utilisateur\Documents\GitHub\ProjetAlgo\minimalAnno.exe minimalAnno.lpr"/>
 </CONFIG>

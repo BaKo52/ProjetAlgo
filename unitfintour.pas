@@ -39,6 +39,23 @@ procedure production ();
     setColon(getColon()+ getColon() div 5); //donne 20% de la population en colon supplémentaire par tour
     if(getColon()>(getMaison()*4)) then
       setColon(getMaison()*4);
+
+    // Vérirication de chaque stock de ressource pour vérifier que cela ne dépasse pas la limite des entrepots
+
+    if(getBois>getEntrepot*200) then
+      setBois(getEntrepot*200);
+
+    if(getFish>getEntrepot*200) then
+      setFish(getEntrepot*200);
+
+    if(getOutil>getEntrepot*200) then
+      setOutil(getEntrepot*200);
+
+    if(getLaine>getEntrepot*200) then
+      setLaine(getEntrepot*200);
+
+    if(getTissu>getEntrepot*200) then
+      setTissu(getEntrepot*200);
   end;
 
 procedure nextRound();
