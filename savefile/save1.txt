@@ -1,4 +1,4 @@
-nom 
+nom
 100
 100
 100
@@ -16,3 +16,25 @@ FALSE
 FALSE
 0
 0
+1
+1
+Pol BOT
+100
+100
+100
+100
+100
+50000
+12
+3
+0
+0
+0
+0
+FALSE
+FALSE
+FALSE
+0
+0
+FALSE
+

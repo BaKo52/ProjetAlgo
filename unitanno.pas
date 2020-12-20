@@ -414,9 +414,9 @@ implementation
      write(getTissu);
 
      dessinerCadreXY(82,5,118,15,simple,white,black);
-     texte:='Bois: 5 pièces d''or par laine';
+     texte:='Bois: 5 pièces d''or par bois';
      ecrireTexteCentre(100,6,texte);
-     texte:='Poisson: 5 pièces d''or par laine';
+     texte:='Poisson: 5 pièces d''or par poisson';
      ecrireTexteCentre(100,8,texte);
      texte:='Laine: 5 pièces d''or par laine';
      ecrireTexteCentre(100,10,texte);

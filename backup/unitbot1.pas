@@ -6,7 +6,7 @@ unit unitBot1;
 interface
 
 uses
-  Classes, SysUtils, unitVarBot1, gestionEcran;
+  Classes, SysUtils, unitVarBot1, gestionEcran, unitVar;
 
 //procédure gérant l'affichage des ressources du bot pour garder le joueur informé de l'avancement du bot
 procedure affichageRessourceBot1();
@@ -37,7 +37,7 @@ var
 
   //record contenant les estimations des ressources du bot
   estimation : Record
-    fish, tissu, bois, laine, colon : Integer;
+    fish, tissu, bois, laine, colon, outil : Integer;
     attaque : Boolean;
     //attaque : booléen indiquant si le bot se mesure en capacité d'attaquer le joueur
     //false : il n'estime pas être en mesure d'attaquer le joueur
@@ -46,6 +46,8 @@ var
 
 procedure affichageRessourceBot1();
   begin
+    effacerEcran();
+
     //affichage du titre
     couleurs(black, white);
     ecrireTexteCentre(100, 2, 'Ressources de ');
@@ -58,69 +60,75 @@ procedure affichageRessourceBot1();
     write(getColonBot1());
     write('/', getMaisonBot1() * 4);
 
-    ecrireTexte(3, 9, 'Argent : ');
+    ecrireTexte(3, 9, 'Nombre de soldats : ');
+    write(getSoldatBot1());
+
+    ecrireTexte(3, 10, 'Nombre de bateaux : ');
+    write(getBateauBot1());
+
+    ecrireTexte(3, 11, 'Argent : ');
     write(getGoldBot1());
 
 
-    ecrireTexte(3, 11, 'Liste des matériaux :');
+    ecrireTexte(3, 13, 'Liste des matériaux :');
 
-    ecrireTexte(3, 12, '- Bois : ');
+    ecrireTexte(3, 14, '- Bois : ');
     write(getBoisBot1());
 
-    ecrireTexte(3, 13, '- Poissons : ');
+    ecrireTexte(3, 15, '- Poissons : ');
     write(getFishBot1());
 
-    ecrireTexte(3, 14, '- Laine : ');
+    ecrireTexte(3, 16, '- Laine : ');
     write(getLaineBot1());
 
-    ecrireTexte(3, 15, '- Outil : ');
+    ecrireTexte(3, 17, '- Outil : ');
     write(getOutilBot1());
 
-    ecrireTexte(3, 16, '- Tissu : ');
+    ecrireTexte(3, 18, '- Tissu : ');
     write(getTissuBot1());
 
-    ecrireTexte(3, 18, 'Liste des bâtiments : ');
+    ecrireTexte(3, 19, 'Liste des bâtiments : ');
 
-    ecrireTexte(3, 19, '- Maison : ');
+    ecrireTexte(3, 20, '- Maison : ');
     write(getMaisonBot1());
 
-    ecrireTexte(3, 20, '- Cabane de bûcheron : ');
+    ecrireTexte(3, 21, '- Cabane de bûcheron : ');
     write(getCabaneBBot1());
 
-    ecrireTexte(3, 21, '- Cabane de pêcheur : ');
+    ecrireTexte(3, 22, '- Cabane de pêcheur : ');
     write(getCabanePBot1());
 
-    ecrireTexte(3, 22, '- Bergerie : ');
+    ecrireTexte(3, 23, '- Bergerie : ');
     write(getBergerieBot1());
 
-    ecrireTexte(3, 23, '- Atelier de tisserand : ');
+    ecrireTexte(3, 24, '- Atelier de tisserand : ');
     write(getAtelierBot1());
 
     if (getChapelleBot1 = false) then
       begin
-        ecrireTexte(3, 24, 'Le bot n''a pas encore de chapelle');
+        ecrireTexte(3, 25, 'Le bot n''a pas encore de chapelle');
       end
     else
       begin
-        ecrireTexte(3, 24, 'Le bot a une chapelle');
+        ecrireTexte(3, 25, 'Le bot a une chapelle');
       end;
 
     if (getCentreVilleBot1 = false) then
       begin
-        ecrireTexte(3, 25, 'Le bot n''a pas encore de centre-ville');
+        ecrireTexte(3, 26, 'Le bot n''a pas encore de centre-ville');
       end
     else
       begin
-        ecrireTexte(3, 25, 'Le bot a un centre-ville');
+        ecrireTexte(3, 26, 'Le bot a un centre-ville');
       end;
 
     if (getNavalBot1 = false) then
       begin
-        ecrireTexte(3, 26, 'Le bot n''a pas encore de chantier naval');
+        ecrireTexte(3, 27, 'Le bot n''a pas encore de chantier naval');
       end
     else
       begin
-        ecrireTexte(3, 26, 'Le bot a un chantier naval');
+        ecrireTexte(3, 27, 'Le bot a un chantier naval');
       end;
   end;
 
@@ -175,40 +183,46 @@ procedure planification();
     res:= getAtelierBot1()*5;       //met le nombre de laine requit pour créer le tissu dans une variable temporaire
     if res <= estimation.laine then      //check si le bot aura assez de laine
       begin
-        estimation.laine := estimation.laine - res;
-        estimation.tissu := getAtelierBot1() * 10 - besoin.tissu;
+        estimation.laine := getLaineBot1() - res;
+        estimation.tissu := getTissuBot1() + getAtelierBot1() * 10 - besoin.tissu;
       end;
     //on utilise estimation.laine pour calculer si le bot a assez de laine pour produire le tissu
     //car le bot produit de la laine ensuite utilise celle-ci pour faire du tissu (comme le joueur)
     //dans le code côté joueur on a : production de laine ensuite production de tissu
 
     estimation.colon:= getColonBot1() + getColonBot1() div 5;
+    //on estime le nombre de colon que va gagner le bot
 
-    if (estimation.fish <= 0) then
+    estimation.outil := getOutilBot1();
+
+      //les trois prochains tests avec les estimations servent à savoir si les colons sont en danger
+      //le premier sert à savoir si ils ont besoin de poisson
+      //le deuxième pour le tissu
+      //le dernier pour le bois
+      //on donne un marge de manoeuvre de 20 unités
+      //le bot est donc considéré en manque quand une des ses trois ressources est inférieur à 20
+    if (estimation.fish < 10) then
       begin
-        estimation.colon := estimation.colon - 4; //le bot comme le joueur perd 4 colons s"il manque de poisson
-        if ((estimation.colon) <= 0) then         //si le nombre de colon est critique (inférieur ou égal à 0) alors le bot est notifié qu'il doit combler le manque
-          begin
-            manque.fish := true;                  //le bot a besoin de poisson
-          end;
+        ecrireTexteCentre(100, 10, 'Le bot sera en manque de poisson');
+        manque.fish := true;
       end;
 
-    if (estimation.tissu <= 0) then
+    if (estimation.tissu < 10) then
       begin
-        estimation.colon := estimation.colon - 2; //même perte en colon que pour le joueur
-        if ((estimation.colon) <= 0) then         //si le nombre de colon est critique (inférieur ou égal à 0) alors le bot est notifié qu'il doit combler le manque
-          begin
-            manque.tissu := true;                  //le bot a besoin de tissu
-          end;
+        ecrireTexteCentre(100, 12, 'Le bot sera en manque de tissu');
+        manque.tissu := true;
       end;
 
-    if (estimation.bois <= 0) then
+    if (estimation.bois < 10) then
       begin
-        estimation.colon := estimation.colon - 2; //même perte en colon que pour le joueur
-        if ((estimation.colon) <= 0) then         //si le nombre de colon est critique (inférieur ou égal à 0) alors le bot est notifié qu'il doit combler le manque
-          begin
-            manque.Bois := true;                  //le bot a besoin de bois
-          end;
+        ecrireTexteCentre(100, 14, 'Le bot sera en manque de bois');
+        manque.bois := true;
+      end;
+
+    if (estimation.outil < 10) then
+      begin
+        ecrireTexteCentre(100, 16, 'Le bot sera en manque d''outil');
+        manque.outil := true;
       end;
   end;
 
@@ -234,69 +248,337 @@ procedure mortBot1();
     halt();
   end;
 
-procedure tourBot1();
+procedure echange(z : Integer);
+  var
+    temp : Integer;
+    reponse : Char;
+    ARRET : Boolean;
   begin
-    if not(getEtatBot1) then
+    ARRET := false;
+    reponse := 'a';
+    case z of
+      1:
+        begin
+          while not(ARRET) do
+            begin
+              effacerEcran();
+
+              couleurs(black, white);
+              ecrireTexteCentre(100, 2, 'Un échange vous est proposé par ');
+              writeln(getNomBot1());
+
+              couleurs(white, black);
+              ecrireTexte(3, 8, 'Il vous propose l''échange suivant (il veut acheter) : ');
+
+              temp := 70 - getBoisBot1();
+                //si le bot demande plus que ce qu'a le joueur
+                //le bot va donc demander la moitié de ce qu'a le joueur
+              if (temp > getBois()) then
+                begin
+                  temp := getBois() div 2;
+                end;
+              deplacerCurseurXY(3, 10);
+              write(temp, ' unité de bois pour ');
+                //on augmente les prix pour inciter le joueur à accepter
+              writeln(temp * 6, ' pièces d''or');
+
+              ecrireTexte(3, 12, 'Acceptez-vous ? (y/n)');
+                //on attend la réponse du joueur
+              readln(reponse);
+              case reponse of
+              'y':
+                begin
+                  ARRET := true;
+                  couleurs(green, black);
+                  ecrireTexteCentre(3, 13, 'Vous avez accepté l''échange');
+                  couleurs(white, black);
+
+                  setGoldBot1(getGoldBot1() - temp * 6);
+                  setGold(getGold() + temp * 6);
+
+                  setBoisBot1(getBoisBot1() + temp);
+                  setBois(getBois() - temp);
+                  readln();
+                end;
+              'n':
+                begin
+                  ARRET := true;
+                  couleurs(red, black);
+                  ecrireTexteCentre(3, 13, 'Vous avez refusé l''échange');
+                  couleurs(white, black);
+                  readln();
+                end;
+              end;
+            end;
+        end;
+      2:
+        begin
+          while not(ARRET) do
+            begin
+              effacerEcran();
+
+              couleurs(black, white);
+              ecrireTexteCentre(100, 2, 'Un échange vous est proposé par ');
+              writeln(getNomBot1());
+
+              couleurs(white, black);
+              ecrireTexte(3, 8, 'Il vous propose l''échange suivant (il veut acheter) : ');
+
+              temp := 70 - getOutilBot1();
+                //si le bot demande plus que ce qu'a le joueur
+                //le bot va donc demander la moitié de ce qu'a le joueur
+              if (temp > getOutil()) then
+                begin
+                  temp := getOutil() div 2;
+                end;
+              deplacerCurseurXY(3, 10);
+              write(temp, ' outils pour ');
+                //on augmente les prix pour inciter le joueur à accepter
+              writeln(temp * 3, ' pièces d''or');
+
+              ecrireTexte(3, 12, 'Acceptez-vous ? (y/n)');
+                //on attend la réponse du joueur
+              readln(reponse);
+              case reponse of
+              'y':
+                begin
+                  ARRET := true;
+                  couleurs(green, black);
+                  ecrireTexteCentre(3, 13, 'Vous avez accepté l''échange');
+                  couleurs(white, black);
+
+                  setGoldBot1(getGoldBot1() - temp * 3);
+                  setGold(getGold() + temp * 3);
+
+                  setOutilBot1(getOutilBot1() + temp);
+                  setOutil(getOutil() - temp);
+                  readln();
+                end;
+              'n':
+                begin
+                  ARRET := true;
+                  couleurs(red, black);
+                  ecrireTexteCentre(3, 13, 'Vous avez refusé l''échange');
+                  couleurs(white, black);
+                  readln();
+                end;
+              end;
+            end;
+        end;
+      3:
+        begin
+          while not(ARRET) do
+            begin
+              effacerEcran();
+
+              couleurs(black, white);
+              ecrireTexteCentre(100, 2, 'Un échange vous est proposé par ');
+              writeln(getNomBot1());
+
+              couleurs(white, black);
+              ecrireTexte(3, 8, 'Il vous propose l''échange suivant (il veut acheter) : ');
+
+              temp := 70 - getBoisBot1();
+                //si le bot demande plus que ce qu'a le joueur
+                //le bot va donc demander la moitié de ce qu'a le joueur
+              if (temp > getFish()) then
+                begin
+                  temp := getFish() div 2;
+                end;
+              deplacerCurseurXY(3, 10);
+              write(temp, ' unité de poissons pour ');
+                //on augmente les prix pour inciter le joueur à accepter
+              writeln(temp * 6, ' pièces d''or');
+
+              ecrireTexte(3, 12, 'Acceptez-vous ? (y/n)');
+                //on attend la réponse du joueur
+              readln(reponse);
+              case reponse of
+              'y':
+                begin
+                  ARRET := true;
+                  couleurs(green, black);
+                  ecrireTexteCentre(3, 13, 'Vous avez accepté l''échange');
+                  couleurs(white, black);
+
+                  setGoldBot1(getGoldBot1() - temp * 6);
+                  setGold(getGold() + temp * 6);
+
+                  setFishBot1(getFishBot1() + temp);
+                  setFish(getFish() - temp);
+                  readln();
+                end;
+              'n':
+                begin
+                  ARRET := true;
+                  couleurs(red, black);
+                  ecrireTexteCentre(3, 13, 'Vous avez refusé l''échange');
+                  couleurs(white, black);
+                  readln();
+                end;
+              end;
+            end;
+
+        end;
+      4:
+        begin
+          while not(ARRET) do
+            begin
+              effacerEcran();
+
+              couleurs(black, white);
+              ecrireTexteCentre(100, 2, 'Un échange vous est proposé par ');
+              writeln(getNomBot1());
+
+              couleurs(white, black);
+              ecrireTexte(3, 8, 'Il vous propose l''échange suivant (il veut acheter) : ');
+
+              temp := 70 - getTissuBot1();
+                //si le bot demande plus que ce qu'a le joueur
+                //le bot va donc demander la moitié de ce qu'a le joueur
+              if (temp > getTissu()) then
+                begin
+                  temp := getTissu() div 2;
+                end;
+              deplacerCurseurXY(3, 10);
+              write(temp, ' unité de tissu pour ');
+                //on augmente les prix pour inciter le joueur à accepter
+              writeln(temp * 6, ' pièces d''or');
+
+              ecrireTexte(3, 12, 'Acceptez-vous ? (y/n)');
+                //on attend la réponse du joueur
+              readln(reponse);
+              case reponse of
+              'y':
+                begin
+                  ARRET := true;
+                  couleurs(green, black);
+                  ecrireTexteCentre(3, 13, 'Vous avez accepté l''échange');
+                  couleurs(white, black);
+
+                  setGoldBot1(getGoldBot1() - temp * 6);
+                  setGold(getGold() + temp * 6);
+
+                  setFishBot1(getFishBot1() + temp);
+                  setFish(getFish() - temp);
+                  readln();
+                end;
+              'n':
+                begin
+                  ARRET := true;
+                  couleurs(red, black);
+                  ecrireTexteCentre(3, 13, 'Vous avez refusé l''échange');
+                  couleurs(white, black);
+                  readln();
+                end;
+              end;
+            end;
+        end;
+    end;
+
+  end;
+
+procedure marchandage();
+  var
+    x : Integer; //variable qui détermine la valeur de la matière que veux le bot
+  begin
+    if (manque.marchand) then
       begin
-        //estimation pour le tour
-        planification();
-
-        //on incrémente le compteur de tour du bot
-        setNbRoundBot1(getNbRoundBot1() + 1 );
-
-        //--------------------Suites de test logiques déterminant les actions du bot--------------------
-
-          //les trois prochains tests servent pour les premiers tours
-          //il servent à ce que le bot ai une production stable de chaque matériau de base
-          //le bot va créer des cabane de pêcheur, de bucheron et des bergeries, jusqu'à ce qu'il en ai 10
-          //ensuite il s'arrêtera (10 parrait être un nombre de bâtiments où la production est stable et suffissante)
-        if ((getCabanePBot1() - 1) = getBergerieBot1()) then
-          //( ((getCabanePBot1() + 1) >= getCabaneBBot1() ) OR ((getCabanePBot1() - 1) <= getCabaneBBot1() )  )
+        if (manque.bois) then
           begin
-            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              //on check si le marchand est là
+              //si oui on marchande en priorité avec lui
+              //car le marchand ne peut pas refuser la transaction
+            if ((getNbRoundBot1() mod 3) = 0) then
               begin
-                setCabanePBot1(getCabanePBot1+1);
-                setGoldBot1(getGoldBot1-500);
-                setBoisBot1(getBoisBot1-20);
-                setOutilBot1(getOutilBot1-10);
-              end;
+                  //on attribue a x la valeur que veux le bot
+                  //j'ai choisi 100 comme valeur de sécurité afin que le bot ai une marge de manoeuvre
+                  //on soustrait le bois actuel du bot à 100 afin de n'avoir que le bois nécessaire
+                x := 100 - getBoisBot1();
+                if (getGoldBot1() >= x * 5) then
+                  begin
+                    setBoisBot1(getBoisBot1() + x);
+                    setGoldBot1(getGoldBot1() - (x * 5)); //5 pièces d'or pour une unité de bois
+                  end;
+                writeln('Le bot a acheté du bois : ', x);
+                readln();
+              end
+              //sinon on marchande avec le joueur
+              //on va vendre les ressources plus cher au joueur pour l'inciter à accepter
+            else echange(1);
           end;
-
-        if ((getCabaneBBot1() - 1) = getBergerieBot1()) then
+        if (manque.outil) then
           begin
-            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+            if ((getNbRoundBot1() mod 3) = 0) then
               begin
-                setBergerieBot1(getBergerieBot1+1);
-                setGoldBot1(getGoldBot1-500);
-                setBoisBot1(getBoisBot1-20);
-                setOutilBot1(getOutilBot1-10);
-              end;
+                  //on fait la même pour les autres ressources en adaptant les prix
+                x := 100 - getOutilBot1();
+                if (getGoldBot1() >= x * 2) then
+                  begin
+                    setOutilBot1(getOutilBot1() + x);
+                    setGoldBot1(getGoldBot1() - (x * 2)); //2 pièces d'or pour un outil
+                  end;
+                writeln('Le bot a acheté des outils : ', x);
+                readln();
+              end
+            else echange(2);
           end;
-
-        if ((getCabaneBBot1() = 0) OR ((getCabaneBBot1() - 1) = getCabanePBot1())) then
+        if (manque.fish) then
           begin
-            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+            if ((getNbRoundBot1() mod 3) = 0) then
               begin
-                setCabaneBBot1(getCabaneBBot1+1);
-                setGoldBot1(getGoldBot1-500);
-                setBoisBot1(getBoisBot1-20);
-                setOutilBot1(getOutilBot1-10);
-              end;
+                  //on fait la même pour les autres ressources en adaptant les prix
+                x := 100 - getOutilBot1();
+                if (getGoldBot1() >= x * 5) then
+                  begin
+                    setFishBot1(getFishBot1() + x);
+                    setGoldBot1(getGoldBot1() - (x * 5)); //5 pièces d'or pour une unité de poisson
+                  end;
+                writeln('Le bot a acheté du poissons : ', x);
+                readln();
+              end
+            else echange(3);
           end;
+        if (manque.tissu) then
+          begin
+            if ((getNbRoundBot1() mod 3) = 0) then
+              begin
+                  //on fait la même pour les autres ressources en adaptant les prix
+                x := 100 - getOutilBot1();
+                if (getGoldBot1() >= x * 5) then
+                  begin
+                    setTissuBot1(getTissuBot1() + x);
+                    setGoldBot1(getGoldBot1() - (x * 5)); //5 pièces d'or pour une unité de tissu
+                  end;
+                writeln('Le bot a acheté du tissu : ', x);
+                readln();
+              end
+            else echange(4);
+          end;
+      end;
+  end;
 
-
-
-
-
-        //on va tester si le bot a besoin d'une (ou plus) des trois ressources vitales pour les colons
-        //à savoir le bois, le poisson ou le tissu
-        if (manque.Bois = true) then
+//procédure servant à corriger les manques de ressources
+procedure correction();
+  begin
+    //on va tester si le bot a besoin d'une (ou plus) des trois ressources vitales pour les colons
+    //à savoir le bois, le poisson ou le tissu sont inférieur à 20
+    //ici on boucle tant que le bot a besoin d'une des quatre ressources et qu'il ne doit pas aller au marchand
+    //on fait ces tests afin d'éviter des pertes au bot
+    while (((manque.bois) OR (manque.tissu) OR (manque.fish) OR (manque.outil)) AND not(manque.marchand)) do
+      begin
+        if (manque.Bois) then
           begin
             //si le bot a besoin de bois il est obligé de l'acheter
             //car la construction de la cabane demande du bois en elle-même
             manque.marchand := true;
           end;
-        if (manque.Tissu = true) then
+        if (manque.outil) then
+          begin
+            //on est obligé d'aller au marchand pour les outils car c'est le seul moyen d'en obtenir
+            manque.marchand := true;
+          end;
+        if (manque.Tissu) then
           begin
             //on va tester lequel entre l'atelier et la bergerie ralenti l'autre
             //on test pour savoir si on a plus d'atelier que de bergerie (il serait en manque de laine)
@@ -326,7 +608,7 @@ procedure tourBot1();
                     setBoisBot1(getBoisBot1 - 20);
                     setOutilBot1(getOutilBot1 - 10);
                     setLaineBot1(getLaineBot1 - 10);
-                    manque.Tissu := false;
+                    manque.tissu := false;
                   end
                 //si on ne peut acheter le batiment on va marchander
                 else manque.marchand := true;
@@ -340,7 +622,7 @@ procedure tourBot1();
                     setGoldBot1(getGoldBot1 - 500);
                     setBoisBot1(getBoisBot1 - 20);
                     setOutilBot1(getOutilBot1 - 10);
-                    manque.Tissu := false;
+                    manque.tissu := false;
                   end
                 //si on ne peut pas acheter le bâtiment on va marchander
                 else manque.marchand := true;
@@ -351,15 +633,15 @@ procedure tourBot1();
                       setBoisBot1(getBoisBot1 - 20);
                       setOutilBot1(getOutilBot1 - 10);
                       setLaineBot1(getLaineBot1 - 10);
-                      manque.Tissu := false;
+                      manque.tissu := false;
                    end
                 //si on ne peut pas acheter le bâtiment on va marchander
                 else manque.marchand := true;
               end;
           end;
-        if(manque.Fish = true) then
+        if(manque.Fish) then
           begin
-            //si le bot a besoin de poisson on lui fait acheter une cabane de pêcheur s"il a les ressources
+            //si le bot a besoin de poisson on lui fait acheter une cabane de pêcheur s'il a les ressources
             if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
               begin
                 setCabanePBot1(getCabanePBot1+1);
@@ -371,12 +653,183 @@ procedure tourBot1();
             //si on ne peut pas acheter le bâtiment on va marchander
             else manque.marchand := true;
           end;
-
-
-
+          //le bot refait des estimations afin de savoir s'il est toujours en manque de certaines ressources
+        planification();
       end;
+
+    //une fois toutes les opérations précédentes réalisés
+    //le bot va marchander avec le marchand et/ou le joueur si nécessaire
+    marchandage();
+  end;
+
+procedure attaqueBot();
+  begin
+    couleurs(red, black);
+    ecrireTexteCentre(100, 3, 'Vous subissez une attaque de ');
+    write(getNomBot1());
+    couleurs(white, black);
+
+    ecrireTexte(3, 8, 'Votre armée :');
+    ecrireTexte(3, 9, '- Soldats :');
+    write(getSoldat());
+    ecrireTexte(3, 10, '- Bateaux :');
+    write(getBateau());
+
+    ecrireTexte(180, 8, 'Son armée :');
+    ecrireTexte(180, 9, '- Soldats :');
+    write(getSoldatBot1());
+    ecrireTexte(180, 10, '- Bateaux :');
+    write(getBateauBot1());
+
+    ecrireTexteCentre(100, 20, 'Son armée est au bord de votre village, vous n''avez pas d''autre choix que d''attaquer !');
+    readln();
+
+    if ( (getSoldatBot1() + getBateauBot1() * 30) > ( (getSoldat() + getBateau * 30) ) ) then
+      begin
+        couleurs(red, black);
+        ecrireTexteCentre(100, 23, 'Son armée était plus grande que la votre ...');
+        ecrireTexteCentre(100, 24, 'Vous avez perdu !');
+        readln();
+        halt();
+      end
+    else
+      begin
+        couleurs(green, black);
+        ecrireTexteCentre(100, 23, 'Votre armée est victorieuse !');
+        ecrireTexteCentre(100, 24, 'Vous avez vaincu votre ennemi et vous êtes assuré le monopole des îles !');
+        ecrireTexteCentre(100, 25, 'Bravo ! Vous avez gagné !');
+        readln();
+        halt();
+      end;
+  end;
+
+procedure consommation();
+
+procedure tourBot1();
+  begin
+    if not(getEtatBot1) then  //on test que le bot n'est pas mort
+      begin
+          //on incrémente le compteur de tour du bot
+        setNbRoundBot1(getNbRoundBot1() + 1 );
+
+          //on test pour savoir si le bot s'estime être prêt à attaquer
+          //cette estimation est faîtes à la fin du dernier tour afin de donner un tour de préparation au joueur
+          //(s'il remarque que la taille de l'armée du bot est devenue inquiétante)
+          //si le test est vrai alors le bot attaque le joueur
+          //sinon rien ne se passe
+        if (estimation.attaque) then
+          attaqueBot();
+
+        //--------------------Suites de test logiques déterminant les actions du bot--------------------
+
+          //les tests suivants servent à ce que le bot ai une production stable de chaque matériau de base
+          //le bot va créer une cabane de bûcheron le premier tour
+          //une cabane de pêcheur le tour suivant
+          //ensuite une bergerie et il va répéter cela en boucle
+        if ((getBergerieBot1() - 1) = getCabanePBot1()) then
+          begin
+            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              begin
+                setCabanePBot1(getCabanePBot1+1);
+                setGoldBot1(getGoldBot1-500);
+                setBoisBot1(getBoisBot1-20);
+                setOutilBot1(getOutilBot1-10);
+              end;
+          end;
+
+        if ((getCabaneBBot1() - 1) = getBergerieBot1()) then
+          begin
+            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              begin
+                setBergerieBot1(getBergerieBot1+1);
+                setGoldBot1(getGoldBot1-500);
+                setBoisBot1(getBoisBot1-20);
+                setOutilBot1(getOutilBot1-10);
+              end;
+          end;
+
+        if (((getCabanePBot1() - 1) = getCabaneBBot1()) OR (getCabanePBot1() = getCabaneBBot1())) then
+          begin
+            if ((getGoldBot1 > 499) AND (getBoisBot1 > 19) AND (getOutilBot1 > 9)) then
+              begin
+                setCabaneBBot1(getCabaneBBot1+1);
+                setGoldBot1(getGoldBot1-500);
+                setBoisBot1(getBoisBot1-20);
+                setOutilBot1(getOutilBot1-10);
+              end;
+          end;
+
+
+
+          //la priorité du bot 'hormis de faire survivre ses colons) est de tuer le joueur
+          //pour ce faire il va tout d'abord créer un chantier naval s'il a les ressources pour
+        if ( (not(getNavalBot1())) AND (getGoldBot1() > 999) AND (getBoisBot1() > 99) AND (getOutilBot1() > 19) AND (getTissuBot1() > 9) ) then
+          begin
+            setNavalBot1(true);
+            setGoldBot1(getGold-1000);
+            setBoisBot1(getBois-100);
+            setOutilBot1(getOutil-20);
+            settissuBot1(getTissu-10);
+          end;
+
+          //ensuite il va utiliser tout les ressources restantes (i.e. celle qu'il n'a pas utilisé pour sauver les colons)
+          //pour créer des bateaux
+        if (getNavalBot1()) then
+          begin
+              //il va créer des bateaux jusqu'a ce qu'il ne puisse plus
+            while ( (getGoldBot1() > 499) AND (getBoisBot1 > 49) AND (getOutilBot1() > 19) ) do
+              begin
+                writeln(getBateauBot1, ' ', getGoldBot1(), ' ', getBoisBot1(), ' ', getOutilBot1);
+                setBateauBot1(getBateauBot1() + 1);
+                setGoldBot1(getGoldBot1() - 500);
+                setBoisBot1(getBoisBot1() - 50);
+                setOutilBot1(getOutilBot1() - 20);
+                writeln(getBateauBot1, ' ', getGoldBot1(), ' ', getBoisBot1(), ' ', getOutilBot1);
+              end;
+            readln();
+
+              //ensuite il va recruter des soldats avec l'argent restant
+              //(on laisse cette partie sous la condition que le bot ai créé un chantier naval
+              //car on veut qu'il économise pour un chantier naval et ensuite commence à recruter une armée)
+            while ((getGoldBot1() > 24) AND (getOutilBot1 > 6) AND (getTissuBot1() > 9) AND (getFishBot1() > 24)) do
+              begin
+                setSoldatBot1(getSoldatBot1() + 5);
+                setGoldBot1(getGoldBot1() - 25);
+                setOutilBot1(getOutilBot1() - 5);
+                setTissuBot1(getTissuBot1() - 10);
+                setFishBot1(getFishBot1() - 25);
+              end;
+          end;
+
+          //on fait les estimations pour le tour
+          //on les fait après les achats de bâtiment de production et autres
+          //car si on le fait avant le bot risque de dépenser plus qu'il ne peux
+        planification();
+
+          //on appelle la procédure corrigeant les manques de ressources
+        correction();
+
+        if ( (getSoldatBot1() + getBateauBot1() * 30) > ( (getSoldat() + getBateau * 30) + 40) ) then
+          begin
+              //on additione le nombre de soldat du bot au nombre de bateaux du bot qu'on multiplie par
+              //et on le compare au résultat de ce calcul mais avec les chiffres de l'ennemi
+              //j'ai décidé d'établir qu'un bateau (en situation de combat joueur contre bot) valait 30 soldats
+              //on ajoute 40 au résultat de l'ennemi afin d'avoir un avantage numérique
+              //ainsi que de donner le temps au joueur de remarquer l'augmentation de la taille de l'armée
+              //et ainsi le temps de se préparer à une attaque
+            estimation.attaque := true;
+            writeln('le bot va attaquer au prochain tour');
+          end;
+
+
+
+        productionBot1();
+        affichageRessourceBot1();
+        readln();
+
+      end
+    else mortBot1();  //s'il est mort on affiche l'écran qui annonce au joueur qu'il a gagné
 
 
   end;
 end.
-

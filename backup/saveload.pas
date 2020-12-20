@@ -44,6 +44,8 @@ implementation
     writeln(fichier, getNaval());
     writeln(fichier, getSoldat());
     writeln(fichier, getBateaux());
+    writeln(fichier, getEntrepot());
+    writeln(fichier, getNbRound());
 
     //écriture de toutes les variables du bot 1 dans le fichier
     writeln(fichier, getNomBot1());
@@ -64,6 +66,7 @@ implementation
     writeln(fichier, getNavalBot1());
     writeln(fichier, getSoldatBot1());
     writeln(fichier, getBateauBot1());
+    writeln(fichier, getEtatBot1());
 
     close(fichier);
 
@@ -147,6 +150,12 @@ implementation
 
     readln(fichier,res);
 
+    readln(fichier, temp);
+    setEntrepot(temp);
+
+    readln(fichier, temp);
+    setNbRound(temp);
+
     //on fait pareil mais avec les variables du bot 1
     readln(fichier, texte);
     setNomBot1(texte);
@@ -208,8 +217,10 @@ implementation
     readln(fichier,temp);
     setBateauBot1(temp);
 
-    setGoldBot1(100000);
-
+    readln(fichier, texte);
+    if(texte = 'FALSE');
+    then setEtatBot1(false)
+    else setEtatBot1(true);
 
     close(fichier);
 

@@ -175,11 +175,6 @@ procedure nextRound();
         effacerEcran();
 
         tourBot1();
-        readln();
-
-        productionBot1();
-        affichageRessourceBot1();
-        readln();
 
         ile();
         gestionEvents(getNbRound());
