@@ -57,6 +57,7 @@
         <Filename Value="unitfintour.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitFinTour"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <CursorPos X="20" Y="177"/>
         <FoldState Value=" T3G0g T0iU658$"/>
