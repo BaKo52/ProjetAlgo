@@ -11,7 +11,7 @@ interface
      end;
 
      b = record //record contenant les données des bâtiments
-       maison, cabaneP, cabaneB, bergerie, atelier : Integer;
+       maison, cabaneP, cabaneB, bergerie, atelier, entrepot : Integer;
        chapelle, centreVille, chantierNaval : Boolean;
      end;
 
@@ -20,9 +20,6 @@ interface
        b : b;
        nom : String;
        nbRound : Integer;
-       etat : Boolean       //booléen servant à savoir si le bot a perdu ou non
-                            //false : le bot est encore dans la partie
-                            //true : le bot a perdu
      end;
 
    //Unité de gestion des ressources: getX donne la valeur de la ressource, setX la modifie
@@ -103,9 +100,8 @@ interface
    procedure setNomBot1(val : String);
    function getNomBot1 : String;
 
-   //procédure et donction gérant l'état du bot 1
-   procedure setEtatBot1(val :Boolean);
-   function getEtatBot1 : Boolean;
+   function getEntrepotBot1 : Integer;
+   procedure setEntrepotBot1(val : Integer);
 
 implementation
    var
@@ -123,6 +119,7 @@ implementation
      bot1.r.soldat := 0;
      bot1.r.bateaux := 0;
 
+     bot1.b.entrepot := 1;
      bot1.b.maison := 3;
      bot1.b.cabaneP := 0;
      bot1.b.cabaneB := 0;
@@ -135,7 +132,6 @@ implementation
 
      bot1.nom := 'Pol BOT';
      bot1.nbRound := 0;
-     bot1.etat := false; //on la passe à false : le bot n'est pas encore mort
    end;
 
    //fish
@@ -345,14 +341,15 @@ implementation
      getNomBot1 := bot1.nom;
    end;
 
-   procedure setEtatBot1(val : Boolean);
+   procedure setEntrepotBot1(val : Integer);
    begin
-     bot1.etat := val;
+     bot1.b.entrepot := val;
    end;
 
-   function getEtatBot1 : Boolean;
+   function getEntrepotBot1 : Integer;
    begin
-     getEtatBot1 := bot1.etat;
+     getEntrepotBot1 := bot1.b.entrepot;
    end;
+
 end.
 

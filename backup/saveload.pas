@@ -66,7 +66,7 @@ implementation
     writeln(fichier, getNavalBot1());
     writeln(fichier, getSoldatBot1());
     writeln(fichier, getBateauBot1());
-    writeln(fichier, getEtatBot1());
+    writeln(fichier, getEntrepotBot1());
 
     close(fichier);
 
@@ -217,10 +217,8 @@ implementation
     readln(fichier,temp);
     setBateauBot1(temp);
 
-    readln(fichier, texte);
-    if(texte = 'FALSE');
-    then setEtatBot1(false)
-    else setEtatBot1(true);
+    readln(fichier, temp);
+    setEntrepotBot1(temp)
 
     close(fichier);
 
