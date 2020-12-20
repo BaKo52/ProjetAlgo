@@ -8,9 +8,7 @@
       <Unit0>
         <Filename Value="minimalAnno.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="4"/>
-        <CursorPos X="25" Y="39"/>
+        <CursorPos X="57" Y="39"/>
         <UsageCount Value="129"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -19,8 +17,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitAnno"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="300"/>
-        <CursorPos X="117" Y="298"/>
+        <CursorPos X="66" Y="323"/>
         <UsageCount Value="129"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -48,7 +45,6 @@
         <EditorIndex Value="4"/>
         <TopLine Value="25"/>
         <CursorPos Y="50"/>
-        <FoldState Value=" T3i62L1 pjckK2J4 piXjJ2z1 T0pW5}w2]RTPKC015+"/>
         <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -56,9 +52,10 @@
         <Filename Value="unitfintour.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="unitFinTour"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="106"/>
-        <CursorPos X="15" Y="148"/>
+        <CursorPos X="72" Y="142"/>
         <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -89,7 +86,6 @@
         <EditorIndex Value="7"/>
         <TopLine Value="248"/>
         <CursorPos X="60" Y="111"/>
-        <FoldState Value=" T3je0Q3 T0nfAx071x"/>
         <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit8>
